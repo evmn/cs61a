@@ -80,7 +80,7 @@ organizing computers in a distributed system. The first is the
 client-server architecture, and the second is the peer-to-peer 
 architecture.</p>
 <div class="section" id="client-server-systems">
-<h2><a class="toc-backref" href="#id3">4.2.1&nbsp;&nbsp;&nbsp;Client/Server Systems</a></h2>
+<h3><a class="toc-backref" href="#id3">4.2.1&nbsp;&nbsp;&nbsp;Client/Server Systems</a></h3>
 <p>The client-server architecture is a way to dispense a service from a central source. There is a single <em>server</em> that provides a service, and multiple <em>clients</em>
  that communicate with the server to consume its products. In this 
 architecture, clients and servers have different jobs. The server's job 
@@ -128,7 +128,7 @@ scarce if there are too many clients. Clients increase the demand on the
 systems cannot shrink and grow with changing demand.</p>
 </div>
 <div class="section" id="peer-to-peer-systems">
-<h2><a class="toc-backref" href="#id4">4.2.2&nbsp;&nbsp;&nbsp;Peer-to-peer Systems</a></h2>
+<h3><a class="toc-backref" href="#id4">4.2.2&nbsp;&nbsp;&nbsp;Peer-to-peer Systems</a></h3>
 <p>The client-server model is appropriate for service-oriented 
 situations. However, there are other computational goals for which a 
 more equal division of labor is a better choice. The term <em>peer-to-peer</em>
@@ -180,7 +180,7 @@ their computers, and modifying the network structure to deal with users
 entering and leaving.</p>
 </div>
 <div class="section" id="modularity">
-<h2><a class="toc-backref" href="#id5">4.2.3&nbsp;&nbsp;&nbsp;Modularity</a></h2>
+<h3><a class="toc-backref" href="#id5">4.2.3&nbsp;&nbsp;&nbsp;Modularity</a></h3>
 <p>The two architectures we have just considered -- peer-to-peer and client-server -- are designed to enforce <em>modularity</em>.
  Modularity is the idea that the components of a system should be black 
 boxes with respect to each other. It should not matter how a component 
@@ -215,7 +215,7 @@ output of a component doesn't match the specifications of its interface,
 of the malfunction.</p>
 </div>
 <div class="section" id="message-passing">
-<h2><a class="toc-backref" href="#id6">4.2.4&nbsp;&nbsp;&nbsp;Message Passing</a></h2>
+<h3><a class="toc-backref" href="#id6">4.2.4&nbsp;&nbsp;&nbsp;Message Passing</a></h3>
 <p>In distributed systems, components communicate with each other using 
 message passing. A message has three essential parts: the sender, the 
 recipient, and the content. The sender needs to be specified so that the
@@ -258,7 +258,7 @@ distributed system, simply by conforming to the message protocols that
 govern the system.</p>
 </div>
 <div class="section" id="messages-on-the-world-wide-web">
-<h2><a class="toc-backref" href="#id7">4.2.5&nbsp;&nbsp;&nbsp;Messages on the World Wide Web</a></h2>
+<h3><a class="toc-backref" href="#id7">4.2.5&nbsp;&nbsp;&nbsp;Messages on the World Wide Web</a></h3>
 <p><strong>HTTP</strong> (short for Hypertext Transfer Protocol) is the 
 message protocol that supports the world wide web. It specifies the 
 format of messages exchanged between a web browser and a web server. All
@@ -338,7 +338,7 @@ rules of a programming language.  In a shared memory model, different
 processes may execute different statements, but any statement can affect
  the shared environment.</p>
 <div class="section" id="the-problem-with-shared-state">
-<h2><a class="toc-backref" href="#id9">4.3.1&nbsp;&nbsp;&nbsp;The Problem with Shared State</a></h2>
+<h3><a class="toc-backref" href="#id9">4.3.1&nbsp;&nbsp;&nbsp;The Problem with Shared State</a></h3>
 <p>Sharing state between multiple processes creates problems that a 
 single-process environments do not have. To understand why, let us look 
 the following simple calculation:</p>
@@ -433,7 +433,7 @@ way that simultaneous operations on the same account interfere with each
  when they are not reading or writing.</p>
 </div>
 <div class="section" id="correctness-in-parallel-computation">
-<h2><a class="toc-backref" href="#id10">4.3.2&nbsp;&nbsp;&nbsp;Correctness in Parallel Computation</a></h2>
+<h3><a class="toc-backref" href="#id10">4.3.2&nbsp;&nbsp;&nbsp;Correctness in Parallel Computation</a></h3>
 <p>There are two criteria for correctness in parallel computation 
 environments. The first is that the outcome should always be the same. 
 The second is that the outcome should be the same as if the code was 
@@ -465,7 +465,7 @@ one program is about to enter a critical section, the other processes
 can wait until it finishes, and then proceed safely.</p>
 </div>
 <div class="section" id="protecting-shared-state-locks-and-semaphores">
-<h2><a class="toc-backref" href="#id11">4.3.3&nbsp;&nbsp;&nbsp;Protecting Shared State: Locks and Semaphores</a></h2>
+<h3><a class="toc-backref" href="#id11">4.3.3&nbsp;&nbsp;&nbsp;Protecting Shared State: Locks and Semaphores</a></h3>
 <p>All the methods for synchronization and serialization that we will 
 discuss in this section use the same underlying idea. They use variables
  in shared state as <em>signals</em> that all the processes understand 
@@ -585,7 +585,7 @@ release db_semaphore: ok    acquire db_semaphore: ok     release db_semaphore: o
 <p>A semaphore with value 1 behaves like a lock.</p>
 </div>
 <div class="section" id="staying-synchronized-condition-variables">
-<h2><a class="toc-backref" href="#id12">4.3.4&nbsp;&nbsp;&nbsp;Staying Synchronized: Condition variables</a></h2>
+<h3><a class="toc-backref" href="#id12">4.3.4&nbsp;&nbsp;&nbsp;Staying Synchronized: Condition variables</a></h3>
 <p>Condition variables are useful when a parallel computation is 
 composed of a series of steps. A process can use a condition variable to
  signal it has finished its particular step. Then, the other processes 
@@ -703,7 +703,7 @@ write 12-&gt;V1                  calculate (1 2). (2 5): 12
 <p>Upon entering <tt class="docutils literal">do_step_2</tt>, P1 has to wait on <tt class="docutils literal">start_step_2</tt> until P2 increments <tt class="docutils literal">step1_finished</tt>, finds that it equals 2, and signals the condition.</p>
 </div>
 <div class="section" id="deadlock">
-<h2><a class="toc-backref" href="#id13">4.3.5&nbsp;&nbsp;&nbsp;Deadlock</a></h2>
+<h3><a class="toc-backref" href="#id13">4.3.5&nbsp;&nbsp;&nbsp;Deadlock</a></h3>
 <p>While synchronization methods are effective for protecting shared 
 state, they come with a catch. Because they cause processes to wait on 
 each other, they are vulnerable to <strong>deadlock</strong>, a 

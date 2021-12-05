@@ -119,7 +119,7 @@ time another element is requested. While not as flexible as accessing arbitrary
 elements of a sequence (called <em>random access</em>), <em>sequential access</em> to
 sequential data series is often sufficient for data processing applications.</p>
 <div class="section" id="python-iterators">
-<h2><a class="toc-backref" href="#id3">5.2.1&nbsp;&nbsp;&nbsp;Python Iterators</a></h2>
+<h3><a class="toc-backref" href="#id3">5.2.1&nbsp;&nbsp;&nbsp;Python Iterators</a></h3>
 <p>The Python iterator interface includes two messages. The <tt class="docutils literal">__next__</tt> message
 queries the iterator for the next element of the underlying series that it
 represents. In response to invoking <tt class="docutils literal">__next__</tt> as a method, an iterator can
@@ -183,7 +183,7 @@ positive integers.</p>
 </pre>
 </div>
 <div class="section" id="for-statements">
-<h2><a class="toc-backref" href="#id4">5.2.2&nbsp;&nbsp;&nbsp;For Statements</a></h2>
+<h3><a class="toc-backref" href="#id4">5.2.2&nbsp;&nbsp;&nbsp;For Statements</a></h3>
 <p>In Python, sequences can expose themselves to iteration by implementing the
 <tt class="docutils literal">__iter__</tt> message. If an object represents sequential data, it can serve as
 an <em>iterable</em> object in a <tt class="docutils literal">for</tt> statement by returning an iterator object in
@@ -223,7 +223,7 @@ handling the exception provides a control mechanism for exiting the <tt class="d
 loop.</p>
 </div>
 <div class="section" id="generators-and-yield-statements">
-<h2><a class="toc-backref" href="#id5">5.2.3&nbsp;&nbsp;&nbsp;Generators and Yield Statements</a></h2>
+<h3><a class="toc-backref" href="#id5">5.2.3&nbsp;&nbsp;&nbsp;Generators and Yield Statements</a></h3>
 <p>The <tt class="docutils literal">Letters</tt> and <tt class="docutils literal">Positives</tt> objects above require us to introduce a new
 field <tt class="docutils literal">self.current</tt> into our object to keep track of progress through the
 sequence. With simple sequences like those shown above, this can be done
@@ -290,7 +290,7 @@ StopIteration
 generator function until the first time <tt class="docutils literal">__next__()</tt> is called.</p>
 </div>
 <div class="section" id="iterables">
-<h2><a class="toc-backref" href="#id6">5.2.4&nbsp;&nbsp;&nbsp;Iterables</a></h2>
+<h3><a class="toc-backref" href="#id6">5.2.4&nbsp;&nbsp;&nbsp;Iterables</a></h3>
 <p>In Python, iterators only make a single pass over the elements of an underlying
 series. After that pass, the iterator will continue to raise a
 <tt class="docutils literal">StopIteration</tt> exception when <tt class="docutils literal">__next__()</tt> is called. Many applications
@@ -331,7 +331,7 @@ that yields the letters <tt class="docutils literal">'a'</tt> through <tt class=
 </pre>
 </div>
 <div class="section" id="streams">
-<h2><a class="toc-backref" href="#id7">5.2.5&nbsp;&nbsp;&nbsp;Streams</a></h2>
+<h3><a class="toc-backref" href="#id7">5.2.5&nbsp;&nbsp;&nbsp;Streams</a></h3>
 <p><em>Streams</em> offer a final way to represent sequential data implicity.  A stream
 is a lazily computed recursive list.  Like the <tt class="docutils literal">Rlist</tt> class from Chapter 3,
 a <tt class="docutils literal">Stream</tt> instance responds to requests for its <tt class="docutils literal">first</tt> element and the
@@ -557,7 +557,7 @@ supervising function responsible for calling them in a particular order.</p>
 <tt class="docutils literal">yield</tt> and <tt class="docutils literal">send()</tt> statements. Then, we will look at different roles that
 coroutines can play in a pipeline, and how coroutines can support multitasking.</p>
 <div class="section" id="python-coroutines">
-<h2><a class="toc-backref" href="#id9">5.3.1&nbsp;&nbsp;&nbsp;Python Coroutines</a></h2>
+<h3><a class="toc-backref" href="#id9">5.3.1&nbsp;&nbsp;&nbsp;Python Coroutines</a></h3>
 <p>In the previous section, we introduced generator functions, which use <tt class="docutils literal">yield</tt>
 to return values. Python generator functions can also consume values using a
 <tt class="docutils literal">(yield)</tt> statement. In addition two new methods on generator objects,
@@ -643,7 +643,7 @@ control back to <tt class="docutils literal">read</tt> when it is reached.</p>
 </div>
 </div>
 <div class="section" id="produce-filter-and-consume">
-<h2><a class="toc-backref" href="#id10">5.3.2&nbsp;&nbsp;&nbsp;Produce, Filter, and Consume</a></h2>
+<h3><a class="toc-backref" href="#id10">5.3.2&nbsp;&nbsp;&nbsp;Produce, Filter, and Consume</a></h3>
 <p>Coroutines can have different roles depending on how they use <tt class="docutils literal">yield</tt> and
 <tt class="docutils literal">send()</tt>:</p>
 <div class="figure">
@@ -733,7 +733,7 @@ Most frequent letter: n
 </pre>
 </div>
 <div class="section" id="multitasking">
-<h2><a class="toc-backref" href="#id11">5.3.3&nbsp;&nbsp;&nbsp;Multitasking</a></h2>
+<h3><a class="toc-backref" href="#id11">5.3.3&nbsp;&nbsp;&nbsp;Multitasking</a></h3>
 <p>A producer or filter does not have to be restricted to just one next step. It
 can have multiple coroutines downstream of it, and <tt class="docutils literal">send()</tt> data to all of
 them. For example, here is a version of <tt class="docutils literal">read</tt> that sends the words in a

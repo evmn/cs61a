@@ -94,7 +94,7 @@ about virtually any domain of human knowledge and experience.  Thanks to the
 explosive growth of the Internet, a vast amount of structured information about
 the world is freely available to us all online.</p>
 <div class="section" id="the-object-metaphor">
-<h2><a class="toc-backref" href="#id3">2.1.1&nbsp;&nbsp;&nbsp;The Object Metaphor</a></h2>
+<h3><a class="toc-backref" href="#id3">2.1.1&nbsp;&nbsp;&nbsp;The Object Metaphor</a></h3>
 <p>In the beginning of this course, we distinguished between functions and data:
 functions performed operations and data were operated upon.  When we included
 function values among our data, we acknowledged that data too can have behavior.
@@ -164,7 +164,7 @@ start thinking about data as objects now, because in Python every value is an
 object.</p>
 </div>
 <div class="section" id="native-data-types">
-<h2><a class="toc-backref" href="#id4">2.1.2&nbsp;&nbsp;&nbsp;Native Data Types</a></h2>
+<h3><a class="toc-backref" href="#id4">2.1.2&nbsp;&nbsp;&nbsp;Native Data Types</a></h3>
 <p>Every object in Python has a <em>type</em>. The <tt class="docutils literal">type</tt> function allows us to inspect
 the type of an object.</p>
 <pre class="doctest-block">&gt;&gt;&gt; type(today)
@@ -259,7 +259,7 @@ instructive, however, because it demonstrates how these abstractions can be
 constructed!  Remember that computer science isn't just about learning to use
 programming languages, but also learning how they work.</p>
 <div class="section" id="example-arithmetic-on-rational-numbers">
-<h2><a class="toc-backref" href="#id6">2.2.1&nbsp;&nbsp;&nbsp;Example: Arithmetic on Rational Numbers</a></h2>
+<h3><a class="toc-backref" href="#id6">2.2.1&nbsp;&nbsp;&nbsp;Example: Arithmetic on Rational Numbers</a></h3>
 <p>Recall that a rational number is a ratio of integers, and rational numbers
 constitute an important sub-class of real numbers.  A rational number like
 <tt class="docutils literal">1/3</tt> or <tt class="docutils literal">17/29</tt> is typically written as:</p>
@@ -322,7 +322,7 @@ but we haven't yet defined these functions. What we need is some way to glue
 together a numerator and a denominator into a unit.</p>
 </div>
 <div class="section" id="tuples">
-<h2><a class="toc-backref" href="#id7">2.2.2&nbsp;&nbsp;&nbsp;Tuples</a></h2>
+<h3><a class="toc-backref" href="#id7">2.2.2&nbsp;&nbsp;&nbsp;Tuples</a></h3>
 <p>To enable us to implement the concrete level of our data abstraction, Python
 provides a compound structure called a <tt class="docutils literal">tuple</tt>, which can be constructed by
 separating values by commas.  Although not strictly required, parentheses almost
@@ -421,7 +421,7 @@ and the <tt class="docutils literal">format</tt> method appear in the <a class="
 Into Python 3.</p>
 </div>
 <div class="section" id="abstraction-barriers">
-<h2><a class="toc-backref" href="#id8">2.2.3&nbsp;&nbsp;&nbsp;Abstraction Barriers</a></h2>
+<h3><a class="toc-backref" href="#id8">2.2.3&nbsp;&nbsp;&nbsp;Abstraction Barriers</a></h3>
 <p>Before continuing with more examples of compound data and data abstraction, let
 us consider some of the issues raised by the rational number example. We defined
 operations in terms of a constructor <tt class="docutils literal">make_rat</tt> and selectors <tt class="docutils literal">numer</tt> and
@@ -455,7 +455,7 @@ on a particular representation, the fewer changes are required when one wants to
 change that representation.</p>
 </div>
 <div class="section" id="the-properties-of-data">
-<h2><a class="toc-backref" href="#id9">2.2.4&nbsp;&nbsp;&nbsp;The Properties of Data</a></h2>
+<h3><a class="toc-backref" href="#id9">2.2.4&nbsp;&nbsp;&nbsp;The Properties of Data</a></h3>
 <p>We began the rational-number implementation by implementing arithmetic
 operations in terms of three unspecified functions: <tt class="docutils literal">make_rat</tt>, <tt class="docutils literal">numer</tt>, and
 <tt class="docutils literal">denom</tt>. At that point, we could think of the operations as being defined in
@@ -550,7 +550,7 @@ program.</p>
 the sequence abstraction.  We then introduce built-in Python types that also
 implement the same abstraction.</p>
 <div class="section" id="nested-pairs">
-<h2><a class="toc-backref" href="#id11">2.3.1&nbsp;&nbsp;&nbsp;Nested Pairs</a></h2>
+<h3><a class="toc-backref" href="#id11">2.3.1&nbsp;&nbsp;&nbsp;Nested Pairs</a></h3>
 <p>For rational numbers, we paired together two integer objects using a two-element
 tuple, then showed that we could implement pairs just as well using functions.
 In that case, the elements of each pair we constructed were integers.  However, like
@@ -585,7 +585,7 @@ parts, and so on.  We will explore a range of hierarchical structures in Chapter
 3.  For now, we consider a particularly important structure.</p>
 </div>
 <div class="section" id="recursive-lists">
-<h2><a class="toc-backref" href="#id12">2.3.2&nbsp;&nbsp;&nbsp;Recursive Lists</a></h2>
+<h3><a class="toc-backref" href="#id12">2.3.2&nbsp;&nbsp;&nbsp;Recursive Lists</a></h3>
 <p>We can use nested pairs to form lists of elements of arbitrary length, which
 will allow us to implement the sequence abstraction.  The figure below
 illustrates the structure of the recursive representation of a four-element
@@ -707,7 +707,7 @@ Python provides a variety of built-in sequence types that provide both the
 versatility of the sequence abstraction, as well as convenient notation.</p>
 </div>
 <div class="section" id="tuples-ii">
-<h2><a class="toc-backref" href="#id13">2.3.3&nbsp;&nbsp;&nbsp;Tuples II</a></h2>
+<h3><a class="toc-backref" href="#id13">2.3.3&nbsp;&nbsp;&nbsp;Tuples II</a></h3>
 <p>In fact, the <tt class="docutils literal">tuple</tt> type that we introduced to form primitive pairs is itself
 a full sequence type.  Tuples provide substantially more functionality than the
 pair abstract data type that we implemented functionally.</p>
@@ -746,7 +746,7 @@ that we can access each one of its elements individually in order to pass it as
 an argument to the mapped function (<tt class="docutils literal">abs</tt>, in this case).</p>
 </div>
 <div class="section" id="sequence-iteration">
-<h2><a class="toc-backref" href="#id14">2.3.4&nbsp;&nbsp;&nbsp;Sequence Iteration</a></h2>
+<h3><a class="toc-backref" href="#id14">2.3.4&nbsp;&nbsp;&nbsp;Sequence Iteration</a></h3>
 <p>Mapping is itself an instance of a general pattern of computation: iterating
 over all elements in a sequence.  To map a function over a sequence, we do not
 just select a particular element, but each element in turn.  This pattern is so
@@ -863,7 +863,7 @@ interpreter is concerned, but has a conventional meaning among programmers that
 indicates the name will not appear in any expressions.</p>
 </div>
 <div class="section" id="sequence-abstraction">
-<h2><a class="toc-backref" href="#id15">2.3.5&nbsp;&nbsp;&nbsp;Sequence Abstraction</a></h2>
+<h3><a class="toc-backref" href="#id15">2.3.5&nbsp;&nbsp;&nbsp;Sequence Abstraction</a></h3>
 <p>We have now introduced two types of native data types that implement the
 sequence abstraction: tuples and ranges.  Both satisfy the conditions with which
 we began this section: length and element selection.  Python includes two more
@@ -913,7 +913,7 @@ appears in the subsection called <a class="reference external" href="http://dive
 Python 3.  In this chapter, we will only use the basic features described above.</p>
 </div>
 <div class="section" id="strings">
-<h2><a class="toc-backref" href="#id16">2.3.6&nbsp;&nbsp;&nbsp;Strings</a></h2>
+<h3><a class="toc-backref" href="#id16">2.3.6&nbsp;&nbsp;&nbsp;Strings</a></h3>
 <p>Text values are perhaps more fundamental to computer science than even numbers.
 As a case in point, Python programs are written and stored as text.  The native
 data type for text in Python is called a string, and corresponds to the
@@ -1011,7 +1011,7 @@ Python 3</a> provides a description of
 character encodings and Unicode.</p>
 </div>
 <div class="section" id="conventional-interfaces">
-<h2><a class="toc-backref" href="#id17">2.3.7&nbsp;&nbsp;&nbsp;Conventional Interfaces</a></h2>
+<h3><a class="toc-backref" href="#id17">2.3.7&nbsp;&nbsp;&nbsp;Conventional Interfaces</a></h3>
 <p>In working with compound data, we've stressed how data abstraction permits us to
 design programs without becoming enmeshed in the details of data
 representations, and how abstraction preserves for us the flexibility to
@@ -1188,7 +1188,7 @@ execution, the values themselves do not change.  In this section, we will
 introduce a collection of <em>mutable</em> data types. Mutable objects can change
 throughout the execution of a program.</p>
 <div class="section" id="local-state">
-<h2><a class="toc-backref" href="#id19">2.4.1&nbsp;&nbsp;&nbsp;Local State</a></h2>
+<h3><a class="toc-backref" href="#id19">2.4.1&nbsp;&nbsp;&nbsp;Local State</a></h3>
 <p>Our first example of a mutable object will be a function that has local state.
 That state will change during the course of execution of a program.</p>
 <p>To illustrate what we mean by having a function with local state, let us model
@@ -1308,7 +1308,7 @@ assignment statement.  It is up to you as a programmer to document your code
 clearly so that the effects of assignment can be understood by others.</p>
 </div>
 <div class="section" id="the-benefits-of-non-local-assignment">
-<h2><a class="toc-backref" href="#id20">2.4.2&nbsp;&nbsp;&nbsp;The Benefits of Non-Local Assignment</a></h2>
+<h3><a class="toc-backref" href="#id20">2.4.2&nbsp;&nbsp;&nbsp;The Benefits of Non-Local Assignment</a></h3>
 <p>Non-local assignment is an important step on our path to viewing a program as a
 collection of independent and autonomous <em>objects</em>, which interact with each
 other but each manage their own internal state.</p>
@@ -1351,7 +1351,7 @@ in the world: it changes over time based on its own history of withdrawal
 requests.</p>
 </div>
 <div class="section" id="the-cost-of-non-local-assignment">
-<h2><a class="toc-backref" href="#id21">2.4.3&nbsp;&nbsp;&nbsp;The Cost of Non-Local Assignment</a></h2>
+<h3><a class="toc-backref" href="#id21">2.4.3&nbsp;&nbsp;&nbsp;The Cost of Non-Local Assignment</a></h3>
 <p>Our environment model of computation cleanly extends to explain the effects of
 non-local assignment.  However, non-local assignment introduces some important
 nuances in the way we think about names and values.</p>
@@ -1412,7 +1412,7 @@ most useful built-in data types in Python, along with methods for implementing
 those data types using functions with non-local assignment.</p>
 </div>
 <div class="section" id="lists">
-<h2><a class="toc-backref" href="#id22">2.4.4&nbsp;&nbsp;&nbsp;Lists</a></h2>
+<h3><a class="toc-backref" href="#id22">2.4.4&nbsp;&nbsp;&nbsp;Lists</a></h3>
 <p>The <tt class="docutils literal">list</tt> is Python's most useful and flexible sequence type.  A list is
 similar to a tuple, but it is mutable.  Method calls and assignment statements
 can change the contents of a list.</p>
@@ -1603,7 +1603,7 @@ introduced in the next section, provide a data type that will help us manage the
 mapping between messages and operations.</p>
 </div>
 <div class="section" id="dictionaries">
-<h2><a class="toc-backref" href="#id23">2.4.5&nbsp;&nbsp;&nbsp;Dictionaries</a></h2>
+<h3><a class="toc-backref" href="#id23">2.4.5&nbsp;&nbsp;&nbsp;Dictionaries</a></h3>
 <p>Dictionaries are Python's built-in data type for storing and manipulating
 correspondence relationships.  A dictionary contains key-value pairs, where both
 the keys and values are objects.  The purpose of a dictionary is to provide an
@@ -1721,7 +1721,7 @@ entire list of <tt class="docutils literal">records</tt>. The built-in dictionar
 efficient.</p>
 </div>
 <div class="section" id="example-propagating-constraints">
-<h2><a class="toc-backref" href="#id24">2.4.6&nbsp;&nbsp;&nbsp;Example: Propagating Constraints</a></h2>
+<h3><a class="toc-backref" href="#id24">2.4.6&nbsp;&nbsp;&nbsp;Example: Propagating Constraints</a></h3>
 <p>Mutable data allows us to simulate systems with change, but also allows us to
 build new kinds of abstractions.  In this extended example, we combine nonlocal
 assignment, lists, and dictionaries to build a <em>constraint-based system</em> that
@@ -2036,7 +2036,7 @@ that has methods and attributes, accessible via dot notation. Every object also
 has a type, called a <em>class</em>.  New classes can be defined in Python, just as new
 functions can be defined.</p>
 <div class="section" id="objects-and-classes">
-<h2><a class="toc-backref" href="#id26">2.5.1&nbsp;&nbsp;&nbsp;Objects and Classes</a></h2>
+<h3><a class="toc-backref" href="#id26">2.5.1&nbsp;&nbsp;&nbsp;Objects and Classes</a></h3>
 <p>A class serves as a template for all objects whose type is that class. Every
 object is an instance of some particular class.  The objects we have used so far
 all have built-in classes, but new classes can be defined similarly to how new
@@ -2092,7 +2092,7 @@ attributes of the object.  Two calls to <tt class="docutils literal">withdraw</t
 return different results.</p>
 </div>
 <div class="section" id="defining-classes">
-<h2><a class="toc-backref" href="#id27">2.5.2&nbsp;&nbsp;&nbsp;Defining Classes</a></h2>
+<h3><a class="toc-backref" href="#id27">2.5.2&nbsp;&nbsp;&nbsp;Defining Classes</a></h3>
 <p>User-defined classes are created by <tt class="docutils literal">class</tt> statements, which consist of a
 single clause.   A class statement defines the class name and a base class
 (discussed in the section on Inheritance), then includes a suite of statements
@@ -2217,7 +2217,7 @@ details of the procedure for evaluating dot notation follow in the next
 section.</p>
 </div>
 <div class="section" id="message-passing-and-dot-expressions">
-<h2><a class="toc-backref" href="#id28">2.5.3&nbsp;&nbsp;&nbsp;Message Passing and Dot Expressions</a></h2>
+<h3><a class="toc-backref" href="#id28">2.5.3&nbsp;&nbsp;&nbsp;Message Passing and Dot Expressions</a></h3>
 <p>Methods, which are defined in classes, and instance attributes, which are
 typically assigned in constructors, are the fundamental elements of
 object-oriented programming.  These two concepts replicate much of the
@@ -2309,7 +2309,7 @@ attribute name starts with an underscore, it should only be accessed within
 methods of the class itself, rather than by users of the class.</p>
 </div>
 <div class="section" id="class-attributes">
-<h2><a class="toc-backref" href="#id29">2.5.4&nbsp;&nbsp;&nbsp;Class Attributes</a></h2>
+<h3><a class="toc-backref" href="#id29">2.5.4&nbsp;&nbsp;&nbsp;Class Attributes</a></h3>
 <p>Some attribute values are shared across all objects of a given class. Such
 attributes are associated with the class itself, rather than any individual
 instance of the class. For instance, let us say that a bank pays interest on the
@@ -2397,7 +2397,7 @@ instance attribute for <tt class="docutils literal">jim_account</tt> will be una
 </pre>
 </div>
 <div class="section" id="inheritance">
-<h2><a class="toc-backref" href="#id30">2.5.5&nbsp;&nbsp;&nbsp;Inheritance</a></h2>
+<h3><a class="toc-backref" href="#id30">2.5.5&nbsp;&nbsp;&nbsp;Inheritance</a></h3>
 <p>When working in the OOP paradigm, we often find that different abstract data
 types are related.  In particular, we find that similar classes differ in their
 amount of specialization. Two classes may have similar attributes, but one
@@ -2434,7 +2434,7 @@ manages, so neither should inherit from the other.  Instead, a list of account
 objects would be naturally expressed as an instance attribute of a bank object.</p>
 </div>
 <div class="section" id="using-inheritance">
-<h2><a class="toc-backref" href="#id31">2.5.6&nbsp;&nbsp;&nbsp;Using Inheritance</a></h2>
+<h3><a class="toc-backref" href="#id31">2.5.6&nbsp;&nbsp;&nbsp;Using Inheritance</a></h3>
 <p>We specify inheritance by putting the base class in parentheses after the
 class name. First, we give a full implementation of the <tt class="docutils literal">Account</tt> class, which
 includes docstrings for the class and its methods.</p>
@@ -2509,7 +2509,7 @@ withdrawal charge.  If that is the case, we would like our implementation of
 <tt class="docutils literal">withdraw</tt> to find that new value instead of the old one.</p>
 </div>
 <div class="section" id="multiple-inheritance">
-<h2><a class="toc-backref" href="#id32">2.5.7&nbsp;&nbsp;&nbsp;Multiple Inheritance</a></h2>
+<h3><a class="toc-backref" href="#id32">2.5.7&nbsp;&nbsp;&nbsp;Multiple Inheritance</a></h3>
 <p>Python supports the concept of a subclass inheriting attributes from multiple
 base classes, a language feature called <em>multiple inheritance</em>.</p>
 <p>Suppose that we have a <tt class="docutils literal">SavingsAccount</tt> that inherits from <tt class="docutils literal">Account</tt>, but
@@ -2574,7 +2574,7 @@ this course, but is <a class="reference external" href="http://python-history.bl
 a reference to the original paper.</p>
 </div>
 <div class="section" id="the-role-of-objects">
-<h2><a class="toc-backref" href="#id33">2.5.8&nbsp;&nbsp;&nbsp;The Role of Objects</a></h2>
+<h3><a class="toc-backref" href="#id33">2.5.8&nbsp;&nbsp;&nbsp;The Role of Objects</a></h3>
 <p>The Python object system is designed to make data abstraction and message
 passing both convenient and flexible.  The specialized syntax of classes,
 methods, inheritance, and dot expressions all enable us to formalize the object
@@ -2629,7 +2629,7 @@ Our implementation is not meant to follow the precise specification of the
 Python type system.  Instead, it is designed to implement the core functionality
 that enables the object metaphor.</p>
 <div class="section" id="instances">
-<h2><a class="toc-backref" href="#id35">2.6.1&nbsp;&nbsp;&nbsp;Instances</a></h2>
+<h3><a class="toc-backref" href="#id35">2.6.1&nbsp;&nbsp;&nbsp;Instances</a></h3>
 <p>We begin with instances.  An instance has named attributes, such as the balance
 of an account, which can be set and retrieved. We implement an instance using a
 dispatch dictionary that responds to messages that "get" and "set" attribute
@@ -2680,7 +2680,7 @@ value from a function value by inserting the instance as the first argument:</p>
 of <tt class="docutils literal">instance</tt> by this definition.</p>
 </div>
 <div class="section" id="classes">
-<h2><a class="toc-backref" href="#id36">2.6.2&nbsp;&nbsp;&nbsp;Classes</a></h2>
+<h3><a class="toc-backref" href="#id36">2.6.2&nbsp;&nbsp;&nbsp;Classes</a></h3>
 <p>A class is also an object, both in Python's object system and the system we are
 implementing here.  For simplicity, we say that classes do not themselves have a
 class.  (In Python, classes do have classes; almost all classes share the same
@@ -2726,7 +2726,7 @@ all of its other functionality is enabled through dot expressions and calls to
 classes.</p>
 </div>
 <div class="section" id="using-implemented-objects">
-<h2><a class="toc-backref" href="#id37">2.6.3&nbsp;&nbsp;&nbsp;Using Implemented Objects</a></h2>
+<h3><a class="toc-backref" href="#id37">2.6.3&nbsp;&nbsp;&nbsp;Using Implemented Objects</a></h3>
 <p>We now return to use the bank account example from the previous section.  Using
 our implemented object system, we will create an <tt class="docutils literal">Account</tt> class, a
 <tt class="docutils literal">CheckingAccount</tt> subclass, and an instance of each.</p>
@@ -2832,7 +2832,7 @@ via dot expressions is only one way of building combined expressions with
 multiple objects.  In this section, we explore alternate methods for combining
 and manipulating objects of different types.</p>
 <div class="section" id="string-conversion">
-<h2><a class="toc-backref" href="#id39">2.7.1&nbsp;&nbsp;&nbsp;String Conversion</a></h2>
+<h3><a class="toc-backref" href="#id39">2.7.1&nbsp;&nbsp;&nbsp;String Conversion</a></h3>
 <p>We stated in the beginning of this chapter that an object value should behave
 like the kind of data it is meant to represent, including producing a string
 representation of itself.  String representations of data values are especially
@@ -2902,7 +2902,7 @@ polymorphic functions.  The remainder of this section explores some
 alternatives.</p>
 </div>
 <div class="section" id="multiple-representations">
-<h2><a class="toc-backref" href="#id40">2.7.2&nbsp;&nbsp;&nbsp;Multiple Representations</a></h2>
+<h3><a class="toc-backref" href="#id40">2.7.2&nbsp;&nbsp;&nbsp;Multiple Representations</a></h3>
 <p>Data abstraction, using objects or functions, is a powerful tool for managing
 complexity.  Abstract data types allow us to construct an abstraction barrier
 between the underlying representation of data and the functions or messages used
@@ -3085,7 +3085,7 @@ Dive into Python 3 has a chapter on <a class="reference external" href="http://d
 details of their use in the Python interpreter.</p>
 </div>
 <div class="section" id="generic-functions">
-<h2><a class="toc-backref" href="#id41">2.7.3&nbsp;&nbsp;&nbsp;Generic Functions</a></h2>
+<h3><a class="toc-backref" href="#id41">2.7.3&nbsp;&nbsp;&nbsp;Generic Functions</a></h3>
 <p>Our implementation of complex numbers has made two data types interchangeable as
 arguments to the <tt class="docutils literal">add_complex</tt> and <tt class="docutils literal">mul_complex</tt> functions.  Now we will see
 how to use this same idea not only to define operations that are generic over
