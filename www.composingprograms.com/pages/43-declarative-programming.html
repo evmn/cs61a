@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>4.3 Declarative Programming</title>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" type="text/css" href="../theme/css/cp.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/pytutor.css"/>
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/ui-lightness/jquery-ui-1.8.21.custom.css" />
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/codemirror.css"  />
+  <link rel="stylesheet" type="text/css" href="../theme/coding-js/coding.css"  />
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="../theme/tutor/js/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery-ui-1.8.24.custom.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery.ba-bbq.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+
+  <!-- codemirror.net online code editor -->
+  <script type="text/javascript" src="../theme/tutor/js/codemirror/codemirror.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/codemirror/python.js"></script>
+
+  <!-- d3 -->
+  <script type="text/javascript" src="../theme/tutor/js/d3.v2.min.js"></script>
+
+  <!-- Online Python Tutor -->
+  <script type="text/javascript" src="../theme/tutor/js/pytutor.js"></script>
+
+  <!-- Coding.js -->
+  <script type="text/javascript" src="../theme/coding-js/coding.js"></script>
+  <script> var $c = new CodingJS("../theme/coding-js/"); </script>
+
+  <!-- Composing Programs -->
+  <script type="text/javascript" src="../theme/js/cp.js"></script>
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type= "text/javascript">
+       MathJax.Hub.Config({
+           config: ["MMLorHTML.js"],
+           jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+           TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"], equationNumbers: { autoNumber: "AMS" } },
+           extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js","jsMath2jax.js"],
+           tex2jax: {
+               inlineMath: [ ['$','$'] ],
+               displayMath: [ ['$$','$$'] ],
+               processEscapes: true },
+           "HTML-CSS": {
+               styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+           }
+       });
+    </script>
+
+</head>
+
+<body id="index" class="home">
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="../index.html">
+          <span class="nav-logo">c<span class="nav-logo-compose">⚬</span>mp<span class="nav-logo-compose">⚬</span>sing pr<span class="nav-logo-compose">⚬</span>grams</span>
+        </a>
+        <ul class="nav-site">
+          <li><a href="../index.html">Text</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../tutor.html">Tutor</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="content wrap documentationContent">
+      <div class="nav-docs">
+	<h3>Chapter 4<a id="hide_contents">Hide contents</a> </h3>
+		<div class="nav-docs-section">
+			<h3><a href="41-introduction.html">4.1 Introduction</a></h3>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="42-implicit-sequences.html">4.2 Implicit Sequences</a></h3>
+				<li><a href="42-implicit-sequences.html#iterators">4.2.1 Iterators</a>
+				<li><a href="42-implicit-sequences.html#iterables">4.2.2 Iterables</a>
+				<li><a href="42-implicit-sequences.html#built-in-iterators">4.2.3 Built-in Iterators</a>
+				<li><a href="42-implicit-sequences.html#for-statements">4.2.4 For Statements</a>
+				<li><a href="42-implicit-sequences.html#generators-and-yield-statements">4.2.5 Generators and Yield Statements</a>
+				<li><a href="42-implicit-sequences.html#iterable-interface">4.2.6 Iterable Interface</a>
+				<li><a href="42-implicit-sequences.html#creating-iterables-with-yield">4.2.7 Creating Iterables with Yield</a>
+				<li><a href="42-implicit-sequences.html#iterator-interface">4.2.8 Iterator Interface</a>
+				<li><a href="42-implicit-sequences.html#streams">4.2.9 Streams</a>
+				<li><a href="42-implicit-sequences.html#python-streams">4.2.10 Python Streams</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="43-declarative-programming.html">4.3 Declarative Programming</a></h3>
+				<li><a href="43-declarative-programming.html#tables">4.3.1 Tables</a>
+				<li><a href="43-declarative-programming.html#select-statements">4.3.2 Select Statements</a>
+				<li><a href="43-declarative-programming.html#joins">4.3.3 Joins</a>
+				<li><a href="43-declarative-programming.html#interpreting-sql">4.3.4 Interpreting SQL</a>
+				<li><a href="43-declarative-programming.html#recursive-select-statements">4.3.5 Recursive Select Statements</a>
+				<li><a href="43-declarative-programming.html#aggregation-and-grouping">4.3.6 Aggregation and Grouping</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="44-logic-programming.html">4.4 Logic Programming</a></h3>
+				<li><a href="44-logic-programming.html#facts-and-queries">4.4.1 Facts and Queries</a>
+				<li><a href="44-logic-programming.html#recursive-facts">4.4.2 Recursive Facts</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="45-unification.html">4.5 Unification</a></h3>
+				<li><a href="45-unification.html#pattern-matching">4.5.1 Pattern Matching</a>
+				<li><a href="45-unification.html#representing-facts-and-queries">4.5.2 Representing Facts and Queries</a>
+				<li><a href="45-unification.html#the-unification-algorithm">4.5.3 The Unification Algorithm</a>
+				<li><a href="45-unification.html#proofs">4.5.4 Proofs</a>
+				<li><a href="45-unification.html#search">4.5.5 Search</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="46-distributed-computing.html">4.6 Distributed Computing</a></h3>
+				<li><a href="46-distributed-computing.html#messages">4.6.1 Messages</a>
+				<li><a href="46-distributed-computing.html#client-server-architecture">4.6.2 Client/Server Architecture</a>
+				<li><a href="46-distributed-computing.html#peer-to-peer-systems">4.6.3 Peer-to-Peer Systems</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="47-distributed-data-processing.html">4.7 Distributed Data Processing</a></h3>
+				<li><a href="47-distributed-data-processing.html#id1">4.7.1 MapReduce</a>
+				<li><a href="47-distributed-data-processing.html#local-implementation">4.7.2 Local Implementation</a>
+				<li><a href="47-distributed-data-processing.html#distributed-implementation">4.7.3 Distributed Implementation</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="48-parallel-computing.html">4.8 Parallel Computing</a></h3>
+				<li><a href="48-parallel-computing.html#parallelism-in-python">4.8.1 Parallelism in Python</a>
+				<li><a href="48-parallel-computing.html#the-problem-with-shared-state">4.8.2 The Problem with Shared State</a>
+				<li><a href="48-parallel-computing.html#when-no-synchronization-is-necessary">4.8.3 When No Synchronization is Necessary</a>
+				<li><a href="48-parallel-computing.html#synchronized-data-structures">4.8.4 Synchronized Data Structures</a>
+				<li><a href="48-parallel-computing.html#locks">4.8.5 Locks</a>
+				<li><a href="48-parallel-computing.html#barriers">4.8.6 Barriers</a>
+				<li><a href="48-parallel-computing.html#message-passing">4.8.7 Message Passing</a>
+				<li><a href="48-parallel-computing.html#synchronization-pitfalls">4.8.8 Synchronization Pitfalls</a>
+				<li><a href="48-parallel-computing.html#conclusion">4.8.9 Conclusion</a>
+		</div>
+      </div>
+
+      <div class="inner-content">
+  <div class="section" id="declarative-programming">
+<h2>4.3   Declarative Programming</h2>
+<p>In addition to streams, data values are often stored in large repositories
+called databases.  A database consists of a data store containing the data
+values along with an interface for retrieving and transforming those values.
+Each value stored in a database is called a <em>record</em>. Records with similar
+structure are grouped into tables. Records are retrieved and transformed using
+queries, which are statements in a query language.  By far the most ubiquitous
+query language in use today is called Structured Query Language or SQL
+(pronounced "sequel").</p>
+<p>SQL is an example of a declarative programming language. Statements do not
+describe computations directly, but instead describe the desired result of
+some computation.  It is the role of the <em>query interpreter</em> of the database
+system to design and perform a computational process to produce such a result.</p>
+<p>This interaction differs substantially from the procedural programming paradigm
+of Python or Scheme. In Python, computational processes are described directly
+by the programmer. A declarative language abstracts away procedural details,
+instead focusing on the form of the result.</p>
+<div class="section" id="tables">
+<h3>4.3.1   Tables</h3>
+<p>The SQL language is standardized, but most database systems implement some
+custom variant of the language that is endowed with proprietary features. In
+this text, we will describe a small subset of SQL as it is implemented in
+<a class="reference external" href="http://sqlite.org">Sqlite</a>. You can follow along by <a class="reference external" href="http://sqlite.org/download.html">downloading Sqlite</a> or by using this
+<a class="reference external" href="http://kripken.github.io/sql.js/GUI/">online SQL interpreter</a>.</p>
+<p>A table, also called a <em>relation</em>, has a fixed number of named and typed
+columns. Each row of a table represents a data record and has one value for
+each column. For example, a table of cities might have columns <tt class="docutils literal">latitude</tt>
+<tt class="docutils literal">longitude</tt> that both hold numeric values, as well as a column <tt class="docutils literal">name</tt>
+that holds a string. Each row would represent a city location position by its
+latitude and longitude values.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="33%"/>
+<col width="36%"/>
+<col width="31%"/>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><strong>Latitude</strong></th>
+<th class="head"><strong>Longitude</strong></th>
+<th class="head"><strong>Name</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>38</td>
+<td>122</td>
+<td>Berkeley</td>
+</tr>
+<tr><td>42</td>
+<td>71</td>
+<td>Cambridge</td>
+</tr>
+<tr><td>45</td>
+<td>93</td>
+<td>Minneapolis</td>
+</tr>
+</tbody>
+</table>
+<p>A table with a single row can be created in the SQL language using a <tt class="docutils literal">select</tt>
+statement, in which the row values are separated by commas and the column names
+follow the keyword "as". All SQL statements end in a semicolon.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="mi">38</span> <span class="k">as</span> <span class="n">latitude</span><span class="p">,</span> <span class="mi">122</span> <span class="k">as</span> <span class="n">longitude</span><span class="p">,</span> <span class="ss">"Berkeley"</span> <span class="k">as</span> <span class="n">name</span><span class="p">;</span>
+<span class="go">38|122|Berkeley</span>
+</pre></div>
+<p>The second line is the output, which includes one line per row with columns
+separated by a vertical bar.</p>
+<p>A multi-line table can be constructed by <cite>union</cite>, which combines the rows of
+two tables. The column names of the left table are used in the constructed
+table. Spacing within a line does not affect the result.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="mi">38</span> <span class="k">as</span> <span class="n">latitude</span><span class="p">,</span> <span class="mi">122</span> <span class="k">as</span> <span class="n">longitude</span><span class="p">,</span> <span class="ss">"Berkeley"</span> <span class="k">as</span> <span class="n">name</span> <span class="k">union</span>
+<span class="gp">   ...&gt; </span><span class="k">select</span> <span class="mi">42</span><span class="p">,</span>             <span class="mi">71</span><span class="p">,</span>               <span class="ss">"Cambridge"</span>        <span class="k">union</span>
+<span class="gp">   ...&gt; </span><span class="k">select</span> <span class="mi">45</span><span class="p">,</span>             <span class="mi">93</span><span class="p">,</span>               <span class="ss">"Minneapolis"</span><span class="p">;</span>
+<span class="go">38|122|Berkeley</span>
+<span class="go">42|71|Cambridge</span>
+<span class="go">45|93|Minneapolis</span>
+</pre></div>
+<p>A table can be given a name using a <tt class="docutils literal">create table</tt> statement. While this
+statement can also be used to create empty tables, we will focus on the form
+that gives a name to an existing table defined by a <tt class="docutils literal">select</tt> statement.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">create</span> <span class="k">table</span> <span class="n">cities</span> <span class="k">as</span>
+<span class="gp">   ...&gt; </span>   <span class="k">select</span> <span class="mi">38</span> <span class="k">as</span> <span class="n">latitude</span><span class="p">,</span> <span class="mi">122</span> <span class="k">as</span> <span class="n">longitude</span><span class="p">,</span> <span class="ss">"Berkeley"</span> <span class="k">as</span> <span class="n">name</span> <span class="k">union</span>
+<span class="gp">   ...&gt; </span>   <span class="k">select</span> <span class="mi">42</span><span class="p">,</span>             <span class="mi">71</span><span class="p">,</span>               <span class="ss">"Cambridge"</span>        <span class="k">union</span>
+<span class="gp">   ...&gt; </span>   <span class="k">select</span> <span class="mi">45</span><span class="p">,</span>             <span class="mi">93</span><span class="p">,</span>               <span class="ss">"Minneapolis"</span><span class="p">;</span>
+</pre></div>
+<p>Once a table is named, that name can be used in a <tt class="docutils literal">from</tt> clause within a
+<tt class="docutils literal">select</tt> statement. All columns of a table can be displayed using the
+special <tt class="docutils literal">select *</tt> form.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">cities</span><span class="p">;</span>
+<span class="go">38|122|Berkeley</span>
+<span class="go">42|71|Cambridge</span>
+<span class="go">45|93|Minneapolis</span>
+</pre></div>
+</div>
+<div class="section" id="select-statements">
+<h3>4.3.2   Select Statements</h3>
+<p>A <tt class="docutils literal">select</tt> statement defines a new table either by listing the values in a
+single row or, more commonly, by projecting an existing table using a <tt class="docutils literal">from</tt>
+clause:</p>
+<pre class="literal-block">
+select [column description] from [existing table name]
+</pre>
+<p>The columns of the resulting table are described by a comma-separated list of
+expressions that are each evaluated for each row of the existing input table.</p>
+<p>For example, we can create a two-column table that describes each city by how
+far north or south it is of Berkeley. Each degree of latitude measures 60
+nautical miles to the north.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">name</span><span class="p">,</span> <span class="mi">60</span><span class="o">*</span><span class="k">abs</span><span class="p">(</span><span class="n">latitude</span><span class="o">-</span><span class="mi">38</span><span class="p">)</span> <span class="k">from</span> <span class="n">cities</span><span class="p">;</span>
+<span class="go">Berkeley|0</span>
+<span class="go">Cambridge|240</span>
+<span class="go">Minneapolis|420</span>
+</pre></div>
+<p>Column descriptions are expressions in a language that shares many properties
+with Python: infix operators such as + and %, built-in functions such as
+<tt class="docutils literal">abs</tt> and <tt class="docutils literal">round</tt>, and parentheses that describe evaluation order.
+Names in these expressions, such as <tt class="docutils literal">latitude</tt> above, evaluate to the column
+value in the row being projected.</p>
+<p>Optionally, each expression can be followed by the keyword <tt class="docutils literal">as</tt> and a column
+name. When the entire table is given a name, it is often helpful to give each
+column a name so that it can be referenced in future <tt class="docutils literal">select</tt> statements.
+Columns described by a simple name are named automatically.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">create</span> <span class="k">table</span> <span class="n">distances</span> <span class="k">as</span>
+<span class="gp">   ...&gt; </span>  <span class="k">select</span> <span class="n">name</span><span class="p">,</span> <span class="mi">60</span><span class="o">*</span><span class="k">abs</span><span class="p">(</span><span class="n">latitude</span><span class="o">-</span><span class="mi">38</span><span class="p">)</span> <span class="k">as</span> <span class="n">distance</span> <span class="k">from</span> <span class="n">cities</span><span class="p">;</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">distance</span><span class="o">/</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span> <span class="k">from</span> <span class="n">distances</span><span class="p">;</span>
+<span class="go">0|Berkeley</span>
+<span class="go">48|Cambridge</span>
+<span class="go">84|Minneapolis</span>
+</pre></div>
+<p><strong>Where Clauses.</strong> A <tt class="docutils literal">select</tt> statement can also include a <tt class="docutils literal">where</tt> clause
+with a filtering expression. This expression filters the rows that are
+projected. Only a row for which the filtering expression evaluates to a true
+value will be used to produce a row in the resulting table.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">create</span> <span class="k">table</span> <span class="n">cold</span> <span class="k">as</span>
+<span class="gp">   ...&gt; </span>  <span class="k">select</span> <span class="n">name</span> <span class="k">from</span> <span class="n">cities</span> <span class="k">where</span> <span class="n">latitude</span> <span class="o">&gt;</span> <span class="mi">43</span><span class="p">;</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">name</span><span class="p">,</span> <span class="ss">"is cold!"</span> <span class="k">from</span> <span class="n">cold</span><span class="p">;</span>
+<span class="go">Minneapolis|is cold!</span>
+</pre></div>
+<p><strong>Order Clauses.</strong> A <tt class="docutils literal">select</tt> statement can also express an ordering over the
+resulting table. An <tt class="docutils literal">order</tt> clause contains an ordering expression
+that is evaluated for each unfiltered row. The resulting values of this
+expression are used as a sorting criterion for the result table.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">distance</span><span class="p">,</span> <span class="n">name</span> <span class="k">from</span> <span class="n">distances</span> <span class="k">order</span> <span class="k">by</span> <span class="o">-</span><span class="n">distance</span><span class="p">;</span>
+<span class="go">84|Minneapolis</span>
+<span class="go">48|Cambridge</span>
+<span class="go">0|Berkeley</span>
+</pre></div>
+<p>The combination of these features allows a <tt class="docutils literal">select</tt> statement to express a
+wide range of projections of an input table into a related output table.</p>
+</div>
+<div class="section" id="joins">
+<h3>4.3.3   Joins</h3>
+<p>Databases typically contain multiple tables, and queries can require
+information contained within different tables to compute a desired result. For
+instance, we may have a second table describing the mean daily high temperature
+of different cities.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">create</span> <span class="k">table</span> <span class="n">temps</span> <span class="k">as</span>
+<span class="gp">   ...&gt; </span>  <span class="k">select</span> <span class="ss">"Berkeley"</span> <span class="k">as</span> <span class="n">city</span><span class="p">,</span> <span class="mi">68</span> <span class="k">as</span> <span class="n">temp</span> <span class="k">union</span>
+<span class="gp">   ...&gt; </span>  <span class="k">select</span> <span class="ss">"Chicago"</span>         <span class="p">,</span> <span class="mi">59</span>         <span class="k">union</span>
+<span class="gp">   ...&gt; </span>  <span class="k">select</span> <span class="ss">"Minneapolis"</span>     <span class="p">,</span> <span class="mi">55</span><span class="p">;</span>
+</pre></div>
+<p>Data are combined by <em>joining</em> multiple tables together into one, a fundamental
+operation in database systems. There are many methods of joining, all closely
+related, but we will focus on just one method in this text. When tables are
+joined, the resulting table contains a new row for each combination of rows in
+the input tables. If two tables are joined and the left table has <span class="rawlatex">$m$</span> rows and
+the right table has <span class="rawlatex">$n$</span> rows, then the joined table will have <span class="rawlatex">$m \cdot n$</span> rows.
+Joins are expressed in SQL by separating table names by commas in the <tt class="docutils literal">from</tt>
+clause of a <tt class="docutils literal">select</tt> statement.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="o">*</span> <span class="k">from</span> <span class="n">cities</span><span class="p">,</span> <span class="n">temps</span><span class="p">;</span>
+<span class="go">38|122|Berkeley|Berkeley|68</span>
+<span class="go">38|122|Berkeley|Chicago|59</span>
+<span class="go">38|122|Berkeley|Minneapolis|55</span>
+<span class="go">42|71|Cambridge|Berkeley|68</span>
+<span class="go">42|71|Cambridge|Chicago|59</span>
+<span class="go">42|71|Cambridge|Minneapolis|55</span>
+<span class="go">45|93|Minneapolis|Berkeley|68</span>
+<span class="go">45|93|Minneapolis|Chicago|59</span>
+<span class="go">45|93|Minneapolis|Minneapolis|55</span>
+</pre></div>
+<p>Joins are typically accompanied by a <tt class="docutils literal">where</tt> clause that expresses a
+relationship between the two tables. For example, if we wanted to collect data
+into a table that would allow us to correlate latitude and temperature, we
+would select rows from the join where the same city is mentioned in each.
+Within the <tt class="docutils literal">cities</tt> table, the city name is stored in a column called
+<tt class="docutils literal">name</tt>. Within the <tt class="docutils literal">temps</tt> table, the city name is stored in a column
+called <tt class="docutils literal">city</tt>. The <tt class="docutils literal">where</tt> clause can select for rows in the joined table
+in which these values are equal. In SQL, numeric equality is tested with a
+single <tt class="docutils literal">=</tt> symbol.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">name</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">temp</span> <span class="k">from</span> <span class="n">cities</span><span class="p">,</span> <span class="n">temps</span> <span class="k">where</span> <span class="n">name</span> <span class="o">=</span> <span class="n">city</span><span class="p">;</span>
+<span class="go">Berkeley|38|68</span>
+<span class="go">Minneapolis|45|55</span>
+</pre></div>
+<p>Tables may have overlapping column names, and so we need a method for
+disambiguating column names by table. A table may also be joined with itself,
+and so we need a method for disambiguating tables. To do so, SQL allows us to
+give aliases to tables within a <tt class="docutils literal">from</tt> clause using the keyword <tt class="docutils literal">as</tt> and to
+refer to a column within a particular table using a dot expression. The
+following <tt class="docutils literal">select</tt> statement computes the temperature difference between
+pairs of unequal cities. The alphabetical ordering constraint in the <tt class="docutils literal">where</tt>
+clause ensures that each pair will only appear once in the result.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">a</span><span class="p">.</span><span class="n">city</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">city</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">temp</span> <span class="o">-</span> <span class="n">b</span><span class="p">.</span><span class="n">temp</span>
+<span class="gp">   ...&gt; </span>       <span class="k">from</span> <span class="n">temps</span> <span class="k">as</span> <span class="n">a</span><span class="p">,</span> <span class="n">temps</span> <span class="k">as</span> <span class="n">b</span> <span class="k">where</span> <span class="n">a</span><span class="p">.</span><span class="n">city</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">city</span><span class="p">;</span>
+<span class="go">Berkeley|Chicago|10</span>
+<span class="go">Berkeley|Minneapolis|15</span>
+<span class="go">Chicago|Minneapolis|5</span>
+</pre></div>
+<p>Our two means of combining tables in SQL, join and union, allow for a great
+deal of expressive power in the language.</p>
+</div>
+<div class="section" id="interpreting-sql">
+<h3>4.3.4   Interpreting SQL</h3>
+<p>In order to create an interpreter for the subset of SQL we have introduced so
+far, we need to create a representation for tables, a parser for statements
+written as text, and an evaluator for parsed statements. The <a class="reference external" href="http://composingprograms.com/examples/sql/sql_exec.py">sql</a> interpreter
+example includes all of these components, providing a simple but functional
+demonstration of a declarative language interpreter.</p>
+<p>In this implementation, each table has its own a class, and each row in a table
+is represented by an instance of its table's class. A row has one attribute per
+column in the table, and a table is a sequence of rows.</p>
+<p>The class for a table is created using the <a class="reference external" href="https://docs.python.org/3/library/collections.html#collections.namedtuple">namedtuple</a> function in the
+<tt class="docutils literal">collections</tt> package of the Python standard library, which returns a new
+sub-class of <tt class="docutils literal">tuple</tt> that gives names to each element in the tuple.</p>
+<p>Consider the <tt class="docutils literal">cities</tt> table from the previous section, repeated below.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">create</span> <span class="k">table</span> <span class="n">cities</span> <span class="k">as</span>
+<span class="gp">   ...&gt; </span>   <span class="k">select</span> <span class="mi">38</span> <span class="k">as</span> <span class="n">latitude</span><span class="p">,</span> <span class="mi">122</span> <span class="k">as</span> <span class="n">longitude</span><span class="p">,</span> <span class="ss">"Berkeley"</span> <span class="k">as</span> <span class="n">name</span> <span class="k">union</span>
+<span class="gp">   ...&gt; </span>   <span class="k">select</span> <span class="mi">42</span><span class="p">,</span>             <span class="mi">71</span><span class="p">,</span>               <span class="ss">"Cambridge"</span>        <span class="k">union</span>
+<span class="gp">   ...&gt; </span>   <span class="k">select</span> <span class="mi">45</span><span class="p">,</span>             <span class="mi">93</span><span class="p">,</span>               <span class="ss">"Minneapolis"</span><span class="p">;</span>
+</pre></div>
+<p>The following Python statements construct a representation for this table.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">collections</span> <span class="kn">import</span> <span class="n">namedtuple</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">CitiesRow</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"Row"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"latitude"</span><span class="p">,</span> <span class="s2">"longitude"</span><span class="p">,</span> <span class="s2">"name"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">cities</span> <span class="o">=</span> <span class="p">[</span><span class="n">CitiesRow</span><span class="p">(</span><span class="mi">38</span><span class="p">,</span> <span class="mi">122</span><span class="p">,</span> <span class="s2">"Berkeley"</span><span class="p">),</span>
+<span class="gp">    </span>          <span class="n">CitiesRow</span><span class="p">(</span><span class="mi">42</span><span class="p">,</span>  <span class="mi">71</span><span class="p">,</span> <span class="s2">"Cambridge"</span><span class="p">),</span>
+<span class="gp">    </span>          <span class="n">CitiesRow</span><span class="p">(</span><span class="mi">43</span><span class="p">,</span>  <span class="mi">93</span><span class="p">,</span> <span class="s2">"Minneapolis"</span><span class="p">)]</span>
+</pre></div>
+
+<p>The result of a <tt class="docutils literal">select</tt> statement can be interpreted using sequence
+operations. Consider the <tt class="docutils literal">distances</tt> table from the previous section,
+repeated below.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">create</span> <span class="k">table</span> <span class="n">distances</span> <span class="k">as</span>
+<span class="gp">   ...&gt; </span>  <span class="k">select</span> <span class="n">name</span><span class="p">,</span> <span class="mi">60</span><span class="o">*</span><span class="k">abs</span><span class="p">(</span><span class="n">latitude</span><span class="o">-</span><span class="mi">38</span><span class="p">)</span> <span class="k">as</span> <span class="n">distance</span> <span class="k">from</span> <span class="n">cities</span><span class="p">;</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">distance</span><span class="o">/</span><span class="mi">5</span><span class="p">,</span> <span class="n">name</span> <span class="k">from</span> <span class="n">distances</span><span class="p">;</span>
+<span class="go">0|Berkeley</span>
+<span class="go">48|Cambridge</span>
+<span class="go">84|Minneapolis</span>
+</pre></div>
+<p>This table is generated from the <tt class="docutils literal">name</tt> and <tt class="docutils literal">latitude</tt> columns of the
+<tt class="docutils literal">cities</tt> table. This resulting table can be generated by mapping a function
+over the rows of the input table, a function that returns a <tt class="docutils literal">DistancesRow</tt>
+for each <tt class="docutils literal">CitiesRow</tt>.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">DistancesRow</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"Row"</span><span class="p">,</span> <span class="p">[</span><span class="s2">"name"</span><span class="p">,</span> <span class="s2">"distance"</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">select</span><span class="p">(</span><span class="n">cities_row</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="n">latitude</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">cities_row</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">DistancesRow</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="mi">60</span><span class="o">*</span><span class="nb">abs</span><span class="p">(</span><span class="n">latitude</span><span class="o">-</span><span class="mi">38</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">distances</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">select</span><span class="p">,</span> <span class="n">cities</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">distances</span><span class="p">:</span>
+<span class="gp">    </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="go">Row(name='Berkeley', distance=0)</span>
+<span class="go">Row(name='Cambridge', distance=240)</span>
+<span class="go">Row(name='Minneapolis', distance=300)</span>
+</pre></div>
+
+<p>The design of our SQL interpreter generalizes this approach. A <tt class="docutils literal">select</tt>
+statement is represented as an instance of a class <tt class="docutils literal">Select</tt> that is
+constructed from the clauses of the select statement.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Select</span><span class="p">:</span>
+<span class="gp">    </span>    <span class="sd">"""select [columns] from [tables] where [condition] order by [order]."""</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns</span><span class="p">,</span> <span class="n">tables</span><span class="p">,</span> <span class="n">condition</span><span class="p">,</span> <span class="n">order</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="bp">self</span><span class="o">.</span><span class="n">columns</span> <span class="o">=</span> <span class="n">columns</span>
+<span class="gp">    </span>        <span class="bp">self</span><span class="o">.</span><span class="n">tables</span> <span class="o">=</span> <span class="n">tables</span>
+<span class="gp">    </span>        <span class="bp">self</span><span class="o">.</span><span class="n">condition</span> <span class="o">=</span> <span class="n">condition</span>
+<span class="gp">    </span>        <span class="bp">self</span><span class="o">.</span><span class="n">order</span> <span class="o">=</span> <span class="n">order</span>
+<span class="gp">    </span>        <span class="bp">self</span><span class="o">.</span><span class="n">make_row</span> <span class="o">=</span> <span class="n">create_make_row</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">columns</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="nf">execute</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="sd">"""Join, filter, sort, and map rows from tables to columns."""</span>
+<span class="gp">    </span>        <span class="n">from_rows</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">tables</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">filtered_rows</span> <span class="o">=</span> <span class="nb">filter</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">filter</span><span class="p">,</span> <span class="n">from_rows</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">ordered_rows</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">filtered_rows</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">make_row</span><span class="p">,</span> <span class="n">ordered_rows</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">row</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="nb">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">condition</span><span class="p">,</span> <span class="n">row</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="kc">True</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="nf">sort</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">rows</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">r</span><span class="p">:</span> <span class="nb">eval</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">order</span><span class="p">,</span> <span class="n">r</span><span class="p">))</span>
+<span class="gp">    </span>        <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="n">rows</span>
+</pre></div>
+
+<p>The <tt class="docutils literal">execute</tt> method joins input tables, filters and orders the resulting rows,
+then maps a function called <tt class="docutils literal">make_row</tt> over those resulting rows. The
+<tt class="docutils literal">make_row</tt> function is created in the <tt class="docutils literal">Select</tt> constructor by a call to
+<tt class="docutils literal">create_make_row</tt>, a higher-order function that creates a new class for the
+resulting table and defines how to project an input row to an output row. (A
+version of this function with more error handling and special cases appears in
+<a class="reference external" href="http://composingprograms.com/examples/sql/sql_exec.py">sql</a>.)</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">create_make_row</span><span class="p">(</span><span class="n">description</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return a function from an input environment (dict) to an output row.</span>
+<span class="gp">    </span><span class="sd">    description -- a comma-separated list of [expression] as [column name]</span>
+<span class="gp">    </span><span class="sd">    """</span>
+<span class="gp">    </span>    <span class="n">columns</span> <span class="o">=</span> <span class="n">description</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">", "</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="n">expressions</span><span class="p">,</span> <span class="n">names</span> <span class="o">=</span> <span class="p">[],</span> <span class="p">[]</span>
+<span class="gp">    </span>    <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="s2">" as "</span> <span class="ow">in</span> <span class="n">column</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="n">expression</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">column</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">" as "</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="n">expression</span><span class="p">,</span> <span class="n">name</span> <span class="o">=</span> <span class="n">column</span><span class="p">,</span> <span class="n">column</span>
+<span class="gp">    </span>        <span class="n">expressions</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">expression</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="n">row</span> <span class="o">=</span> <span class="n">namedtuple</span><span class="p">(</span><span class="s2">"Row"</span><span class="p">,</span> <span class="n">names</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="k">lambda</span> <span class="n">env</span><span class="p">:</span> <span class="n">row</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="nb">eval</span><span class="p">(</span><span class="n">e</span><span class="p">,</span> <span class="n">env</span><span class="p">)</span> <span class="k">for</span> <span class="n">e</span> <span class="ow">in</span> <span class="n">expressions</span><span class="p">])</span>
+</pre></div>
+
+<p>Finally, we need to define the <tt class="docutils literal">join</tt> function that creates the input rows.
+Given an <tt class="docutils literal">env</tt> dictionary contains existing tables (lists of rows) keyed by
+their name, the <tt class="docutils literal">join</tt> function groups together all combinations of rows in
+the input tables using the <a class="reference external" href="https://docs.python.org/3/library/itertools.html#itertools.product">product</a> function in the <tt class="docutils literal">itertools</tt> package. It
+maps a function called <tt class="docutils literal">make_env</tt> over the joined rows, a function that
+converts each combination of rows into a dictionary so that it can be used to
+evaluate expressions. (A version of this function with more error handling and
+special cases appears in <a class="reference external" href="http://composingprograms.com/examples/sql/sql_exec.py">sql</a>.)</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">itertools</span> <span class="kn">import</span> <span class="n">product</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">join</span><span class="p">(</span><span class="n">tables</span><span class="p">,</span> <span class="n">env</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return an iterator over dictionaries from names to values in a row.</span>
+<span class="gp">    </span><span class="sd">    tables -- a comma-separate sequences of table names</span>
+<span class="gp">    </span><span class="sd">    env    -- a dictionary from global names to tables</span>
+<span class="gp">    </span><span class="sd">    """</span>
+<span class="gp">    </span>    <span class="n">names</span> <span class="o">=</span> <span class="n">tables</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">", "</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="n">joined_rows</span> <span class="o">=</span> <span class="n">product</span><span class="p">(</span><span class="o">*</span><span class="p">[</span><span class="n">env</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">names</span><span class="p">])</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">rows</span><span class="p">:</span> <span class="n">make_env</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">names</span><span class="p">),</span> <span class="n">joined_rows</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">make_env</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">names</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Create an environment of names bound to values."""</span>
+<span class="gp">    </span>    <span class="n">env</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">rows</span><span class="p">))</span>
+<span class="gp">    </span>    <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">row</span><span class="o">.</span><span class="n">_fields</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="n">env</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="nb">getattr</span><span class="p">(</span><span class="n">row</span><span class="p">,</span> <span class="n">name</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">env</span>
+</pre></div>
+
+<p>Above, <tt class="docutils literal">row._fields</tt> evaluates to the column names of the table containing
+the <tt class="docutils literal">row</tt>. The <tt class="docutils literal">_fields</tt> attribute exists because the type of <tt class="docutils literal">row</tt> is a
+<tt class="docutils literal">namedtuple</tt> class.</p>
+<p>Our interpreter is complete enough to execute <tt class="docutils literal">select</tt> statements. For
+instance, we can compute the latitude distance from Berkeley for all other
+cities, ordered by their longitude.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span> <span class="o">=</span> <span class="p">{</span><span class="s2">"cities"</span><span class="p">:</span> <span class="n">cities</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">select</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="s2">"name, 60*abs(latitude-38) as distance"</span><span class="p">,</span>
+<span class="gp">    </span>                <span class="s2">"cities"</span><span class="p">,</span> <span class="s2">"name != 'Berkeley'"</span><span class="p">,</span> <span class="s2">"-longitude"</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">select</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="go">Row(name='Minneapolis', distance=300)</span>
+<span class="go">Row(name='Cambridge', distance=240)</span>
+</pre></div>
+
+<p>The example above is equivalent to the following SQL statement.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">name</span><span class="p">,</span> <span class="mi">60</span><span class="o">*</span><span class="k">abs</span><span class="p">(</span><span class="n">latitude</span><span class="o">-</span><span class="mi">38</span><span class="p">)</span> <span class="k">as</span> <span class="n">distance</span>
+<span class="gp">   ...&gt; </span>       <span class="k">from</span> <span class="n">cities</span> <span class="k">where</span> <span class="n">name</span> <span class="o">!=</span> <span class="ss">"Berkeley"</span> <span class="k">order</span> <span class="k">by</span> <span class="o">-</span><span class="n">longitude</span><span class="p">;</span>
+<span class="go">Minneapolis|420</span>
+<span class="go">Cambridge|240</span>
+</pre></div>
+<p>We can also store this resulting table in the environment and join it with the
+<tt class="docutils literal">cities</tt> table, retrieving the longitude for each city.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">env</span><span class="p">[</span><span class="s2">"distances"</span><span class="p">]</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">select</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">env</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">joined</span> <span class="o">=</span> <span class="n">Select</span><span class="p">(</span><span class="s2">"cities.name as name, distance, longitude"</span><span class="p">,</span> <span class="s2">"cities, distances"</span><span class="p">,</span>
+<span class="gp">    </span>                <span class="s2">"cities.name == distances.name"</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">joined</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="n">env</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="go">Row(name='Cambridge', distance=240, longitude=71)</span>
+<span class="go">Row(name='Minneapolis', distance=300, longitude=93)</span>
+</pre></div>
+
+<p>The example above is equivalent to the following SQL statement.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">cities</span><span class="p">.</span><span class="n">name</span> <span class="k">as</span> <span class="n">name</span><span class="p">,</span> <span class="n">distance</span><span class="p">,</span> <span class="n">longitude</span>
+<span class="gp">   ...&gt; </span>       <span class="k">from</span> <span class="n">cities</span><span class="p">,</span> <span class="n">distances</span> <span class="k">where</span> <span class="n">cities</span><span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">distances</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
+<span class="go">Cambridge|240|71</span>
+<span class="go">Minneapolis|420|93</span>
+</pre></div>
+<p>The full <a class="reference external" href="http://composingprograms.com/examples/sql/sql_exec.py">sql</a> example program also contains a simple parser for <tt class="docutils literal">select</tt>
+statements, as well as <tt class="docutils literal">execute</tt> methods for <tt class="docutils literal">create table</tt> and <tt class="docutils literal">union</tt>.
+The interpreter can correctly execute all SQL statements included within the
+text so far. While this simple interpreter only implements a small amount of
+the full Structured Query Language, its structure demonstrates the relationship
+between sequence processing operations and query languages.</p>
+<p><strong>Query Plans.</strong> Declarative languages describe the form of a result, but do
+not explicitly describe how that result should be computed. This interpreter
+always joins, filters, orders, and then projects the input rows in order to
+compute the result rows. However, more efficient ways to compute the same
+result may exist, and query interpreters are free to choose among them.
+Choosing efficient procedures for computing query results is a core feature of
+database systems.</p>
+<p>For example, consider the final select statement above. Rather than computing
+the join of <tt class="docutils literal">cities</tt> and <tt class="docutils literal">distances</tt> and then filtering the result, the
+same result may be computed by first sorting both tables by the <tt class="docutils literal">name</tt>
+column and then joining only the rows that have the same name in a linear pass
+through the sorted tables. When tables are large, efficiency gains from
+query plan selection can be substantial.</p>
+</div>
+<div class="section" id="recursive-select-statements">
+<h3>4.3.5   Recursive Select Statements</h3>
+<p>Select statements can optionally include a <tt class="docutils literal">with</tt> clause that generates and
+names additional tables used in computing the final result. The full syntax of
+a select statement, not including unions, has the following form:</p>
+<pre class="literal-block">
+with [tables] select [columns] from [names] where [condition] order by [order]
+</pre>
+<p>We have already demonstrated the allowed values for <tt class="docutils literal">[columns]</tt> and
+<tt class="docutils literal">[names]</tt>. <tt class="docutils literal">[condition]</tt> and <tt class="docutils literal">[order]</tt> are expressions that can be
+evaluated for an input row. The <tt class="docutils literal">[tables]</tt> portion is a comma-separated
+list of table descriptions of the form:</p>
+<pre class="literal-block">
+[table name]([column names]) as ([select statement])
+</pre>
+<p>Any <tt class="docutils literal">select</tt> statement can be used to describe a table within <tt class="docutils literal">[tables]</tt>.</p>
+<p>For instance, the <tt class="docutils literal">with</tt> clause below declares a table <tt class="docutils literal">states</tt> containing
+cities and their states. The <tt class="docutils literal">select</tt> statement computes pairs of cities
+within the same state.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">with</span>
+<span class="gp">   ...&gt; </span>  <span class="n">states</span><span class="p">(</span><span class="n">city</span><span class="p">,</span> <span class="k">state</span><span class="p">)</span> <span class="k">as</span> <span class="p">(</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="ss">"Berkeley"</span><span class="p">,</span>  <span class="ss">"California"</span>    <span class="k">union</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="ss">"Boston"</span><span class="p">,</span>    <span class="ss">"Massachusetts"</span> <span class="k">union</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="ss">"Cambridge"</span><span class="p">,</span> <span class="ss">"Massachusetts"</span> <span class="k">union</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="ss">"Chicago"</span><span class="p">,</span>   <span class="ss">"Illinois"</span>      <span class="k">union</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="ss">"Pasadena"</span><span class="p">,</span>  <span class="ss">"California"</span>
+<span class="gp">   ...&gt; </span>  <span class="p">)</span>
+<span class="gp">   ...&gt; </span><span class="k">select</span> <span class="n">a</span><span class="p">.</span><span class="n">city</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">city</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="k">state</span> <span class="k">from</span> <span class="n">states</span> <span class="k">as</span> <span class="n">a</span><span class="p">,</span> <span class="n">states</span> <span class="k">as</span> <span class="n">b</span>
+<span class="gp">   ...&gt; </span>       <span class="k">where</span> <span class="n">a</span><span class="p">.</span><span class="k">state</span> <span class="o">=</span> <span class="n">b</span><span class="p">.</span><span class="k">state</span> <span class="k">and</span> <span class="n">a</span><span class="p">.</span><span class="n">city</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">city</span><span class="p">;</span>
+<span class="go">Berkeley|Pasadena|California</span>
+<span class="go">Boston|Cambridge|Massachusetts</span>
+</pre></div>
+<p>A table defined within a <tt class="docutils literal">with</tt> clause may have a single recursive case that
+defines output rows in terms of other output rows. For example, the <tt class="docutils literal">with</tt>
+clause below defines a table of integers from 5 to 15, of which the odd values
+are selected and squared.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">with</span>
+<span class="gp">   ...&gt; </span>  <span class="n">ints</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">as</span> <span class="p">(</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="mi">5</span> <span class="k">union</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span> <span class="k">from</span> <span class="n">ints</span> <span class="k">where</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">15</span>
+<span class="gp">   ...&gt; </span>  <span class="p">)</span>
+<span class="gp">   ...&gt; </span><span class="k">select</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span> <span class="k">from</span> <span class="n">ints</span> <span class="k">where</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="go">5|25</span>
+<span class="go">7|49</span>
+<span class="go">9|81</span>
+<span class="go">11|121</span>
+<span class="go">13|169</span>
+<span class="go">15|225</span>
+</pre></div>
+<p>Multiple tables can be defined in a <tt class="docutils literal">with</tt> clause, separated by commas. The
+example below computes all Pythagorean triples from a table of integers,
+their squares, and the sums of pairs of squares. A Pythagorean triple consists
+of integers $a$, $b$, and $c$ such that $a^2 + b^2 = c^2$.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">with</span>
+<span class="gp">   ...&gt; </span>  <span class="n">ints</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">as</span> <span class="p">(</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="mi">1</span> <span class="k">union</span> <span class="k">select</span> <span class="n">n</span><span class="o">+</span><span class="mi">1</span> <span class="k">from</span> <span class="n">ints</span> <span class="k">where</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">20</span>
+<span class="gp">   ...&gt; </span>  <span class="p">),</span>
+<span class="gp">   ...&gt; </span>  <span class="n">squares</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">xx</span><span class="p">)</span> <span class="k">as</span> <span class="p">(</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="n">n</span><span class="p">,</span> <span class="n">n</span><span class="o">*</span><span class="n">n</span> <span class="k">from</span> <span class="n">ints</span>
+<span class="gp">   ...&gt; </span>  <span class="p">),</span>
+<span class="gp">   ...&gt; </span>  <span class="n">sum_of_squares</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="k">sum</span><span class="p">)</span> <span class="k">as</span> <span class="p">(</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="n">a</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">b</span><span class="p">.</span><span class="n">x</span><span class="p">,</span> <span class="n">a</span><span class="p">.</span><span class="n">xx</span> <span class="o">+</span> <span class="n">b</span><span class="p">.</span><span class="n">xx</span>
+<span class="gp">   ...&gt; </span>           <span class="k">from</span> <span class="n">squares</span> <span class="k">as</span> <span class="n">a</span><span class="p">,</span> <span class="n">squares</span> <span class="k">as</span> <span class="n">b</span> <span class="k">where</span> <span class="n">a</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;</span> <span class="n">b</span><span class="p">.</span><span class="n">x</span>
+<span class="gp">   ...&gt; </span>  <span class="p">)</span>
+<span class="gp">   ...&gt; </span><span class="k">select</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">x</span> <span class="k">from</span> <span class="n">squares</span><span class="p">,</span> <span class="n">sum_of_squares</span> <span class="k">where</span> <span class="k">sum</span> <span class="o">=</span> <span class="n">xx</span><span class="p">;</span>
+<span class="go">3|4|5</span>
+<span class="go">6|8|10</span>
+<span class="go">5|12|13</span>
+<span class="go">9|12|15</span>
+<span class="go">8|15|17</span>
+<span class="go">12|16|20</span>
+</pre></div>
+<p>Designing recursive queries involves ensuring that the appropriate information
+is available in each input row to compute a result row. To compute Fibonacci
+numbers, for example, the input row needs not only the current but also the
+previous element in order to compute the next element.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">with</span>
+<span class="gp">   ...&gt; </span>  <span class="n">fib</span><span class="p">(</span><span class="n">previous</span><span class="p">,</span> <span class="k">current</span><span class="p">)</span> <span class="k">as</span> <span class="p">(</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="k">union</span>
+<span class="gp">   ...&gt; </span>    <span class="k">select</span> <span class="k">current</span><span class="p">,</span> <span class="n">previous</span><span class="o">+</span><span class="k">current</span> <span class="k">from</span> <span class="n">fib</span>
+<span class="gp">   ...&gt; </span>    <span class="k">where</span> <span class="k">current</span> <span class="o">&lt;=</span> <span class="mi">100</span>
+<span class="gp">   ...&gt; </span>  <span class="p">)</span>
+<span class="gp">   ...&gt; </span><span class="k">select</span> <span class="n">previous</span> <span class="k">from</span> <span class="n">fib</span><span class="p">;</span>
+<span class="go">0</span>
+<span class="go">1</span>
+<span class="go">1</span>
+<span class="go">2</span>
+<span class="go">3</span>
+<span class="go">5</span>
+<span class="go">8</span>
+<span class="go">13</span>
+<span class="go">21</span>
+<span class="go">34</span>
+<span class="go">55</span>
+<span class="go">89</span>
+</pre></div>
+<p>These examples demonstrate that recursion is a powerful means of combination,
+even in declarative languages.</p>
+<p><strong>Building strings</strong>. Two strings can be concatenated into a longer string
+using the <tt class="docutils literal">||</tt> operator in SQL.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">with</span> <span class="n">wall</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">as</span> <span class="p">(</span>
+<span class="go">  ....&gt;   select 99 union select 98 union select 97</span>
+<span class="go">  ....&gt; )</span>
+<span class="go">  ....&gt; select n || " bottles" from wall;</span>
+<span class="go">99 bottles</span>
+<span class="go">98 bottles</span>
+<span class="go">97 bottles</span>
+</pre></div>
+<p>This feature can be used to construct sentences by concatenating phrases. For
+example, one way to construct an English sentence is to concatenate a subject
+noun phrase, a verb, and an object noun phrase.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">create</span> <span class="k">table</span> <span class="n">nouns</span> <span class="k">as</span>
+<span class="go">  ....&gt;   select "the dog" as phrase union</span>
+<span class="go">  ....&gt;   select "the cat"           union</span>
+<span class="go">  ....&gt;   select "the bird";</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">subject</span><span class="p">.</span><span class="n">phrase</span> <span class="o">||</span> <span class="ss">" chased "</span> <span class="o">||</span> <span class="k">object</span><span class="p">.</span><span class="n">phrase</span>
+<span class="go">  ....&gt;        from nouns as subject, nouns as object</span>
+<span class="go">  ....&gt;        where subject.phrase != object.phrase;</span>
+<span class="go">the bird chased the cat</span>
+<span class="go">the bird chased the dog</span>
+<span class="go">the cat chased the bird</span>
+<span class="go">the cat chased the dog</span>
+<span class="go">the dog chased the bird</span>
+<span class="go">the dog chased the cat</span>
+</pre></div>
+<p>As an exercise, use a recursive local table to generate sentences such as,
+"the dog that chased the cat that chased the bird also chased the bird."</p>
+</div>
+<div class="section" id="aggregation-and-grouping">
+<h3>4.3.6   Aggregation and Grouping</h3>
+<p>The <tt class="docutils literal">select</tt> statements introduced so far can join, project, and manipulate
+individual rows. In addition, a <tt class="docutils literal">select</tt> statement can perform aggregation
+operations over multiple rows. The aggregate functions <tt class="docutils literal">max</tt>,
+<tt class="docutils literal">min</tt>, <tt class="docutils literal">count</tt>, and <tt class="docutils literal">sum</tt> return the maximum, minimum, number, and sum
+of the values in a column. Multiple aggregate functions can be applied to the
+same set of rows by defining more than one column. Only columns that are
+included by the <tt class="docutils literal">where</tt> clause are considered in the aggreagation.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">create</span> <span class="k">table</span> <span class="n">animals</span> <span class="k">as</span>
+<span class="go">  ....&gt;   select "dog" as name, 4 as legs, 20 as weight union</span>
+<span class="go">  ....&gt;   select "cat"        , 4        , 10           union</span>
+<span class="go">  ....&gt;   select "ferret"     , 4        , 10           union</span>
+<span class="go">  ....&gt;   select "t-rex"      , 2        , 12000        union</span>
+<span class="go">  ....&gt;   select "penguin"    , 2        , 10           union</span>
+<span class="go">  ....&gt;   select "bird"       , 2        , 6;</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="k">max</span><span class="p">(</span><span class="n">legs</span><span class="p">)</span> <span class="k">from</span> <span class="n">animals</span><span class="p">;</span>
+<span class="go">4</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="k">sum</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span> <span class="k">from</span> <span class="n">animals</span><span class="p">;</span>
+<span class="go">12056</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="k">min</span><span class="p">(</span><span class="n">legs</span><span class="p">),</span> <span class="k">max</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span> <span class="k">from</span> <span class="n">animals</span> <span class="k">where</span> <span class="n">name</span> <span class="o">&lt;&gt;</span> <span class="ss">"t-rex"</span><span class="p">;</span>
+<span class="go">2|20</span>
+</pre></div>
+<p>The <tt class="docutils literal">distinct</tt> keyword ensures that no repeated values in a column are
+included in the aggregation. Only two distinct values of <tt class="docutils literal">legs</tt> appear
+in the <tt class="docutils literal">animals</tt> table. The special <tt class="docutils literal"><span class="pre">count(*)</span></tt> syntax counts the number of
+rows.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="n">legs</span><span class="p">)</span> <span class="k">from</span> <span class="n">animals</span><span class="p">;</span>
+<span class="go">6</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span> <span class="k">from</span> <span class="n">animals</span><span class="p">;</span>
+<span class="go">6</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="k">distinct</span> <span class="n">legs</span><span class="p">)</span> <span class="k">from</span> <span class="n">animals</span><span class="p">;</span>
+<span class="go">2</span>
+</pre></div>
+<p>Each of these <tt class="docutils literal">select</tt> statements has produced a table with a single row.
+The <tt class="docutils literal">group by</tt> and <tt class="docutils literal">having</tt> clauses of a <tt class="docutils literal">select</tt> statement are used to
+partition rows into groups and select only a subset of the groups. Any
+aggregate functions in the <tt class="docutils literal">having</tt> clause or column description will apply
+to each group independently, rather than the entire set of rows in the table.</p>
+<p>For example, to compute the maximum weight of both a four-legged and a
+two-legged animal from this table, the first statement below groups together
+dogs and cats as one group and birds as a separate group. The result indicates
+that the maximum weight for a two-legged animal is 3 (the bird) and for a
+four-legged animal is 20 (the dog). The second query lists the values in the
+<tt class="docutils literal">legs</tt> column for which there are at least two distinct names.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">legs</span><span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span> <span class="k">from</span> <span class="n">animals</span> <span class="k">group</span> <span class="k">by</span> <span class="n">legs</span><span class="p">;</span>
+<span class="go">2|12000</span>
+<span class="go">4|20</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">weight</span> <span class="k">from</span> <span class="n">animals</span> <span class="k">group</span> <span class="k">by</span> <span class="n">weight</span> <span class="k">having</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="o">&gt;</span><span class="mi">1</span><span class="p">;</span>
+<span class="go">10</span>
+</pre></div>
+<p>Multiple columns and full expressions can appear in the <tt class="docutils literal">group by</tt> clause,
+and groups will be formed for every unique combination of values that result.
+Typically, the expression used for grouping also appears in the column
+description, so that it is easy to identify which result row resulted from
+each group.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="k">max</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="k">from</span> <span class="n">animals</span> <span class="k">group</span> <span class="k">by</span> <span class="n">legs</span><span class="p">,</span> <span class="n">weight</span> <span class="k">order</span> <span class="k">by</span> <span class="n">name</span><span class="p">;</span>
+<span class="go">bird</span>
+<span class="go">dog</span>
+<span class="go">ferret</span>
+<span class="go">penguin</span>
+<span class="go">t-rex</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="k">max</span><span class="p">(</span><span class="n">name</span><span class="p">),</span> <span class="n">legs</span><span class="p">,</span> <span class="n">weight</span> <span class="k">from</span> <span class="n">animals</span> <span class="k">group</span> <span class="k">by</span> <span class="n">legs</span><span class="p">,</span> <span class="n">weight</span>
+<span class="go">  ....&gt;   having max(weight) &lt; 100;</span>
+<span class="go">bird|2|6</span>
+<span class="go">penguin|2|10</span>
+<span class="go">ferret|4|10</span>
+<span class="go">dog|4|20</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">),</span> <span class="n">weight</span><span class="o">/</span><span class="n">legs</span> <span class="k">from</span> <span class="n">animals</span> <span class="k">group</span> <span class="k">by</span> <span class="n">weight</span><span class="o">/</span><span class="n">legs</span><span class="p">;</span>
+<span class="go">2|2</span>
+<span class="go">1|3</span>
+<span class="go">2|5</span>
+<span class="go">1|6000</span>
+</pre></div>
+<p>A <tt class="docutils literal">having</tt> clause can contain the same filtering as a <tt class="docutils literal">where</tt> clause, but
+can also include calls to aggregate functions. For the fastest execution and
+clearest use of the language, a condition that filters individual rows based
+on their contents should appear in a <tt class="docutils literal">where</tt> clause, while a <tt class="docutils literal">having</tt>
+clause should be used only when aggregation is required in the condition (such
+as specifying a minimum <tt class="docutils literal">count</tt> for a group).</p>
+<p>When using a <tt class="docutils literal">group by</tt> clause, column descriptions can contain expressions
+that do not aggregate. In some cases, the SQL interpreter will choose the value
+from a row that corresponds to another column that includes aggregation. For
+example, the following statement gives the <tt class="docutils literal">name</tt> of an animal with maximal
+<tt class="docutils literal">weight</tt>.</p>
+<div class="highlight"><pre><span></span><span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">name</span><span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span> <span class="k">from</span> <span class="n">animals</span><span class="p">;</span>
+<span class="go">t-rex|12000</span>
+<span class="gp">sqlite&gt; </span><span class="k">select</span> <span class="n">name</span><span class="p">,</span> <span class="n">legs</span><span class="p">,</span> <span class="k">max</span><span class="p">(</span><span class="n">weight</span><span class="p">)</span> <span class="k">from</span> <span class="n">animals</span> <span class="k">group</span> <span class="k">by</span> <span class="n">legs</span><span class="p">;</span>
+<span class="go">t-rex|2|12000</span>
+<span class="go">dog|4|20</span>
+</pre></div>
+<p>However, whenever the row that corresponds to aggregation is unclear (for
+instance, when aggregating with <tt class="docutils literal">count</tt> instead of <tt class="docutils literal">max</tt>), the value chosen
+may be arbitrary. For the clearest and most predictable use of the language, a
+<tt class="docutils literal">select</tt> statement that includes a <tt class="docutils literal">group by</tt> clause should include at
+least one aggregate column and only include non-aggregate columns if their
+contents is predictable from the aggregation.</p>
+</div>
+</div>
+  <p><i>Continue</i>:
+  	<a href="44-logic-programming.html">
+  		4.4 Logic Programming
+  	</a>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <footer id="contentinfo" class="body">
+          Composing Programs by <a href="http://www.denero.org">John
+          DeNero</a>, based on the textbook <a
+          href="http://mitpress.mit.edu/sicp/">Structure and
+          Interpretation of Computer Programs</a> by Harold Abelson and
+          Gerald Jay Sussman, is licensed under a <a rel="license"
+          href="http://creativecommons.org/licenses/by-sa/3.0/">Creative
+          Commons Attribution-ShareAlike 3.0 Unported License</a>.
+      </footer><!-- /#contentinfo -->
+    </div>
+  </div>
+</body>
+</html>

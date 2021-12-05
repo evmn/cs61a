@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>2.3 Sequences</title>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" type="text/css" href="../theme/css/cp.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/pytutor.css"/>
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/ui-lightness/jquery-ui-1.8.21.custom.css" />
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/codemirror.css"  />
+  <link rel="stylesheet" type="text/css" href="../theme/coding-js/coding.css"  />
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="../theme/tutor/js/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery-ui-1.8.24.custom.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery.ba-bbq.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+
+  <!-- codemirror.net online code editor -->
+  <script type="text/javascript" src="../theme/tutor/js/codemirror/codemirror.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/codemirror/python.js"></script>
+
+  <!-- d3 -->
+  <script type="text/javascript" src="../theme/tutor/js/d3.v2.min.js"></script>
+
+  <!-- Online Python Tutor -->
+  <script type="text/javascript" src="../theme/tutor/js/pytutor.js"></script>
+
+  <!-- Coding.js -->
+  <script type="text/javascript" src="../theme/coding-js/coding.js"></script>
+  <script> var $c = new CodingJS("../theme/coding-js/"); </script>
+
+  <!-- Composing Programs -->
+  <script type="text/javascript" src="../theme/js/cp.js"></script>
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type= "text/javascript">
+       MathJax.Hub.Config({
+           config: ["MMLorHTML.js"],
+           jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+           TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"], equationNumbers: { autoNumber: "AMS" } },
+           extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js","jsMath2jax.js"],
+           tex2jax: {
+               inlineMath: [ ['$','$'] ],
+               displayMath: [ ['$$','$$'] ],
+               processEscapes: true },
+           "HTML-CSS": {
+               styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+           }
+       });
+    </script>
+
+</head>
+
+<body id="index" class="home">
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="../index.html">
+          <span class="nav-logo">c<span class="nav-logo-compose">⚬</span>mp<span class="nav-logo-compose">⚬</span>sing pr<span class="nav-logo-compose">⚬</span>grams</span>
+        </a>
+        <ul class="nav-site">
+          <li><a href="../index.html">Text</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../tutor.html">Tutor</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="content wrap documentationContent">
+      <div class="nav-docs">
+	<h3>Chapter 2<a id="hide_contents">Hide contents</a> </h3>
+		<div class="nav-docs-section">
+			<h3><a href="21-introduction.html">2.1 Introduction</a></h3>
+				<li><a href="21-introduction.html#native-data-types">2.1.1 Native Data Types</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="22-data-abstraction.html">2.2 Data Abstraction</a></h3>
+				<li><a href="22-data-abstraction.html#example-rational-numbers">2.2.1 Example: Rational Numbers</a>
+				<li><a href="22-data-abstraction.html#pairs">2.2.2 Pairs</a>
+				<li><a href="22-data-abstraction.html#abstraction-barriers">2.2.3 Abstraction Barriers</a>
+				<li><a href="22-data-abstraction.html#the-properties-of-data">2.2.4 The Properties of Data</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="23-sequences.html">2.3 Sequences</a></h3>
+				<li><a href="23-sequences.html#lists">2.3.1 Lists</a>
+				<li><a href="23-sequences.html#sequence-iteration">2.3.2 Sequence Iteration</a>
+				<li><a href="23-sequences.html#sequence-processing">2.3.3 Sequence Processing</a>
+				<li><a href="23-sequences.html#sequence-abstraction">2.3.4 Sequence Abstraction</a>
+				<li><a href="23-sequences.html#strings">2.3.5 Strings</a>
+				<li><a href="23-sequences.html#trees">2.3.6 Trees</a>
+				<li><a href="23-sequences.html#linked-lists">2.3.7 Linked Lists</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="24-mutable-data.html">2.4 Mutable Data</a></h3>
+				<li><a href="24-mutable-data.html#the-object-metaphor">2.4.1 The Object Metaphor</a>
+				<li><a href="24-mutable-data.html#sequence-objects">2.4.2 Sequence Objects</a>
+				<li><a href="24-mutable-data.html#dictionaries">2.4.3 Dictionaries</a>
+				<li><a href="24-mutable-data.html#local-state">2.4.4 Local State</a>
+				<li><a href="24-mutable-data.html#the-benefits-of-non-local-assignment">2.4.5 The Benefits of Non-Local Assignment</a>
+				<li><a href="24-mutable-data.html#the-cost-of-non-local-assignment">2.4.6 The Cost of Non-Local Assignment</a>
+				<li><a href="24-mutable-data.html#implementing-lists-and-dictionaries">2.4.7 Implementing Lists and Dictionaries</a>
+				<li><a href="24-mutable-data.html#dispatch-dictionaries">2.4.8 Dispatch Dictionaries</a>
+				<li><a href="24-mutable-data.html#propagating-constraints">2.4.9 Propagating Constraints</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="25-object-oriented-programming.html">2.5 Object-Oriented Programming</a></h3>
+				<li><a href="25-object-oriented-programming.html#objects-and-classes">2.5.1 Objects and Classes</a>
+				<li><a href="25-object-oriented-programming.html#defining-classes">2.5.2 Defining Classes</a>
+				<li><a href="25-object-oriented-programming.html#message-passing-and-dot-expressions">2.5.3 Message Passing and Dot Expressions</a>
+				<li><a href="25-object-oriented-programming.html#class-attributes">2.5.4 Class Attributes</a>
+				<li><a href="25-object-oriented-programming.html#inheritance">2.5.5 Inheritance</a>
+				<li><a href="25-object-oriented-programming.html#using-inheritance">2.5.6 Using Inheritance</a>
+				<li><a href="25-object-oriented-programming.html#multiple-inheritance">2.5.7 Multiple Inheritance</a>
+				<li><a href="25-object-oriented-programming.html#the-role-of-objects">2.5.8 The Role of Objects</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="26-implementing-classes-and-objects.html">2.6 Implementing Classes and Objects</a></h3>
+				<li><a href="26-implementing-classes-and-objects.html#instances">2.6.1 Instances</a>
+				<li><a href="26-implementing-classes-and-objects.html#classes">2.6.2 Classes</a>
+				<li><a href="26-implementing-classes-and-objects.html#using-implemented-objects">2.6.3 Using Implemented Objects</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="27-object-abstraction.html">2.7 Object Abstraction</a></h3>
+				<li><a href="27-object-abstraction.html#string-conversion">2.7.1 String Conversion</a>
+				<li><a href="27-object-abstraction.html#special-methods">2.7.2 Special Methods</a>
+				<li><a href="27-object-abstraction.html#multiple-representations">2.7.3 Multiple Representations</a>
+				<li><a href="27-object-abstraction.html#generic-functions">2.7.4 Generic Functions</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="28-efficiency.html">2.8 Efficiency</a></h3>
+				<li><a href="28-efficiency.html#measuring-efficiency">2.8.1 Measuring Efficiency</a>
+				<li><a href="28-efficiency.html#memoization">2.8.2 Memoization</a>
+				<li><a href="28-efficiency.html#orders-of-growth">2.8.3 Orders of Growth</a>
+				<li><a href="28-efficiency.html#example-exponentiation">2.8.4 Example: Exponentiation</a>
+				<li><a href="28-efficiency.html#growth-categories">2.8.5 Growth Categories</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="29-recursive-objects.html">2.9 Recursive Objects</a></h3>
+				<li><a href="29-recursive-objects.html#linked-list-class">2.9.1 Linked List Class</a>
+				<li><a href="29-recursive-objects.html#tree-class">2.9.2 Tree Class</a>
+				<li><a href="29-recursive-objects.html#sets">2.9.3 Sets</a>
+		</div>
+      </div>
+
+      <div class="inner-content">
+  <div class="section" id="sequences">
+<h2>2.3   Sequences</h2>
+<p>A sequence is an ordered collection of values. The sequence is a powerful,
+fundamental abstraction in computer science. Sequences are not instances of a
+particular built-in type or abstract data representation, but instead a
+collection of behaviors that are shared among several different types of data.
+That is, there are many kinds of sequences, but they all share common behavior.
+In particular,</p>
+<p><strong>Length.</strong> A sequence has a finite length. An empty sequence has length 0.</p>
+<p><strong>Element selection.</strong> A sequence has an element corresponding to any
+non-negative integer index less than its length, starting at 0 for the first
+element.</p>
+<p>Python includes several native data types that are sequences, the most
+important of which is the <tt class="docutils literal">list</tt>.</p>
+<div class="section" id="lists">
+<h3>2.3.1   Lists</h3>
+<p>A <tt class="docutils literal">list</tt> value is a sequence that can have arbitrary length.  Lists have a
+large set of built-in behaviors, along with specific syntax to express those
+behaviors. We have already seen the list literal, which evaluates to a <tt class="docutils literal">list</tt>
+instance, as well as an element selection expression that evaluates to a value
+in the list. The built-in <tt class="docutils literal">len</tt> function returns the length of a sequence.
+Below, <tt class="docutils literal">digits</tt> is a list with four elements. The element at index 3 is 8.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">8</span>
+</pre></div>
+
+<p>Additionally, lists can be added together and multiplied by integers.  For
+sequences, addition and multiplication do not add or multiply elements, but
+instead combine and replicate the sequences themselves. That is, the <tt class="docutils literal">add</tt>
+function in the <tt class="docutils literal">operator</tt> module (and the <tt class="docutils literal">+</tt> operator) yields a list that
+is the concatenation of the added arguments.  The <tt class="docutils literal">mul</tt> function in
+<tt class="docutils literal">operator</tt> (and the <tt class="docutils literal">*</tt> operator) can take a list and an integer <tt class="docutils literal">k</tt> to
+return the list that consists of <tt class="docutils literal">k</tt> repetitions of the original list.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">7</span><span class="p">]</span> <span class="o">+</span> <span class="n">digits</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="go">[2, 7, 1, 8, 2, 8, 1, 8, 2, 8]</span>
+</pre></div>
+
+<p>Any values can be included in a list, including another list. Element selection
+can be applied multiple times in order to select a deeply nested element in a
+list containing lists.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">],</span> <span class="p">[</span><span class="mi">30</span><span class="p">,</span> <span class="mi">40</span><span class="p">]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">[30, 40]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+<span class="go">30</span>
+</pre></div>
+
+</div>
+<div class="section" id="sequence-iteration">
+<h3>2.3.2   Sequence Iteration</h3>
+<p>In many cases, we would like to iterate over the elements of a sequence and
+perform some computation for each element in turn.  This pattern is so common
+that Python has an additional control statement to process sequential data: the
+<tt class="docutils literal">for</tt> statement.</p>
+<p>Consider the problem of counting how many times a value appears in a sequence.
+We can implement a function to compute this count using a <tt class="docutils literal">while</tt> loop.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Count the number of occurrences of value in sequence s."""</span>
+<span class="gp">    </span>    <span class="n">total</span><span class="p">,</span> <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span>
+<span class="gp">    </span>    <span class="k">while</span> <span class="n">index</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="n">s</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">==</span> <span class="n">value</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">    </span>        <span class="n">index</span> <span class="o">=</span> <span class="n">index</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">count</span><span class="p">(</span><span class="n">digits</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+
+<p>The Python <tt class="docutils literal">for</tt> statement can simplify this function body by iterating over
+the element values directly without introducing the name <tt class="docutils literal">index</tt> at all.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Count the number of occurrences of value in sequence s."""</span>
+<span class="gp">    </span>    <span class="n">total</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">    </span>    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="n">elem</span> <span class="o">==</span> <span class="n">value</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="n">total</span> <span class="o">=</span> <span class="n">total</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">total</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">count</span><span class="p">(</span><span class="n">digits</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+
+<p>A <tt class="docutils literal">for</tt> statement consists of a single clause with the form:</p>
+<pre class="literal-block">
+for &lt;name&gt; in &lt;expression&gt;:
+    &lt;suite&gt;
+</pre>
+<p>A <tt class="docutils literal">for</tt> statement is executed by the following procedure:</p>
+<ol class="arabic simple">
+<li>Evaluate the header <tt class="docutils literal">&lt;expression&gt;</tt>, which must yield an iterable value.</li>
+<li>For each element value in that iterable value, in order:<ol class="upperalpha">
+<li>Bind <tt class="docutils literal">&lt;name&gt;</tt> to that value in the current frame.</li>
+<li>Execute the <tt class="docutils literal">&lt;suite&gt;</tt>.</li>
+</ol>
+</li>
+</ol>
+<p>This execution procedure refers to <em>iterable values</em>. Lists are a type of
+sequence, and sequences are iterable values. Their elements are considered
+in their sequential order.  Python includes other iterable types, but we will
+focus on sequences for now; the general definition of the term "iterable"
+appears in the section on iterators in Chapter 4.</p>
+<p>An important consequence of this evaluation procedure is that <tt class="docutils literal">&lt;name&gt;</tt> will be
+bound to the last element of the sequence after the <tt class="docutils literal">for</tt> statement is
+executed.  The <tt class="docutils literal">for</tt> loop introduces yet another way in which the
+environment can be updated by a statement.</p>
+<p><strong>Sequence unpacking.</strong> A common pattern in programs is to have a sequence of
+elements that are themselves sequences, but all of a fixed length. A <tt class="docutils literal">for</tt>
+statement may include multiple names in its header to "unpack" each element
+sequence into its respective elements.  For example, we may have a list of
+two-element lists.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">pairs</span> <span class="o">=</span> <span class="p">[[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">],</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">],</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">]]</span>
+</pre></div>
+
+<p>and wish to find the number of these pairs that have the same first and second
+element.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">same_count</span> <span class="o">=</span> <span class="mi">0</span>
+</pre></div>
+
+<p>The following <tt class="docutils literal">for</tt> statement with two names in its header will bind each name
+<tt class="docutils literal">x</tt> and <tt class="docutils literal">y</tt> to the first and second elements in each pair, respectively.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span> <span class="ow">in</span> <span class="n">pairs</span><span class="p">:</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">y</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">same_count</span> <span class="o">=</span> <span class="n">same_count</span> <span class="o">+</span> <span class="mi">1</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">same_count</span>
+<span class="go">2</span>
+</pre></div>
+
+<p>This pattern of binding multiple names to multiple values in a fixed-length
+sequence is called <em>sequence unpacking</em>; it is the same pattern that we see in
+assignment statements that bind multiple names to multiple values.</p>
+<p><strong>Ranges.</strong> A <tt class="docutils literal">range</tt> is another built-in type of sequence in Python, which
+represents a range of integers.  Ranges are created with <tt class="docutils literal">range</tt>, which takes
+two integer arguments: the first number and one beyond the last number in the
+desired range.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>  <span class="c1"># Includes 1, but not 10</span>
+<span class="go">range(1, 10)</span>
+</pre></div>
+
+<p>Calling the <tt class="docutils literal">list</tt> constructor on a range evaluates to a list with the same
+elements as the range, so that the elements can be easily inspected.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">8</span><span class="p">))</span>
+<span class="go">[5, 6, 7]</span>
+</pre></div>
+
+<p>If only one argument is given, it is interpreted as one beyond the last value
+for a range that starts at 0.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="mi">4</span><span class="p">))</span>
+<span class="go">[0, 1, 2, 3]</span>
+</pre></div>
+
+<p>Ranges commonly appear as the expression in a <tt class="docutils literal">for</tt> header to specify the
+number of times that the suite should be executed: A common convention is to
+use a single underscore character for the name in the <tt class="docutils literal">for</tt> header if the
+name is unused in the suite:</p>
+<pre class="literal-block">
+&gt;&gt;&gt; for _ in range(3):
+        print('Go Bears!')
+
+Go Bears!
+Go Bears!
+Go Bears!
+</pre>
+<p>This underscore is just another name in the environment as far as the
+interpreter is concerned, but has a conventional meaning among programmers that
+indicates the name will not appear in any future expressions.</p>
+</div>
+<div class="section" id="sequence-processing">
+<h3>2.3.3   Sequence Processing</h3>
+<p>Sequences are such a common form of compound data that whole programs are often
+organized around this single abstraction.  Modular components that have
+sequences as both inputs and outputs can be mixed and matched to perform data
+processing. Complex components can be defined by chaining together a pipeline
+of sequence processing operations, each of which is simple and focused.</p>
+<p><strong>List Comprehensions.</strong> Many sequence processing operations can be expressed
+by evaluating a fixed expression for each element in a sequence and collecting
+the resulting values in a result sequence. In Python, a list comprehension is
+an expression that performs such a computation.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">odds</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">x</span><span class="o">+</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">odds</span><span class="p">]</span>
+<span class="go">[2, 4, 6, 8, 10]</span>
+</pre></div>
+
+<p>The <tt class="docutils literal">for</tt> keyword above is not part of a <tt class="docutils literal">for</tt> statement, but instead part
+of a list comprehension because it is contained within square brackets.
+The sub-expression <tt class="docutils literal">x+1</tt> is evaluated with <tt class="docutils literal">x</tt> bound to each element of
+<tt class="docutils literal">odds</tt> in turn, and the resulting values are collected into a list.</p>
+<p>Another common sequence processing operation is to select a subset of values
+that satisfy some condition. List comprehensions can also express this pattern,
+for instance selecting all elements of <tt class="docutils literal">odds</tt>  that evenly divide <tt class="docutils literal">25</tt>.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">odds</span> <span class="k">if</span> <span class="mi">25</span> <span class="o">%</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+<span class="go">[1, 5]</span>
+</pre></div>
+
+<p>The general form of a list comprehension is:</p>
+<pre class="literal-block">
+[&lt;map expression&gt; for &lt;name&gt; in &lt;sequence expression&gt; if &lt;filter expression&gt;]
+</pre>
+<p>To evaluate a list comprehension, Python evaluates the <tt class="docutils literal">&lt;sequence
+expression&gt;</tt>, which must return an iterable value.  Then, for each element in
+order, the element value is bound to <tt class="docutils literal">&lt;name&gt;</tt>, the filter expression is
+evaluated, and if it yields a true value, the map expression is evaluated. The
+values of the map expression are collected into a list.</p>
+<p><strong>Aggregation.</strong> A third common pattern in sequence processing is to aggregate
+all values in a sequence into a single value. The built-in functions <tt class="docutils literal">sum</tt>,
+<tt class="docutils literal">min</tt>, and <tt class="docutils literal">max</tt> are all examples of aggregation functions.</p>
+<p>By combining the patterns of evaluating an expression for each element,
+selecting a subset of elements, and aggregating elements, we can solve problems
+using a sequence processing approach.</p>
+<p>A perfect number is a positive integer that is equal to the sum of its
+divisors. The divisors of <tt class="docutils literal">n</tt> are positive integers less than <tt class="docutils literal">n</tt> that
+divide evenly into <tt class="docutils literal">n</tt>. Listing the divisors of <tt class="docutils literal">n</tt> can be expressed with a
+list comprehension.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">divisors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">)</span> <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">divisors</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="go">[1, 2]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">divisors</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="go">[1, 2, 3, 4, 6]</span>
+</pre></div>
+
+<p>Using <tt class="docutils literal">divisors</tt>, we can compute all perfect numbers from 1 to 1000 with
+another list comprehension. (1 is typically considered to be a perfect number
+as well, but it does not qualify under our definition of <tt class="docutils literal">divisors</tt>.)</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> <span class="k">if</span> <span class="nb">sum</span><span class="p">(</span><span class="n">divisors</span><span class="p">(</span><span class="n">n</span><span class="p">))</span> <span class="o">==</span> <span class="n">n</span><span class="p">]</span>
+<span class="go">[6, 28, 496]</span>
+</pre></div>
+
+<p>We can reuse our definition of <tt class="docutils literal">divisors</tt> to solve another problem, finding
+the minimum perimeter of a rectangle with integer side lengths, given its area.
+The area of a rectangle is its height times its width. Therefore, given the
+area and height, we can compute the width. We can assert that both the width
+and height evenly divide the area to ensure that the side lengths are integers.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">width</span><span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">assert</span> <span class="n">area</span> <span class="o">%</span> <span class="n">height</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">area</span> <span class="o">//</span> <span class="n">height</span>
+</pre></div>
+
+<p>The perimeter of a rectangle is the sum of its side lengths.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">perimeter</span><span class="p">(</span><span class="n">width</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">width</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">height</span>
+</pre></div>
+
+<p>The height of a rectangle with integer side lengths must be a divisor of its
+area. We can compute the minimum perimeter by considering all heights.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">minimum_perimeter</span><span class="p">(</span><span class="n">area</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="n">heights</span> <span class="o">=</span> <span class="n">divisors</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="n">perimeters</span> <span class="o">=</span> <span class="p">[</span><span class="n">perimeter</span><span class="p">(</span><span class="n">width</span><span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="n">h</span><span class="p">),</span> <span class="n">h</span><span class="p">)</span> <span class="k">for</span> <span class="n">h</span> <span class="ow">in</span> <span class="n">heights</span><span class="p">]</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="nb">min</span><span class="p">(</span><span class="n">perimeters</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">area</span> <span class="o">=</span> <span class="mi">80</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">width</span><span class="p">(</span><span class="n">area</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">16</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">perimeter</span><span class="p">(</span><span class="mi">16</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">42</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">perimeter</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span>
+<span class="go">36</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">minimum_perimeter</span><span class="p">(</span><span class="n">area</span><span class="p">)</span>
+<span class="go">36</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">minimum_perimeter</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">)]</span>
+<span class="go">[4, 6, 8, 8, 12, 10, 16, 12, 12]</span>
+</pre></div>
+
+<p><strong>Higher-Order Functions.</strong> The common patterns we have observed in sequence
+processing can be expressed using higher-order functions. First, evaluating an
+expression for each element in a sequence can be expressed by applying a
+function to each element.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">apply_to_all</span><span class="p">(</span><span class="n">map_fn</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="p">[</span><span class="n">map_fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">]</span>
+</pre></div>
+
+<p>Selecting only elements for which some expression is true can be expressed by
+applying a function to each element.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">keep_if</span><span class="p">(</span><span class="n">filter_fn</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span> <span class="k">if</span> <span class="n">filter_fn</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+</pre></div>
+
+<p>Finally, many forms of aggregation can be expressed as repeatedly applying a
+two-argument function to the <tt class="docutils literal">reduced</tt> value so far and each element in turn.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">reduce</span><span class="p">(</span><span class="n">reduce_fn</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">initial</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="n">reduced</span> <span class="o">=</span> <span class="n">initial</span>
+<span class="gp">    </span>    <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">s</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">reduced</span> <span class="o">=</span> <span class="n">reduce_fn</span><span class="p">(</span><span class="n">reduced</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">reduced</span>
+</pre></div>
+
+<p>For example, <tt class="docutils literal">reduce</tt> can be used to multiply together all elements of a
+sequence. Using <tt class="docutils literal">mul</tt> as the <tt class="docutils literal">reduce_fn</tt> and 1 as the <tt class="docutils literal">initial</tt> value,
+<tt class="docutils literal">reduce</tt> can be used to multiply together a sequence of numbers.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">reduce</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">8</span><span class="p">],</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">64</span>
+</pre></div>
+
+<p>We can find perfect numbers using these higher-order functions as well.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">divisors_of</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="n">divides_n</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">n</span> <span class="o">%</span> <span class="n">x</span> <span class="o">==</span> <span class="mi">0</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="n">keep_if</span><span class="p">(</span><span class="n">divides_n</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">divisors_of</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="go">[1, 2, 3, 4, 6]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">add</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">sum_of_divisors</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">add</span><span class="p">,</span> <span class="n">divisors_of</span><span class="p">(</span><span class="n">n</span><span class="p">),</span> <span class="mi">0</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">perfect</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">sum_of_divisors</span><span class="p">(</span><span class="n">n</span><span class="p">)</span> <span class="o">==</span> <span class="n">n</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">keep_if</span><span class="p">(</span><span class="n">perfect</span><span class="p">,</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1000</span><span class="p">))</span>
+<span class="go">[1, 6, 28, 496]</span>
+</pre></div>
+
+<p><strong>Conventional Names.</strong>  In the computer science community, the more common
+name for <tt class="docutils literal">apply_to_all</tt> is <tt class="docutils literal">map</tt> and the more common name for <tt class="docutils literal">keep_if</tt>
+is <tt class="docutils literal">filter</tt>. In Python, the built-in <tt class="docutils literal">map</tt> and <tt class="docutils literal">filter</tt> are
+generalizations of these functions that do not return lists. These functions
+are discussed in Chapter 4. The definitions above are equivalent to applying
+the <tt class="docutils literal">list</tt> constructor to the result of built-in <tt class="docutils literal">map</tt> and <tt class="docutils literal">filter</tt>
+calls.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">apply_to_all</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">map_fn</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">map</span><span class="p">(</span><span class="n">map_fn</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">keep_if</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">filter_fn</span><span class="p">,</span> <span class="n">s</span><span class="p">:</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">filter_fn</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+</pre></div>
+
+<p>The <tt class="docutils literal">reduce</tt> function is built into the <tt class="docutils literal">functools</tt> module of the Python
+standard library. In this version, the <tt class="docutils literal">initial</tt> argument is optional.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">functools</span> <span class="kn">import</span> <span class="n">reduce</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">operator</span> <span class="kn">import</span> <span class="n">mul</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">product</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">reduce</span><span class="p">(</span><span class="n">mul</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">product</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">])</span>
+<span class="go">120</span>
+</pre></div>
+
+<p>In Python programs, it is more common to use list comprehensions directly
+rather than higher-order functions, but both approaches to sequence processing
+are widely used.</p>
+</div>
+<div class="section" id="sequence-abstraction">
+<h3>2.3.4   Sequence Abstraction</h3>
+<p>We have introduced two native data types that satisfy the sequence abstraction:
+lists and ranges.  Both satisfy the conditions with which we began this
+section: length and element selection.  Python includes two more behaviors
+of sequence types that extend the sequence abstraction.</p>
+<p><strong>Membership.</strong>  A value can be tested for membership in a sequence.  Python has
+two operators <tt class="docutils literal">in</tt> and <tt class="docutils literal">not in</tt> that evaluate to <tt class="docutils literal">True</tt> or <tt class="docutils literal">False</tt>
+depending on whether an element appears in a sequence.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span>
+<span class="go">[1, 8, 2, 8]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">2</span> <span class="ow">in</span> <span class="n">digits</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="mi">1828</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">digits</span>
+<span class="go">True</span>
+</pre></div>
+
+<p><strong>Slicing.</strong> Sequences contain smaller sequences within them.  A <em>slice</em> of a
+sequence is any contiguous span of the original sequence, designated by a pair
+of integers. As with the <tt class="docutils literal">range</tt> constructor, the first integer indicates the
+starting index of the slice and the second indicates one beyond the ending
+index.</p>
+<p>In Python, sequence slicing is expressed similarly to element selection, using
+square brackets.  A colon separates the starting and ending indices.  Any bound
+that is omitted is assumed to be an extreme value: 0 for the starting index,
+and the length of the sequence for the ending index.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">[1, 8]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">digits</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+<span class="go">[8, 2, 8]</span>
+</pre></div>
+
+<p>Enumerating these additional behaviors of the Python sequence abstraction gives
+us an opportunity to reflect upon what constitutes a useful data abstraction in
+general.  The richness of an abstraction (that is, how many behaviors it
+includes) has consequences.  For users of an abstraction, additional behaviors
+can be helpful.  On the other hand, satisfying the requirements of a rich
+abstraction with a new data type can be challenging. Another negative
+consequence of rich abstractions is that they take longer for users to learn.</p>
+<p>Sequences have a rich abstraction because they are so ubiquitous in computing
+that learning a few complex behaviors is justified.  In general, most
+user-defined abstractions should be kept as simple as possible.</p>
+<p><strong>Further reading.</strong> Slice notation admits a variety of special cases, such as
+negative starting values, ending values, and step sizes.  A complete description
+appears in the subsection called
+<a class="reference external" href="http://getpython3.com/diveintopython3/native-datatypes.html#slicinglists">slicing a list</a>
+in Dive Into Python 3.  In this chapter, we will only use the basic features
+described above.</p>
+</div>
+<div class="section" id="strings">
+<h3>2.3.5   Strings</h3>
+<p>Text values are perhaps more fundamental to computer science than even numbers.
+As a case in point, Python programs are written and stored as text.  The native
+data type for text in Python is called a string, and corresponds to the
+constructor <tt class="docutils literal">str</tt>.</p>
+<p>There are many details of how strings are represented, expressed, and
+manipulated in Python. Strings are another example of a rich abstraction, one
+that requires a substantial commitment on the part of the programmer to master.
+This section serves as a condensed introduction to essential string behaviors.</p>
+<p>String literals can express arbitrary text, surrounded by either single or
+double quotation marks.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">'I am string!'</span>
+<span class="go">'I am string!'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s2">"I've got an apostrophe"</span>
+<span class="go">"I've got an apostrophe"</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">'您好'</span>
+<span class="go">'您好'</span>
+</pre></div>
+
+<p>We have seen strings already in our code, as docstrings, in calls to <tt class="docutils literal">print</tt>,
+and as error messages in <tt class="docutils literal">assert</tt> statements.</p>
+<p>Strings satisfy the two basic conditions of a sequence that we introduced at the
+beginning of this section: they have a length and they support element
+selection.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">city</span> <span class="o">=</span> <span class="s1">'Berkeley'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">city</span><span class="p">)</span>
+<span class="go">8</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">city</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+<span class="go">'k'</span>
+</pre></div>
+
+<p>The elements of a string are themselves strings that have only a single
+character.  A character is any single letter of the alphabet, punctuation
+mark, or other symbol.  Unlike many other programming languages, Python does
+not have a separate character type; any text is a string, and strings that
+represent single characters have a length of 1.</p>
+<p>Like lists, strings can also be combined via addition and multiplication.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">'Berkeley'</span> <span class="o">+</span> <span class="s1">', CA'</span>
+<span class="go">'Berkeley, CA'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="s1">'Shabu '</span> <span class="o">*</span> <span class="mi">2</span>
+<span class="go">'Shabu Shabu '</span>
+</pre></div>
+
+<p><strong>Membership.</strong> The behavior of strings diverges from other sequence
+types in Python.  The string abstraction does not conform to the full sequence
+abstraction that we described for lists and ranges.  In particular, the
+membership operator <tt class="docutils literal">in</tt> applies to strings, but has an entirely different
+behavior than when it is applied to sequences.  It matches substrings rather
+than elements.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s1">'here'</span> <span class="ow">in</span> <span class="s2">"Where's Waldo?"</span>
+<span class="go">True</span>
+</pre></div>
+
+<p><strong>Multiline Literals.</strong> Strings aren't limited to a single line. Triple quotes
+delimit string literals that span multiple lines.  We have used this triple
+quoting extensively already for docstrings.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="s2">"""The Zen of Python</span>
+<span class="go">claims, Readability counts.</span>
+<span class="go">Read more: import this."""</span>
+<span class="go">'The Zen of Python\nclaims, "Readability counts."\nRead more: import this.'</span>
+</pre></div>
+
+<p>In the printed result above, the <tt class="docutils literal">\n</tt> (pronounced "<em>backslash en</em>") is a
+single element that represents a new line.  Although it appears as two
+characters (backslash and "n"), it is considered a single character for the
+purposes of length and element selection.</p>
+<p><strong>String Coercion.</strong> A string can be created from any object in Python by
+calling the <tt class="docutils literal">str</tt> constructor function with an object value as its argument.
+This feature of strings is useful for constructing descriptive strings from
+objects of various types.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">str</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="s1">' is an element of '</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">digits</span><span class="p">)</span>
+<span class="go">'2 is an element of [1, 8, 2, 8]'</span>
+</pre></div>
+
+<p><strong>Further reading.</strong> Encoding text in computers is a complex topic.  In this
+chapter, we will abstract away the details of how strings are represented.
+However, for many applications, the particular details of how strings are
+encoded by computers is essential knowledge. <a class="reference external" href="http://getpython3.com/diveintopython3/strings.html">The strings chapter of Dive Into
+Python 3</a> provides a
+description of character encodings and Unicode.</p>
+</div>
+<div class="section" id="trees">
+<h3>2.3.6   Trees</h3>
+<p>Our ability to use lists as the elements of other lists provides a new means of
+combination in our programming language.  This ability is called a <em>closure
+property</em> of a data type.  In general, a method for combining data values
+has a closure property if the result of combination can itself be combined
+using the same method.  Closure is the key to power in any means of combination
+because it permits us to create hierarchical structures — structures made up of
+parts, which themselves are made up of parts, and so on.</p>
+<p>We can visualize lists in environment diagrams using <em>box-and-pointer</em>
+notation. A list is depicted as adjacent boxes that contain the elements of the
+list. Primitive values such as numbers, strings, boolean values, and <tt class="docutils literal">None</tt>
+appear within an element box.  Composite values, such as function values and
+other lists, are indicated by an arrow.</p>
+<div class="example" data-output="False" data-showallframelabels="True" data-step="-1" id="example_0" style="">
+one_two = [1, 2]
+nested = [[1, 2], [],
+          [[3, False, None],
+           [4, lambda: 5]]]
+</div>
+<script type="text/javascript">
+var example_0_trace = {"code": "one_two = [1, 2]\nnested = [[1, 2], [],\n          [[3, False, None],\n           [4, lambda: 5]]]", "trace": [{"event": "step_line", "func_name": "<module>", "globals": {}, "heap": {}, "line": 1, "ordered_globals": [], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"one_two": ["REF", 1]}, "heap": {"1": ["LIST", 1, 2]}, "line": 2, "ordered_globals": ["one_two"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"one_two": ["REF", 1]}, "heap": {"1": ["LIST", 1, 2]}, "line": 3, "ordered_globals": ["one_two"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"one_two": ["REF", 1]}, "heap": {"1": ["LIST", 1, 2]}, "line": 4, "ordered_globals": ["one_two"], "stack_to_render": [], "stdout": ""}, {"event": "return", "func_name": "<module>", "globals": {"nested": ["REF", 2], "one_two": ["REF", 1]}, "heap": {"1": ["LIST", 1, 2], "2": ["LIST", ["REF", 3], ["REF", 4], ["REF", 5]], "3": ["LIST", 1, 2], "4": ["LIST"], "5": ["LIST", ["REF", 6], ["REF", 7]], "6": ["LIST", 3, false, null], "7": ["LIST", 4, ["REF", 8]], "8": ["FUNCTION", "<lambda>() <line 4>", null]}, "line": 4, "ordered_globals": ["one_two", "nested"], "stack_to_render": [], "stdout": ""}]}</script><p>Nesting lists within lists can introduce complexity. The <em>tree</em> is a
+fundamental data abstraction that imposes regularity on how hierarchical values
+are structured and manipulated.</p>
+<p>A tree has a root label and a sequence of branches. Each branch of a tree is a
+tree. A tree with no branches is called a leaf. Any tree contained within a
+tree is called a sub-tree of that tree (such as a branch of a branch). The root
+of each sub-tree of a tree is called a node in that tree.</p>
+<p>The data abstraction for a tree consists of the constructor <tt class="docutils literal">tree</tt> and the
+selectors <tt class="docutils literal">label</tt> and <tt class="docutils literal">branches</tt>. We begin with a simplified version.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">tree</span><span class="p">(</span><span class="n">root_label</span><span class="p">,</span> <span class="n">branches</span><span class="o">=</span><span class="p">[]):</span>
+<span class="gp">    </span>    <span class="k">for</span> <span class="n">branch</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">assert</span> <span class="n">is_tree</span><span class="p">(</span><span class="n">branch</span><span class="p">),</span> <span class="s1">'branches must be trees'</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="p">[</span><span class="n">root_label</span><span class="p">]</span> <span class="o">+</span> <span class="nb">list</span><span class="p">(</span><span class="n">branches</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">label</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">tree</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">branches</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">tree</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+</pre></div>
+
+<p>A tree is well-formed only if it has a root label and all branches are also
+trees. The <tt class="docutils literal">is_tree</tt> function is applied in the <tt class="docutils literal">tree</tt> constructor to
+verify that all branches are well-formed.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">is_tree</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">list</span> <span class="ow">or</span> <span class="nb">len</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">    </span>    <span class="k">for</span> <span class="n">branch</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="ow">not</span> <span class="n">is_tree</span><span class="p">(</span><span class="n">branch</span><span class="p">):</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="kc">True</span>
+</pre></div>
+
+<p>The <tt class="docutils literal">is_leaf</tt> function checks whether or not a tree has branches.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">is_leaf</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="ow">not</span> <span class="n">branches</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+</pre></div>
+
+<p>Trees can be constructed by nested expressions. The following tree <tt class="docutils literal">t</tt> has
+root label 3 and two branches.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">tree</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span><span class="n">tree</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">tree</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="p">[</span><span class="n">tree</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">tree</span><span class="p">(</span><span class="mi">1</span><span class="p">)])])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span>
+<span class="go">[3, [1], [2, [1], [1]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">branches</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">[[1], [2, [1], [1]]]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">label</span><span class="p">(</span><span class="n">branches</span><span class="p">(</span><span class="n">t</span><span class="p">)[</span><span class="mi">1</span><span class="p">])</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_leaf</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">is_leaf</span><span class="p">(</span><span class="n">branches</span><span class="p">(</span><span class="n">t</span><span class="p">)[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">True</span>
+</pre></div>
+
+<p>Tree-recursive functions can be used to construct trees. For example, the nth
+Fibonacci tree has a root label of the nth Fibonacci number and, for <tt class="docutils literal">n &gt; 1</tt>,
+two branches that are also Fibonacci trees. A Fibonacci tree illustrates the
+tree-recursive computation of a Fibonacci number.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fib_tree</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">tree</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">fib_tree</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">),</span> <span class="n">fib_tree</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">fib_n</span> <span class="o">=</span> <span class="n">label</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">+</span> <span class="n">label</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">tree</span><span class="p">(</span><span class="n">fib_n</span><span class="p">,</span> <span class="p">[</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">])</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib_tree</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">[5, [2, [1], [1, [0], [1]]], [3, [1, [0], [1]], [2, [1], [1, [0], [1]]]]]</span>
+</pre></div>
+
+<p>Tree-recursive functions are also used to process trees. For example, the
+<tt class="docutils literal">count_leaves</tt> function counts the leaves of a tree.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">count_leaves</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+<span class="gp">    </span>  <span class="k">if</span> <span class="n">is_leaf</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+<span class="gp">    </span>      <span class="k">return</span> <span class="mi">1</span>
+<span class="gp">    </span>  <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>      <span class="n">branch_counts</span> <span class="o">=</span> <span class="p">[</span><span class="n">count_leaves</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">(</span><span class="n">tree</span><span class="p">)]</span>
+<span class="gp">    </span>      <span class="k">return</span> <span class="nb">sum</span><span class="p">(</span><span class="n">branch_counts</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">count_leaves</span><span class="p">(</span><span class="n">fib_tree</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">8</span>
+</pre></div>
+
+<p><strong>Partition trees.</strong> Trees can also be used to represent the partitions of an
+integer. A partition tree for <tt class="docutils literal">n</tt> using parts up to size <tt class="docutils literal">m</tt> is a binary
+(two branch) tree that represents the choices taken during computation. In a
+non-leaf partition tree:</p>
+<ul class="simple">
+<li>the left (index 0) branch contains all ways of partitioning <tt class="docutils literal">n</tt> using at
+least one <tt class="docutils literal">m</tt>,</li>
+<li>the right (index 1) branch contains partitions using parts up to <tt class="docutils literal"><span class="pre">m-1</span></tt>, and</li>
+<li>the root label is <tt class="docutils literal">m</tt>.</li>
+</ul>
+<p>The labels at the leaves of a partition tree express whether the path from the
+root of the tree to the leaf represents a successful partition of <tt class="docutils literal">n</tt>.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">partition_tree</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return a partition tree of n using parts of up to m."""</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">tree</span><span class="p">(</span><span class="kc">True</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">tree</span><span class="p">(</span><span class="kc">False</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">left</span> <span class="o">=</span> <span class="n">partition_tree</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">right</span> <span class="o">=</span> <span class="n">partition_tree</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">tree</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="p">[</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">])</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">partition_tree</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">[2, [True], [1, [1, [True], [False]], [False]]]</span>
+</pre></div>
+
+<p>Printing the partitions from a partition tree is another tree-recursive process
+that traverses the tree, constructing each partition as a list. Whenever
+a <tt class="docutils literal">True</tt> leaf is reached, the partition is printed.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">print_parts</span><span class="p">(</span><span class="n">tree</span><span class="p">,</span> <span class="n">partition</span><span class="o">=</span><span class="p">[]):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">is_leaf</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="n">label</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+<span class="gp">    </span>            <span class="nb">print</span><span class="p">(</span><span class="s1">' + '</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">partition</span><span class="p">))</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">left</span><span class="p">,</span> <span class="n">right</span> <span class="o">=</span> <span class="n">branches</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">m</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">label</span><span class="p">(</span><span class="n">tree</span><span class="p">))</span>
+<span class="gp">    </span>        <span class="n">print_parts</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">partition</span> <span class="o">+</span> <span class="p">[</span><span class="n">m</span><span class="p">])</span>
+<span class="gp">    </span>        <span class="n">print_parts</span><span class="p">(</span><span class="n">right</span><span class="p">,</span> <span class="n">partition</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_parts</span><span class="p">(</span><span class="n">partition_tree</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="go">4 + 2</span>
+<span class="go">4 + 1 + 1</span>
+<span class="go">3 + 3</span>
+<span class="go">3 + 2 + 1</span>
+<span class="go">3 + 1 + 1 + 1</span>
+<span class="go">2 + 2 + 2</span>
+<span class="go">2 + 2 + 1 + 1</span>
+<span class="go">2 + 1 + 1 + 1 + 1</span>
+<span class="go">1 + 1 + 1 + 1 + 1 + 1</span>
+</pre></div>
+
+<p>Slicing can be used on the branches of a tree as well. For example, we may want
+to place a restriction on the number of branches in a tree. A binary tree is
+either a leaf or a sequence of at most two binary trees. A common tree
+transformation called <em>binarization</em> computes a binary tree from an original
+tree by grouping together adjacent branches.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">right_binarize</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Construct a right-branching binary tree."""</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">is_leaf</span><span class="p">(</span><span class="n">tree</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">tree</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">tree</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">2</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">tree</span> <span class="o">=</span> <span class="p">[</span><span class="n">tree</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">tree</span><span class="p">[</span><span class="mi">1</span><span class="p">:]]</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="p">[</span><span class="n">right_binarize</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">tree</span><span class="p">]</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">right_binarize</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">])</span>
+<span class="go">[1, [2, [3, [4, [5, [6, 7]]]]]]</span>
+</pre></div>
+
+</div>
+<div class="section" id="linked-lists">
+<h3>2.3.7   Linked Lists</h3>
+<p>So far, we have used only native types to represent sequences. However, we can
+also develop sequence representations that are not built into Python. A
+common representation of a sequence constructed from nested pairs is called a
+<em>linked list</em>. The environment diagram below illustrates the linked list
+representation of a four-element sequence containing 1, 2, 3, and 4.</p>
+<div class="example" data-output="False" data-showallframelabels="True" data-step="-1" id="example_1" style="">
+four = [1, [2, [3, [4, 'empty']]]]
+</div>
+<script type="text/javascript">
+var example_1_trace = {"code": "four = [1, [2, [3, [4, 'empty']]]]", "trace": [{"event": "step_line", "func_name": "<module>", "globals": {}, "heap": {}, "line": 1, "ordered_globals": [], "stack_to_render": [], "stdout": ""}, {"event": "return", "func_name": "<module>", "globals": {"four": ["REF", 1]}, "heap": {"1": ["LIST", 1, ["REF", 2]], "2": ["LIST", 2, ["REF", 3]], "3": ["LIST", 3, ["REF", 4]], "4": ["LIST", 4, "empty"]}, "line": 1, "ordered_globals": ["four"], "stack_to_render": [], "stdout": ""}]}</script><p>A linked list is a pair containing the first element of the sequence (in this
+case 1) and the rest of the sequence (in this case a representation of 2, 3,
+4).  The second element is also a linked list. The rest of the inner-most
+linked list containing only 4 is <tt class="docutils literal">'empty'</tt>, a value that represents an empty
+linked list.</p>
+<p>Linked lists have recursive structure: the rest of a linked list is a linked
+list or <tt class="docutils literal">'empty'</tt>. We can define an abstract data representation to validate,
+construct, and select the components of linked lists.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">empty</span> <span class="o">=</span> <span class="s1">'empty'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">is_link</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""s is a linked list if it is empty or a (first, rest) pair."""</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">s</span> <span class="o">==</span> <span class="n">empty</span> <span class="ow">or</span> <span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span> <span class="ow">and</span> <span class="n">is_link</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]))</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">link</span><span class="p">(</span><span class="n">first</span><span class="p">,</span> <span class="n">rest</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Construct a linked list from its first element and the rest."""</span>
+<span class="gp">    </span>    <span class="k">assert</span> <span class="n">is_link</span><span class="p">(</span><span class="n">rest</span><span class="p">),</span> <span class="s2">"rest must be a linked list."</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="p">[</span><span class="n">first</span><span class="p">,</span> <span class="n">rest</span><span class="p">]</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">first</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return the first element of a linked list s."""</span>
+<span class="gp">    </span>    <span class="k">assert</span> <span class="n">is_link</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="s2">"first only applies to linked lists."</span>
+<span class="gp">    </span>    <span class="k">assert</span> <span class="n">s</span> <span class="o">!=</span> <span class="n">empty</span><span class="p">,</span> <span class="s2">"empty linked list has no first element."</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">rest</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return the rest of the elements of a linked list s."""</span>
+<span class="gp">    </span>    <span class="k">assert</span> <span class="n">is_link</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="s2">"rest only applies to linked lists."</span>
+<span class="gp">    </span>    <span class="k">assert</span> <span class="n">s</span> <span class="o">!=</span> <span class="n">empty</span><span class="p">,</span> <span class="s2">"empty linked list has no rest."</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+</pre></div>
+
+<p>Above, <tt class="docutils literal">link</tt> is a constructor and <tt class="docutils literal">first</tt> and <tt class="docutils literal">rest</tt> are selectors for
+an abstract data representation of linked lists. The behavior condition for a
+linked list is that, like a pair, its constructor and selectors are inverse
+functions.</p>
+<ul class="simple">
+<li>If a linked list <tt class="docutils literal">s</tt> was constructed from first element <tt class="docutils literal">f</tt> and linked
+list <tt class="docutils literal">r</tt>, then <tt class="docutils literal">first(s)</tt> returns <tt class="docutils literal">f</tt>, and <tt class="docutils literal">rest(s)</tt> returns <tt class="docutils literal">r</tt>.</li>
+</ul>
+<p>We can use the constructor and selectors to manipulate linked lists.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">four</span> <span class="o">=</span> <span class="n">link</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">link</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">link</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">link</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">empty</span><span class="p">))))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">first</span><span class="p">(</span><span class="n">four</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">rest</span><span class="p">(</span><span class="n">four</span><span class="p">)</span>
+<span class="go">[2, [3, [4, 'empty']]]</span>
+</pre></div>
+
+<p>Our implementation of this kind of abstract data uses pairs that are
+two-element <tt class="docutils literal">list</tt> values. It is worth noting that we were also able to
+implement pairs using functions, and we can implement linked lists using any
+pairs, therefore we could implement linked lists using functions alone.</p>
+<p>The linked list can store a sequence of values in order, but we have not yet
+shown that it satisfies the sequence abstraction.  Using the abstract data
+representation we have defined, we can implement the two behaviors that
+characterize a sequence: length and element selection.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">len_link</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return the length of linked list s."""</span>
+<span class="gp">    </span>    <span class="n">length</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">    </span>    <span class="k">while</span> <span class="n">s</span> <span class="o">!=</span> <span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">s</span><span class="p">,</span> <span class="n">length</span> <span class="o">=</span> <span class="n">rest</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">length</span> <span class="o">+</span> <span class="mi">1</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">length</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">getitem_link</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return the element at index i of linked list s."""</span>
+<span class="gp">    </span>    <span class="k">while</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">s</span><span class="p">,</span> <span class="n">i</span> <span class="o">=</span> <span class="n">rest</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">first</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+
+<p>Now, we can manipulate a linked list as a sequence using these functions.
+(We cannot yet use the built-in <tt class="docutils literal">len</tt> function, element selection syntax, or
+<tt class="docutils literal">for</tt> statement, but we will soon.)</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">len_link</span><span class="p">(</span><span class="n">four</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getitem_link</span><span class="p">(</span><span class="n">four</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+
+<p>The series of environment diagrams below illustrate the iterative process by
+which <tt class="docutils literal">getitem_link</tt> finds the element 2 at index 1 in a linked
+list. Below, we have defined the linked list <tt class="docutils literal">four</tt> using Python primitives to
+simplify the diagrams. This implementation choice violates an abstraction
+barrier, but allows us to inspect the computational process more easily for
+this example.</p>
+<div class="example" data-output="False" data-showallframelabels="True" data-step="4" id="example_2" style="">
+def first(s):
+    return s[0]
+def rest(s):
+    return s[1]
+
+def getitem_link(s, i):
+    while i &gt; 0:
+        s, i = rest(s), i - 1
+    return first(s)
+
+four = [1, [2, [3, [4, 'empty']]]]
+getitem_link(four, 1)
+</div>
+<script type="text/javascript">
+var example_2_trace = {"code": "def first(s):\n    return s[0]\ndef rest(s):\n    return s[1]\n\ndef getitem_link(s, i):\n    while i > 0:\n        s, i = rest(s), i - 1\n    return first(s)\n\nfour = [1, [2, [3, [4, 'empty']]]]\ngetitem_link(four, 1)", "trace": [{"event": "step_line", "func_name": "<module>", "globals": {}, "heap": {}, "line": 1, "ordered_globals": [], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1]}, "heap": {"1": ["FUNCTION", "first(s)", null]}, "line": 3, "ordered_globals": ["first"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null]}, "line": 6, "ordered_globals": ["first", "rest"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null]}, "line": 11, "ordered_globals": ["first", "rest", "getitem_link"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 12, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [], "stdout": ""}, {"event": "call", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 6, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 7, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 8, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "call", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 3, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "step_line", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 4, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "return", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 4, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 7, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 9, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}], "stdout": ""}, {"event": "call", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 1, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "step_line", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 2, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "return", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 2, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "return", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 9, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"__return__": 2, "i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i", "__return__"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3_z"}], "stdout": ""}, {"event": "return", "func_name": "<module>", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 12, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"__return__": 2, "i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "i", "__return__"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1_z"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3_z"}], "stdout": ""}]}</script><p>First, the function <tt class="docutils literal">getitem_link</tt> is called, creating a local frame.</p>
+<div class="example" data-output="False" data-showallframelabels="True" data-step="5" id="example_3" style="">
+def first(s):
+    return s[0]
+def rest(s):
+    return s[1]
+
+def getitem_link(s, i):
+    while i &gt; 0:
+        s, i = rest(s), i - 1
+    return first(s)
+
+four = [1, [2, [3, [4, 'empty']]]]
+getitem_link(four, 1)
+</div>
+<script type="text/javascript">
+var example_3_trace = {"code": "def first(s):\n    return s[0]\ndef rest(s):\n    return s[1]\n\ndef getitem_link(s, i):\n    while i > 0:\n        s, i = rest(s), i - 1\n    return first(s)\n\nfour = [1, [2, [3, [4, 'empty']]]]\ngetitem_link(four, 1)", "trace": [{"event": "step_line", "func_name": "<module>", "globals": {}, "heap": {}, "line": 1, "ordered_globals": [], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1]}, "heap": {"1": ["FUNCTION", "first(s)", null]}, "line": 3, "ordered_globals": ["first"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null]}, "line": 6, "ordered_globals": ["first", "rest"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null]}, "line": 11, "ordered_globals": ["first", "rest", "getitem_link"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 12, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [], "stdout": ""}, {"event": "call", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 6, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 7, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 8, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "call", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 3, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "step_line", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 4, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "return", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 4, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 7, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 9, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}], "stdout": ""}, {"event": "call", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 1, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "step_line", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 2, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "return", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 2, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "return", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 9, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"__return__": 2, "i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i", "__return__"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3_z"}], "stdout": ""}, {"event": "return", "func_name": "<module>", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 12, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"__return__": 2, "i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "i", "__return__"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1_z"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3_z"}], "stdout": ""}]}</script><p>The expression in the <tt class="docutils literal">while</tt> header evaluates to true, which causes the
+assignment statement in the <tt class="docutils literal">while</tt> suite to be executed.  The function
+<tt class="docutils literal">rest</tt> returns the sublist starting with 2.</p>
+<div class="example" data-output="False" data-showallframelabels="True" data-step="8" id="example_4" style="">
+def first(s):
+    return s[0]
+def rest(s):
+    return s[1]
+
+def getitem_link(s, i):
+    while i &gt; 0:
+        s, i = rest(s), i - 1
+    return first(s)
+
+four = [1, [2, [3, [4, 'empty']]]]
+getitem_link(four, 1)
+</div>
+<script type="text/javascript">
+var example_4_trace = {"code": "def first(s):\n    return s[0]\ndef rest(s):\n    return s[1]\n\ndef getitem_link(s, i):\n    while i > 0:\n        s, i = rest(s), i - 1\n    return first(s)\n\nfour = [1, [2, [3, [4, 'empty']]]]\ngetitem_link(four, 1)", "trace": [{"event": "step_line", "func_name": "<module>", "globals": {}, "heap": {}, "line": 1, "ordered_globals": [], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1]}, "heap": {"1": ["FUNCTION", "first(s)", null]}, "line": 3, "ordered_globals": ["first"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null]}, "line": 6, "ordered_globals": ["first", "rest"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null]}, "line": 11, "ordered_globals": ["first", "rest", "getitem_link"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 12, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [], "stdout": ""}, {"event": "call", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 6, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 7, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 8, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "call", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 3, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "step_line", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 4, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "return", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 4, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 7, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 9, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}], "stdout": ""}, {"event": "call", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 1, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "step_line", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 2, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "return", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 2, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "return", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 9, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"__return__": 2, "i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i", "__return__"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3_z"}], "stdout": ""}, {"event": "return", "func_name": "<module>", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 12, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"__return__": 2, "i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "i", "__return__"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1_z"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3_z"}], "stdout": ""}]}</script><p>Next, the local name <tt class="docutils literal">s</tt> will be updated to refer to the sub-list that begins
+with the second element of the original list.  Evaluating the <tt class="docutils literal">while</tt> header
+expression now yields a false value, and so Python evaluates the expression in
+the return statement on the final line of <tt class="docutils literal">getitem_link</tt>.</p>
+<div class="example" data-output="False" data-showallframelabels="True" data-step="12" id="example_5" style="">
+def first(s):
+    return s[0]
+def rest(s):
+    return s[1]
+
+def getitem_link(s, i):
+    while i &gt; 0:
+        s, i = rest(s), i - 1
+    return first(s)
+
+four = [1, [2, [3, [4, 'empty']]]]
+getitem_link(four, 1)
+</div>
+<script type="text/javascript">
+var example_5_trace = {"code": "def first(s):\n    return s[0]\ndef rest(s):\n    return s[1]\n\ndef getitem_link(s, i):\n    while i > 0:\n        s, i = rest(s), i - 1\n    return first(s)\n\nfour = [1, [2, [3, [4, 'empty']]]]\ngetitem_link(four, 1)", "trace": [{"event": "step_line", "func_name": "<module>", "globals": {}, "heap": {}, "line": 1, "ordered_globals": [], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1]}, "heap": {"1": ["FUNCTION", "first(s)", null]}, "line": 3, "ordered_globals": ["first"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null]}, "line": 6, "ordered_globals": ["first", "rest"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null]}, "line": 11, "ordered_globals": ["first", "rest", "getitem_link"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 12, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [], "stdout": ""}, {"event": "call", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 6, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 7, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 8, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}], "stdout": ""}, {"event": "call", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 3, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "step_line", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 4, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "return", "func_name": "rest", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 4, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 1, "s": ["REF", 4]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 7, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}], "stdout": ""}, {"event": "step_line", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 9, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}], "stdout": ""}, {"event": "call", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 1, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "step_line", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 2, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "return", "func_name": "first", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 2, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3"}], "stdout": ""}, {"event": "return", "func_name": "getitem_link", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 9, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"__return__": 2, "i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["s", "i", "__return__"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3_z"}], "stdout": ""}, {"event": "return", "func_name": "<module>", "globals": {"first": ["REF", 1], "four": ["REF", 4], "getitem_link": ["REF", 3], "rest": ["REF", 2]}, "heap": {"1": ["FUNCTION", "first(s)", null], "2": ["FUNCTION", "rest(s)", null], "3": ["FUNCTION", "getitem_link(s, i)", null], "4": ["LIST", 1, ["REF", 5]], "5": ["LIST", 2, ["REF", 6]], "6": ["LIST", 3, ["REF", 7]], "7": ["LIST", 4, "empty"]}, "line": 12, "ordered_globals": ["first", "rest", "getitem_link", "four"], "stack_to_render": [{"encoded_locals": {"__return__": 2, "i": 0, "s": ["REF", 5]}, "frame_id": 1, "func_name": "getitem_link", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "i", "__return__"], "parent_frame_id_list": [], "unique_hash": "getitem_link_f1_z"}, {"encoded_locals": {"__return__": ["REF", 5], "s": ["REF", 4]}, "frame_id": 2, "func_name": "rest", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "rest_f2_z"}, {"encoded_locals": {"__return__": 2, "s": ["REF", 5]}, "frame_id": 3, "func_name": "first", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["s", "__return__"], "parent_frame_id_list": [], "unique_hash": "first_f3_z"}], "stdout": ""}]}</script><p>This final environment diagram shows the local frame for the call to <tt class="docutils literal">first</tt>,
+which contains the name <tt class="docutils literal">s</tt> bound to that same sub-list.  The <tt class="docutils literal">first</tt>
+function selects the value 2 and returns it, which will also be returned
+from <tt class="docutils literal">getitem_link</tt>.</p>
+<p>This example demonstrates a common pattern of computation with linked lists,
+where each step in an iteration operates on an increasingly shorter suffix of
+the original list. This incremental processing to find the length and elements
+of a linked list does take some time to compute. Python's built-in sequence
+types are implemented in a different way that does not have a large cost for
+computing the length of a sequence or retrieving its elements. The details of
+that representation are beyond the scope of this text.</p>
+<p><strong>Recursive manipulation.</strong> Both <tt class="docutils literal">len_link</tt> and <tt class="docutils literal">getitem_link</tt> are
+iterative. They peel away each layer of nested pair until the end of the list
+(in <tt class="docutils literal">len_link</tt>) or the desired element (in <tt class="docutils literal">getitem_link</tt>) is reached. We
+can also implement length and element selection using recursion.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">len_link_recursive</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return the length of a linked list s."""</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="mi">0</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="n">len_link_recursive</span><span class="p">(</span><span class="n">rest</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">getitem_link_recursive</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return the element at index i of linked list s."""</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">first</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">getitem_link_recursive</span><span class="p">(</span><span class="n">rest</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">i</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">len_link_recursive</span><span class="p">(</span><span class="n">four</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">getitem_link_recursive</span><span class="p">(</span><span class="n">four</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">2</span>
+</pre></div>
+
+<p>These recursive implementations follow the chain of pairs until the end of the
+list (in <tt class="docutils literal">len_link_recursive</tt>) or the desired element (in
+<tt class="docutils literal">getitem_link_recursive</tt>) is reached.</p>
+<p>Recursion is also useful for transforming and combining linked lists.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">extend_link</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return a list with the elements of s followed by those of t."""</span>
+<span class="gp">    </span>    <span class="k">assert</span> <span class="n">is_link</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">and</span> <span class="n">is_link</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">t</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">link</span><span class="p">(</span><span class="n">first</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">extend_link</span><span class="p">(</span><span class="n">rest</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">t</span><span class="p">))</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">extend_link</span><span class="p">(</span><span class="n">four</span><span class="p">,</span> <span class="n">four</span><span class="p">)</span>
+<span class="go">[1, [2, [3, [4, [1, [2, [3, [4, 'empty']]]]]]]]</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">apply_to_all_link</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Apply f to each element of s."""</span>
+<span class="gp">    </span>    <span class="k">assert</span> <span class="n">is_link</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">s</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">link</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">first</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span> <span class="n">apply_to_all_link</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">rest</span><span class="p">(</span><span class="n">s</span><span class="p">)))</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">apply_to_all_link</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span><span class="p">,</span> <span class="n">four</span><span class="p">)</span>
+<span class="go">[1, [4, [9, [16, 'empty']]]]</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">keep_if_link</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return a list with elements of s for which f(e) is true."""</span>
+<span class="gp">    </span>    <span class="k">assert</span> <span class="n">is_link</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">s</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">kept</span> <span class="o">=</span> <span class="n">keep_if_link</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">rest</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="n">f</span><span class="p">(</span><span class="n">first</span><span class="p">(</span><span class="n">s</span><span class="p">)):</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="n">link</span><span class="p">(</span><span class="n">first</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">kept</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="n">kept</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">keep_if_link</span><span class="p">(</span><span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span><span class="o">%</span><span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="n">four</span><span class="p">)</span>
+<span class="go">[2, [4, 'empty']]</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">join_link</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">separator</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return a string of all elements in s separated by separator."""</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span> <span class="o">==</span> <span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="s2">""</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">rest</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="o">==</span> <span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">first</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">first</span><span class="p">(</span><span class="n">s</span><span class="p">))</span> <span class="o">+</span> <span class="n">separator</span> <span class="o">+</span> <span class="n">join_link</span><span class="p">(</span><span class="n">rest</span><span class="p">(</span><span class="n">s</span><span class="p">),</span> <span class="n">separator</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">join_link</span><span class="p">(</span><span class="n">four</span><span class="p">,</span> <span class="s2">", "</span><span class="p">)</span>
+<span class="go">'1, 2, 3, 4'</span>
+</pre></div>
+
+<p><strong>Recursive Construction.</strong> Linked lists are particularly useful when
+constructing sequences incrementally, a situation that arises often in
+recursive computations.</p>
+<p>The <tt class="docutils literal">count_partitions</tt> function from Chapter 1 counted the number of ways
+to partition an integer <tt class="docutils literal">n</tt> using parts up to size <tt class="docutils literal">m</tt> via a tree-recursive
+process. With sequences, we can also enumerate these partitions explicitly
+using a similar process.</p>
+<p>We follow the same recursive analysis of the problem as we did while counting:
+partitioning <tt class="docutils literal">n</tt> using integers up to <tt class="docutils literal">m</tt> involves either</p>
+<ol class="arabic simple">
+<li>partitioning <tt class="docutils literal"><span class="pre">n-m</span></tt> using integers up to <tt class="docutils literal">m</tt>, or</li>
+<li>partitioning <tt class="docutils literal">n</tt> using integers up to <tt class="docutils literal"><span class="pre">m-1</span></tt>.</li>
+</ol>
+<p>For base cases, we find that 0 has an empty partition, while partitioning a
+negative integer or using parts smaller than 1 is impossible.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">partitions</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return a linked list of partitions of n using parts of up to m.</span>
+<span class="gp">    </span><span class="sd">    Each partition is represented as a linked list.</span>
+<span class="gp">    </span><span class="sd">    """</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">link</span><span class="p">(</span><span class="n">empty</span><span class="p">,</span> <span class="n">empty</span><span class="p">)</span> <span class="c1"># A list containing the empty partition</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">empty</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">using_m</span> <span class="o">=</span> <span class="n">partitions</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">with_m</span> <span class="o">=</span> <span class="n">apply_to_all_link</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">link</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span> <span class="n">using_m</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">without_m</span> <span class="o">=</span> <span class="n">partitions</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">extend_link</span><span class="p">(</span><span class="n">with_m</span><span class="p">,</span> <span class="n">without_m</span><span class="p">)</span>
+</pre></div>
+
+<p>In the recursive case, we construct two sublists of partitions. The first uses
+<tt class="docutils literal">m</tt>, and so we prepend <tt class="docutils literal">m</tt> to each element of the result <tt class="docutils literal">using_m</tt> to
+form <tt class="docutils literal">with_m</tt>.</p>
+<p>The result of <tt class="docutils literal">partitions</tt> is highly nested: a linked list of linked lists,
+and each linked list is represented as nested pairs that are <tt class="docutils literal">list</tt> values.
+Using <tt class="docutils literal">join_link</tt> with appropriate separators, we can display the partitions
+in a human-readable manner.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">print_partitions</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="n">lists</span> <span class="o">=</span> <span class="n">partitions</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="n">strings</span> <span class="o">=</span> <span class="n">apply_to_all_link</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">join_link</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s2">" + "</span><span class="p">),</span> <span class="n">lists</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="nb">print</span><span class="p">(</span><span class="n">join_link</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">))</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_partitions</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">4 + 2</span>
+<span class="go">4 + 1 + 1</span>
+<span class="go">3 + 3</span>
+<span class="go">3 + 2 + 1</span>
+<span class="go">3 + 1 + 1 + 1</span>
+<span class="go">2 + 2 + 2</span>
+<span class="go">2 + 2 + 1 + 1</span>
+<span class="go">2 + 1 + 1 + 1 + 1</span>
+<span class="go">1 + 1 + 1 + 1 + 1 + 1</span>
+</pre></div>
+
+</div>
+</div>
+  <p><i>Continue</i>:
+  	<a href="24-mutable-data.html">
+  		2.4 Mutable Data
+  	</a>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <footer id="contentinfo" class="body">
+          Composing Programs by <a href="http://www.denero.org">John
+          DeNero</a>, based on the textbook <a
+          href="http://mitpress.mit.edu/sicp/">Structure and
+          Interpretation of Computer Programs</a> by Harold Abelson and
+          Gerald Jay Sussman, is licensed under a <a rel="license"
+          href="http://creativecommons.org/licenses/by-sa/3.0/">Creative
+          Commons Attribution-ShareAlike 3.0 Unported License</a>.
+      </footer><!-- /#contentinfo -->
+    </div>
+  </div>
+</body>
+</html>

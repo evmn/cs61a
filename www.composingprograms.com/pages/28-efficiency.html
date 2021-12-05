@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>2.8 Efficiency</title>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" type="text/css" href="../theme/css/cp.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/pytutor.css"/>
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/ui-lightness/jquery-ui-1.8.21.custom.css" />
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/codemirror.css"  />
+  <link rel="stylesheet" type="text/css" href="../theme/coding-js/coding.css"  />
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="../theme/tutor/js/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery-ui-1.8.24.custom.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery.ba-bbq.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+
+  <!-- codemirror.net online code editor -->
+  <script type="text/javascript" src="../theme/tutor/js/codemirror/codemirror.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/codemirror/python.js"></script>
+
+  <!-- d3 -->
+  <script type="text/javascript" src="../theme/tutor/js/d3.v2.min.js"></script>
+
+  <!-- Online Python Tutor -->
+  <script type="text/javascript" src="../theme/tutor/js/pytutor.js"></script>
+
+  <!-- Coding.js -->
+  <script type="text/javascript" src="../theme/coding-js/coding.js"></script>
+  <script> var $c = new CodingJS("../theme/coding-js/"); </script>
+
+  <!-- Composing Programs -->
+  <script type="text/javascript" src="../theme/js/cp.js"></script>
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type= "text/javascript">
+       MathJax.Hub.Config({
+           config: ["MMLorHTML.js"],
+           jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+           TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"], equationNumbers: { autoNumber: "AMS" } },
+           extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js","jsMath2jax.js"],
+           tex2jax: {
+               inlineMath: [ ['$','$'] ],
+               displayMath: [ ['$$','$$'] ],
+               processEscapes: true },
+           "HTML-CSS": {
+               styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+           }
+       });
+    </script>
+
+</head>
+
+<body id="index" class="home">
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="../index.html">
+          <span class="nav-logo">c<span class="nav-logo-compose">⚬</span>mp<span class="nav-logo-compose">⚬</span>sing pr<span class="nav-logo-compose">⚬</span>grams</span>
+        </a>
+        <ul class="nav-site">
+          <li><a href="../index.html">Text</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../tutor.html">Tutor</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="content wrap documentationContent">
+      <div class="nav-docs">
+	<h3>Chapter 2<a id="hide_contents">Hide contents</a> </h3>
+		<div class="nav-docs-section">
+			<h3><a href="21-introduction.html">2.1 Introduction</a></h3>
+				<li><a href="21-introduction.html#native-data-types">2.1.1 Native Data Types</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="22-data-abstraction.html">2.2 Data Abstraction</a></h3>
+				<li><a href="22-data-abstraction.html#example-rational-numbers">2.2.1 Example: Rational Numbers</a>
+				<li><a href="22-data-abstraction.html#pairs">2.2.2 Pairs</a>
+				<li><a href="22-data-abstraction.html#abstraction-barriers">2.2.3 Abstraction Barriers</a>
+				<li><a href="22-data-abstraction.html#the-properties-of-data">2.2.4 The Properties of Data</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="23-sequences.html">2.3 Sequences</a></h3>
+				<li><a href="23-sequences.html#lists">2.3.1 Lists</a>
+				<li><a href="23-sequences.html#sequence-iteration">2.3.2 Sequence Iteration</a>
+				<li><a href="23-sequences.html#sequence-processing">2.3.3 Sequence Processing</a>
+				<li><a href="23-sequences.html#sequence-abstraction">2.3.4 Sequence Abstraction</a>
+				<li><a href="23-sequences.html#strings">2.3.5 Strings</a>
+				<li><a href="23-sequences.html#trees">2.3.6 Trees</a>
+				<li><a href="23-sequences.html#linked-lists">2.3.7 Linked Lists</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="24-mutable-data.html">2.4 Mutable Data</a></h3>
+				<li><a href="24-mutable-data.html#the-object-metaphor">2.4.1 The Object Metaphor</a>
+				<li><a href="24-mutable-data.html#sequence-objects">2.4.2 Sequence Objects</a>
+				<li><a href="24-mutable-data.html#dictionaries">2.4.3 Dictionaries</a>
+				<li><a href="24-mutable-data.html#local-state">2.4.4 Local State</a>
+				<li><a href="24-mutable-data.html#the-benefits-of-non-local-assignment">2.4.5 The Benefits of Non-Local Assignment</a>
+				<li><a href="24-mutable-data.html#the-cost-of-non-local-assignment">2.4.6 The Cost of Non-Local Assignment</a>
+				<li><a href="24-mutable-data.html#implementing-lists-and-dictionaries">2.4.7 Implementing Lists and Dictionaries</a>
+				<li><a href="24-mutable-data.html#dispatch-dictionaries">2.4.8 Dispatch Dictionaries</a>
+				<li><a href="24-mutable-data.html#propagating-constraints">2.4.9 Propagating Constraints</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="25-object-oriented-programming.html">2.5 Object-Oriented Programming</a></h3>
+				<li><a href="25-object-oriented-programming.html#objects-and-classes">2.5.1 Objects and Classes</a>
+				<li><a href="25-object-oriented-programming.html#defining-classes">2.5.2 Defining Classes</a>
+				<li><a href="25-object-oriented-programming.html#message-passing-and-dot-expressions">2.5.3 Message Passing and Dot Expressions</a>
+				<li><a href="25-object-oriented-programming.html#class-attributes">2.5.4 Class Attributes</a>
+				<li><a href="25-object-oriented-programming.html#inheritance">2.5.5 Inheritance</a>
+				<li><a href="25-object-oriented-programming.html#using-inheritance">2.5.6 Using Inheritance</a>
+				<li><a href="25-object-oriented-programming.html#multiple-inheritance">2.5.7 Multiple Inheritance</a>
+				<li><a href="25-object-oriented-programming.html#the-role-of-objects">2.5.8 The Role of Objects</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="26-implementing-classes-and-objects.html">2.6 Implementing Classes and Objects</a></h3>
+				<li><a href="26-implementing-classes-and-objects.html#instances">2.6.1 Instances</a>
+				<li><a href="26-implementing-classes-and-objects.html#classes">2.6.2 Classes</a>
+				<li><a href="26-implementing-classes-and-objects.html#using-implemented-objects">2.6.3 Using Implemented Objects</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="27-object-abstraction.html">2.7 Object Abstraction</a></h3>
+				<li><a href="27-object-abstraction.html#string-conversion">2.7.1 String Conversion</a>
+				<li><a href="27-object-abstraction.html#special-methods">2.7.2 Special Methods</a>
+				<li><a href="27-object-abstraction.html#multiple-representations">2.7.3 Multiple Representations</a>
+				<li><a href="27-object-abstraction.html#generic-functions">2.7.4 Generic Functions</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="28-efficiency.html">2.8 Efficiency</a></h3>
+				<li><a href="28-efficiency.html#measuring-efficiency">2.8.1 Measuring Efficiency</a>
+				<li><a href="28-efficiency.html#memoization">2.8.2 Memoization</a>
+				<li><a href="28-efficiency.html#orders-of-growth">2.8.3 Orders of Growth</a>
+				<li><a href="28-efficiency.html#example-exponentiation">2.8.4 Example: Exponentiation</a>
+				<li><a href="28-efficiency.html#growth-categories">2.8.5 Growth Categories</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="29-recursive-objects.html">2.9 Recursive Objects</a></h3>
+				<li><a href="29-recursive-objects.html#linked-list-class">2.9.1 Linked List Class</a>
+				<li><a href="29-recursive-objects.html#tree-class">2.9.2 Tree Class</a>
+				<li><a href="29-recursive-objects.html#sets">2.9.3 Sets</a>
+		</div>
+      </div>
+
+      <div class="inner-content">
+  <div class="section" id="efficiency">
+<h2>2.8   Efficiency</h2>
+<p>Decisions of how to represent and process data are often influenced by the
+efficiency of alternatives. Efficiency refers to the computational resources
+used by a representation or process, such as how much time and memory are
+required to compute the result of a function or represent an object. These
+amounts can vary widely depending on the details of an implementation.</p>
+<div class="section" id="measuring-efficiency">
+<h3>2.8.1   Measuring Efficiency</h3>
+<p>Measuring exactly how long a program requires to run or how much memory it
+consumes is challenging, because the results depend upon many details of how a
+computer is configured. A more reliable way to characterize the efficiency of a
+program is to measure how many times some event occurs, such as a function
+call.</p>
+<p>Let's return to our first tree-recursive function, the <tt class="docutils literal">fib</tt> function for
+computing numbers in the Fibonacci sequence.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fib</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="mi">0</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="mi">1</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span> <span class="o">+</span> <span class="n">fib</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">5</span>
+</pre></div>
+
+<p>Consider the pattern of computation that results from evaluating <tt class="docutils literal">fib(6)</tt>,
+depicted below.  To compute <tt class="docutils literal">fib(5)</tt>, we compute <tt class="docutils literal">fib(3)</tt> and <tt class="docutils literal">fib(4)</tt>.
+To compute <tt class="docutils literal">fib(3)</tt>, we compute <tt class="docutils literal">fib(1)</tt> and <tt class="docutils literal">fib(2)</tt>.  In general, the
+evolved process looks like a tree. Each blue dot indicates a completed
+computation of a Fibonacci number in the traversal of this tree.</p>
+<div class="figure">
+<img src="../img/fib.png" alt=""/>
+</div>
+<p>This function is instructive as a prototypical tree recursion, but it is a
+terribly inefficient way to compute Fibonacci numbers because it does so much
+redundant computation. The entire computation of <tt class="docutils literal">fib(3)</tt> is duplicated.</p>
+<p>We can measure this inefficiency. The higher-order <tt class="docutils literal">count</tt> function returns
+an equivalent function to its argument that also maintains a <tt class="docutils literal">call_count</tt>
+attribute. In this way, we can inspect just how many times <tt class="docutils literal">fib</tt> is called.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">count</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="nf">counted</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="n">counted</span><span class="o">.</span><span class="n">call_count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="n">counted</span><span class="o">.</span><span class="n">call_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">counted</span>
+</pre></div>
+
+<p>By counting the number of calls to <tt class="docutils literal">fib</tt>, we see that the calls required
+grows faster than the Fibonacci numbers themselves. This rapid expansion of
+calls is characteristic of tree-recursive functions.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span> <span class="o">=</span> <span class="n">count</span><span class="p">(</span><span class="n">fib</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="p">(</span><span class="mi">19</span><span class="p">)</span>
+<span class="go">4181</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="o">.</span><span class="n">call_count</span>
+<span class="go">13529</span>
+</pre></div>
+
+<p><strong>Space.</strong> To understand the space requirements of a function, we must specify
+generally how memory is used, preserved, and reclaimed in our environment model
+of computation. In evaluating an expression, the interpreter preserves all
+<em>active</em> environments and all values and frames referenced by those
+environments.  An environment is active if it provides the evaluation context
+for some expression being evaluated. An environment becomes inactive whenever
+the function call for which its first frame was created finally returns.</p>
+<p>For example, when evaluating <tt class="docutils literal">fib</tt>, the interpreter proceeds to compute each
+value in the order shown previously, traversing the structure of the tree.  To
+do so, it only needs to keep track of those nodes that are above the current
+node in the tree at any point in the computation. The memory used to evaluate
+the rest of the branches can be reclaimed because it cannot affect future
+computation. In general, the space required for tree-recursive functions will
+be proportional to the maximum depth of the tree.</p>
+<p>The diagram below depicts the environment created by evaluating <tt class="docutils literal">fib(3)</tt>.  In
+the process of evaluating the return expression for the initial application of
+<tt class="docutils literal">fib</tt>, the expression <tt class="docutils literal"><span class="pre">fib(n-2)</span></tt> is evaluated, yielding a value of 0.
+Once this value is computed, the corresponding environment frame (grayed out)
+is no longer needed: it is not part of an active environment. Thus, a
+well-designed interpreter can reclaim the memory that was used to store this
+frame. On the other hand, if the interpreter is currently
+evaluating <tt class="docutils literal"><span class="pre">fib(n-1)</span></tt>, then the environment created by this application of
+<tt class="docutils literal">fib</tt> (in which <tt class="docutils literal">n</tt> is 2) is active. In turn, the environment
+originally created to apply <tt class="docutils literal">fib</tt> to 3 is active because its return value
+has not yet been computed.</p>
+<div class="example" data-output="False" data-showallframelabels="True" data-step="8" id="example_18" style="">
+def fib(n):
+    if n == 0:
+        return 0
+    if n == 1:
+        return 1
+    return fib(n-2) + fib(n-1)
+
+result = fib(2)
+</div>
+<script type="text/javascript">
+var example_18_trace = {"code": "def fib(n):\n    if n == 0:\n        return 0\n    if n == 1:\n        return 1\n    return fib(n-2) + fib(n-1)\n\nresult = fib(2)", "trace": [{"event": "step_line", "func_name": "<module>", "globals": {}, "heap": {}, "line": 1, "ordered_globals": [], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 8, "ordered_globals": ["fib"], "stack_to_render": [], "stdout": ""}, {"event": "call", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 1, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 2, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 4, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 6, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}], "stdout": ""}, {"event": "call", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 1, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}, {"encoded_locals": {"n": 0}, "frame_id": 2, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f2"}], "stdout": ""}, {"event": "step_line", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 2, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}, {"encoded_locals": {"n": 0}, "frame_id": 2, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f2"}], "stdout": ""}, {"event": "step_line", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 3, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}, {"encoded_locals": {"n": 0}, "frame_id": 2, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f2"}], "stdout": ""}, {"event": "return", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 3, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}, {"encoded_locals": {"__return__": 0, "n": 0}, "frame_id": 2, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f2"}], "stdout": ""}, {"event": "call", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 1, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}, {"encoded_locals": {"__return__": 0, "n": 0}, "frame_id": 2, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f2_z"}, {"encoded_locals": {"n": 1}, "frame_id": 3, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f3"}], "stdout": ""}, {"event": "step_line", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 2, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}, {"encoded_locals": {"__return__": 0, "n": 0}, "frame_id": 2, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f2_z"}, {"encoded_locals": {"n": 1}, "frame_id": 3, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f3"}], "stdout": ""}, {"event": "step_line", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 4, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}, {"encoded_locals": {"__return__": 0, "n": 0}, "frame_id": 2, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f2_z"}, {"encoded_locals": {"n": 1}, "frame_id": 3, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f3"}], "stdout": ""}, {"event": "step_line", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 5, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}, {"encoded_locals": {"__return__": 0, "n": 0}, "frame_id": 2, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f2_z"}, {"encoded_locals": {"n": 1}, "frame_id": 3, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f3"}], "stdout": ""}, {"event": "return", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 5, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}, {"encoded_locals": {"__return__": 0, "n": 0}, "frame_id": 2, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f2_z"}, {"encoded_locals": {"__return__": 1, "n": 1}, "frame_id": 3, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f3"}], "stdout": ""}, {"event": "return", "func_name": "fib", "globals": {"fib": ["REF", 1]}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 6, "ordered_globals": ["fib"], "stack_to_render": [{"encoded_locals": {"__return__": 1, "n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f1"}, {"encoded_locals": {"__return__": 0, "n": 0}, "frame_id": 2, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f2_z"}, {"encoded_locals": {"__return__": 1, "n": 1}, "frame_id": 3, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f3_z"}], "stdout": ""}, {"event": "return", "func_name": "<module>", "globals": {"fib": ["REF", 1], "result": 1}, "heap": {"1": ["FUNCTION", "fib(n)", null]}, "line": 8, "ordered_globals": ["fib", "result"], "stack_to_render": [{"encoded_locals": {"__return__": 1, "n": 2}, "frame_id": 1, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f1_z"}, {"encoded_locals": {"__return__": 0, "n": 0}, "frame_id": 2, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f2_z"}, {"encoded_locals": {"__return__": 1, "n": 1}, "frame_id": 3, "func_name": "fib", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["n", "__return__"], "parent_frame_id_list": [], "unique_hash": "fib_f3_z"}], "stdout": ""}]}</script><p>The higher-order <tt class="docutils literal">count_frames</tt> function tracks <tt class="docutils literal">open_count</tt>, the number of
+calls to the function <tt class="docutils literal">f</tt> that have not yet returned. The <tt class="docutils literal">max_count</tt>
+attribute is the maximum value ever attained by <tt class="docutils literal">open_count</tt>, and it
+corresponds to the maximum number of frames that are ever simultaneously
+active during the course of computation.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">count_frames</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="nf">counted</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="n">counted</span><span class="o">.</span><span class="n">open_count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">    </span>        <span class="n">counted</span><span class="o">.</span><span class="n">max_count</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">counted</span><span class="o">.</span><span class="n">max_count</span><span class="p">,</span> <span class="n">counted</span><span class="o">.</span><span class="n">open_count</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">result</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="o">*</span><span class="n">args</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">counted</span><span class="o">.</span><span class="n">open_count</span> <span class="o">-=</span> <span class="mi">1</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">result</span>
+<span class="gp">    </span>    <span class="n">counted</span><span class="o">.</span><span class="n">open_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">    </span>    <span class="n">counted</span><span class="o">.</span><span class="n">max_count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">counted</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span> <span class="o">=</span> <span class="n">count_frames</span><span class="p">(</span><span class="n">fib</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="p">(</span><span class="mi">19</span><span class="p">)</span>
+<span class="go">4181</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="o">.</span><span class="n">open_count</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="o">.</span><span class="n">max_count</span>
+<span class="go">19</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="p">(</span><span class="mi">24</span><span class="p">)</span>
+<span class="go">46368</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="o">.</span><span class="n">max_count</span>
+<span class="go">24</span>
+</pre></div>
+
+<p>To summarize, the space requirement of the <tt class="docutils literal">fib</tt> function, measured in
+active frames, is one less than the input, which tends to be small. The time
+requirement measured in total recursive calls is larger than the output, which
+tends to be huge.</p>
+</div>
+<div class="section" id="memoization">
+<h3>2.8.2   Memoization</h3>
+<p>Tree-recursive computational processes can often be made more efficient through
+<em>memoization</em>, a powerful technique for increasing the efficiency of recursive
+functions that repeat computation. A memoized function will store the return
+value for any arguments it has previously received. A second call to
+<tt class="docutils literal">fib(25)</tt> would not re-compute the return value recursively, but instead
+return the existing one that has already been constructed.</p>
+<p>Memoization can be expressed naturally as a higher-order function, which can
+also be used as a decorator. The definition below creates a <em>cache</em> of
+previously computed results, indexed by the arguments from which they were
+computed. The use of a dictionary requires that the argument to the memoized
+function be immutable.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">memo</span><span class="p">(</span><span class="n">f</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="n">cache</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="nf">memoized</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="n">n</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">cache</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="n">cache</span><span class="p">[</span><span class="n">n</span><span class="p">]</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">cache</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">memoized</span>
+</pre></div>
+
+<p>If we apply <tt class="docutils literal">memo</tt> to the recursive computation of Fibonacci numbers, a
+new pattern of computation evolves, depicted below.</p>
+<div class="figure">
+<img src="../img/fib_memo.png" alt=""/>
+</div>
+<p>In this computation of <tt class="docutils literal">fib(5)</tt>, the results for <tt class="docutils literal">fib(2)</tt> and <tt class="docutils literal">fib(3)</tt>
+are reused when computing <tt class="docutils literal">fib(4)</tt> on the right branch of the tree. As a
+result, much of the tree-recursive computation is not required at all.</p>
+<p>Using <tt class="docutils literal">count</tt>, we can see that the <tt class="docutils literal">fib</tt> function is actually only called
+once for each unique input to <tt class="docutils literal">fib</tt>.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">counted_fib</span> <span class="o">=</span> <span class="n">count</span><span class="p">(</span><span class="n">fib</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span>  <span class="o">=</span> <span class="n">memo</span><span class="p">(</span><span class="n">counted_fib</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="p">(</span><span class="mi">19</span><span class="p">)</span>
+<span class="go">4181</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">counted_fib</span><span class="o">.</span><span class="n">call_count</span>
+<span class="go">20</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">fib</span><span class="p">(</span><span class="mi">34</span><span class="p">)</span>
+<span class="go">5702887</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">counted_fib</span><span class="o">.</span><span class="n">call_count</span>
+<span class="go">35</span>
+</pre></div>
+
+</div>
+<div class="section" id="orders-of-growth">
+<h3>2.8.3   Orders of Growth</h3>
+<p>Processes can differ massively in the rates at which they consume the
+computational resources of space and time, as the previous examples illustrate.
+However, exactly determining just how much space or time will be used when
+calling a function is a very difficult task that depends upon many factors.
+A useful way to analyze a process is to categorize it along with a group of
+processes that all have similar requirements. A useful categorization is the
+<em>order of growth</em> of a process, which expresses in simple terms how the
+resource requirements of a process grow as a function of the input.</p>
+<p>As an introduction to orders of growth, we will analyze the function
+<tt class="docutils literal">count_factors</tt> below, which counts the number of integers that evenly divide
+an input <tt class="docutils literal">n</tt>. The function attempts to divide <tt class="docutils literal">n</tt> by every integer less
+than or equal to its square root. The implementation takes advantage of the
+fact that if <span class="rawlatex">$k$</span> divides <span class="rawlatex">$n$</span> and <span class="rawlatex">$k &lt;
+\sqrt{n}$</span> , then there is another factor <span class="rawlatex">$j = n / k$</span> such that
+<span class="rawlatex">$j &gt; \sqrt{n}$</span>.</p>
+<div class="example" data-output="False" data-showallframelabels="True" data-step="-1" id="example_19" style="">
+from math import sqrt
+def count_factors(n):
+    sqrt_n = sqrt(n)
+    k, factors = 1, 0
+    while k &lt; sqrt_n:
+        if n % k == 0:
+            factors += 2
+        k += 1
+    if k * k == n:
+        factors += 1
+    return factors
+
+result = count_factors(576)
+</div>
+<script type="text/javascript">
+var example_19_trace = {"code": "from math import sqrt\ndef count_factors(n):\n    sqrt_n = sqrt(n)\n    k, factors = 1, 0\n    while k < sqrt_n:\n        if n % k == 0:\n            factors += 2\n        k += 1\n    if k * k == n:\n        factors += 1\n    return factors\n\nresult = count_factors(576)", "trace": [{"event": "step_line", "func_name": "<module>", "globals": {}, "heap": {}, "line": 1, "ordered_globals": [], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null]}, "line": 2, "ordered_globals": ["sqrt"], "stack_to_render": [], "stdout": ""}, {"event": "step_line", "func_name": "<module>", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 13, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [], "stdout": ""}, {"event": "call", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 2, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"n": 576}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 3, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"n": 576}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 4, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 0, "k": 1, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 0, "k": 1, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 7, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 0, "k": 1, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 2, "k": 1, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 2, "k": 2, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 2, "k": 2, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 7, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 2, "k": 2, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 4, "k": 2, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 4, "k": 3, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 4, "k": 3, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 7, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 4, "k": 3, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 6, "k": 3, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 6, "k": 4, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 6, "k": 4, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 7, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 6, "k": 4, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 8, "k": 4, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 8, "k": 5, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 8, "k": 5, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 8, "k": 5, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 8, "k": 6, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 8, "k": 6, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 7, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 8, "k": 6, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 10, "k": 6, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 10, "k": 7, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 10, "k": 7, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 10, "k": 7, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 10, "k": 8, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 10, "k": 8, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 7, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 10, "k": 8, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 12, "k": 8, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 12, "k": 9, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 12, "k": 9, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 7, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 12, "k": 9, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 14, "k": 9, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 14, "k": 10, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 14, "k": 10, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 14, "k": 10, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 14, "k": 11, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 14, "k": 11, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 14, "k": 11, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 14, "k": 12, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 14, "k": 12, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 7, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 14, "k": 12, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 12, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 13, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 13, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 13, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 14, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 14, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 14, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 15, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 15, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 15, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 16, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 16, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 7, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 16, "k": 16, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 18, "k": 16, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 18, "k": 17, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 18, "k": 17, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 18, "k": 17, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 18, "k": 18, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 18, "k": 18, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 7, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 18, "k": 18, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 18, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 19, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 19, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 19, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 20, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 20, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 20, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 21, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 21, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 21, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 22, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 22, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 22, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 23, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 6, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 23, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 8, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 23, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 5, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 24, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 9, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 24, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 10, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 20, "k": 24, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "step_line", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 11, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"factors": 21, "k": 24, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "return", "func_name": "count_factors", "globals": {"count_factors": ["REF", 2], "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 11, "ordered_globals": ["sqrt", "count_factors"], "stack_to_render": [{"encoded_locals": {"__return__": 21, "factors": 21, "k": 24, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": true, "is_parent": false, "is_zombie": false, "ordered_varnames": ["n", "sqrt_n", "k", "factors", "__return__"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1"}], "stdout": ""}, {"event": "return", "func_name": "<module>", "globals": {"count_factors": ["REF", 2], "result": 21, "sqrt": ["REF", 1]}, "heap": {"1": ["FUNCTION", "sqrt(...)", null], "2": ["FUNCTION", "count_factors(n)", null]}, "line": 13, "ordered_globals": ["sqrt", "count_factors", "result"], "stack_to_render": [{"encoded_locals": {"__return__": 21, "factors": 21, "k": 24, "n": 576, "sqrt_n": ["SPECIAL_FLOAT", "24.0"]}, "frame_id": 1, "func_name": "count_factors", "is_highlighted": false, "is_parent": false, "is_zombie": true, "ordered_varnames": ["n", "sqrt_n", "k", "factors", "__return__"], "parent_frame_id_list": [], "unique_hash": "count_factors_f1_z"}], "stdout": ""}]}</script><p>How much time is required to evaluate <tt class="docutils literal">count_factors</tt>? The exact answer will
+vary on different machines, but we can make some useful general
+observations about the amount of computation involved.  The total number of
+times this process executes the body of the <tt class="docutils literal">while</tt> statement is the greatest
+integer less than <span class="rawlatex">$\sqrt{n}$</span>. The statements before and after this
+<tt class="docutils literal">while</tt> statement are executed exactly once. So, the total number of
+statements executed is <span class="rawlatex">$w \cdot \sqrt{n} + v$</span>, where
+<span class="rawlatex">$w$</span> is the number of statements in the <tt class="docutils literal">while</tt> body and
+<span class="rawlatex">$v$</span> is the number of statements outside of the <tt class="docutils literal">while</tt> statement.
+Although it isn't exact, this formula generally characterizes how much time
+will be required to evaluate <tt class="docutils literal">count_factors</tt> as a function of the input
+<tt class="docutils literal">n</tt>.</p>
+<p>A more exact description is difficult to obtain. The constants <span class="rawlatex">$w$</span>
+and <span class="rawlatex">$v$</span> are not constant at all, because the assignment statements
+to <tt class="docutils literal">factors</tt> are sometimes executed but sometimes not. An order of growth
+analysis allows us to gloss over such details and instead focus on the general
+shape of growth. In particular, the order of growth for <tt class="docutils literal">count_factors</tt>
+expresses in precise terms that the amount of time required to compute
+<tt class="docutils literal">count_factors(n)</tt> scales at the rate <span class="rawlatex">$\sqrt{n}$</span>, within a margin
+of some constant factors.</p>
+<p><strong>Theta Notation.</strong> Let <span class="rawlatex">$n$</span> be a parameter that measures the
+size of the input to some process, and let <span class="rawlatex">$R(n)$</span> be the amount of
+some resource that the process requires for an input of size <span class="rawlatex">$n$</span>.
+In our previous examples we took <span class="rawlatex">$n$</span> to be the number for which a
+given function is to be computed, but there are other possibilities. For
+instance, if our goal is to compute an approximation to the square root of a
+number, we might take <span class="rawlatex">$n$</span> to be the number of digits of accuracy
+required.</p>
+<p><span class="rawlatex">$R(n)$</span> might measure the amount of memory used, the number of
+elementary machine steps performed, and so on. In computers that do only
+a fixed number of steps at a time, the time required to evaluate an
+expression will be proportional to the number of elementary steps performed in
+the process of evaluation.</p>
+<p>We say that <span class="rawlatex">$R(n)$</span> has order of growth <span class="rawlatex">$\Theta(f(n))$</span>,
+written <span class="rawlatex">$R(n) = \Theta(f(n))$</span> (pronounced "theta of
+<span class="rawlatex">$f(n)$</span>"), if there are positive constants <span class="rawlatex">$k_1$</span> and
+<span class="rawlatex">$k_2$</span> independent of <span class="rawlatex">$n$</span> such that</p>
+\begin{equation*}
+k_1 \cdot f(n) \leq R(n) \leq k_2 \cdot f(n)
+\end{equation*}<p>for any value of <span class="rawlatex">$n$</span> larger than some minimum <span class="rawlatex">$m$</span>. In
+other words, for large <span class="rawlatex">$n$</span>, the value <span class="rawlatex">$R(n)$</span> is always
+sandwiched between two values that both scale with <span class="rawlatex">$f(n)$</span>:</p>
+<ul class="simple">
+<li>A lower bound <span class="rawlatex">$k_1 \cdot f(n)$</span> and</li>
+<li>An upper bound <span class="rawlatex">$k_2 \cdot f(n)$</span></li>
+</ul>
+<p>We can apply this definition to show that the number of steps required to
+evaluate <tt class="docutils literal">count_factors(n)</tt> grows as <span class="rawlatex">$\Theta(\sqrt{n})$</span> by
+inspecting the function body.</p>
+<p>First, we choose <span class="rawlatex">$k_1=1$</span> and <span class="rawlatex">$m=0$</span>, so that the lower
+bound states that <tt class="docutils literal">count_factors(n)</tt> requires at least <span class="rawlatex">$1 \cdot
+\sqrt{n}$</span> steps for any <span class="rawlatex">$n&gt;0$</span>. There are at least 4 lines executed
+outside of the <tt class="docutils literal">while</tt> statement, each of which takes at least 1 step to
+execute. There are at least two lines executed within the <tt class="docutils literal">while</tt> body, along
+with the while header itself. All of these require at least one step. The
+<tt class="docutils literal">while</tt> body is evaluated at least <span class="rawlatex">$\sqrt{n}-1$</span> times. Composing
+these lower bounds, we see that the process requires at least <span class="rawlatex">$4 + 3
+\cdot (\sqrt{n}-1)$</span> steps, which is always larger than <span class="rawlatex">$k_1 \cdot
+\sqrt{n}$</span>.</p>
+<p>Second, we can verify the upper bound. We assume that any single line in
+the body of <tt class="docutils literal">count_factors</tt> requires at most <tt class="docutils literal">p</tt> steps. This assumption
+isn't true for every line of Python, but does hold in this case.
+Then, evaluating <tt class="docutils literal">count_factors(n)</tt> can require at most <span class="rawlatex">$p \cdot
+(5 + 4 \sqrt{n})$</span>, because there are 5 lines outside of the <tt class="docutils literal">while</tt>
+statement and 4 within (including the header). This upper bound holds even if
+every <tt class="docutils literal">if</tt> header evaluates to true. Finally, if we choose
+<span class="rawlatex">$k_2=5p$</span>, then the steps required is always smaller than
+<span class="rawlatex">$k_2 \cdot \sqrt{n}$</span>. Our argument is complete.</p>
+</div>
+<div class="section" id="example-exponentiation">
+<h3>2.8.4   Example: Exponentiation</h3>
+<p>Consider the problem of computing the exponential of a given number. We would
+like a function that takes as arguments a base <tt class="docutils literal">b</tt> and a positive integer
+exponent <tt class="docutils literal">n</tt> and computes <span class="rawlatex">$b^n$</span>. One way to do this is via the
+recursive definition</p>
+\begin{align*}
+b^n &amp;= b \cdot b^{n-1} \\
+b^0 &amp;= 1
+\end{align*}<p>which translates readily into the recursive function</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">exp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="mi">1</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">b</span> <span class="o">*</span> <span class="n">exp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+<p>This is a linear recursive process that requires <span class="rawlatex">$\Theta(n)$</span> steps
+and <span class="rawlatex">$\Theta(n)$</span> space. Just as with factorial, we can
+readily formulate an equivalent linear iteration that requires a similar number
+of steps but constant space.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">exp_iter</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">    </span>    <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="n">result</span> <span class="o">=</span> <span class="n">result</span> <span class="o">*</span> <span class="n">b</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+
+<p>We can compute exponentials in fewer steps by using successive squaring. For
+instance, rather than computing <span class="rawlatex">$b^8$</span> as</p>
+\begin{equation*}
+b \cdot (b \cdot (b \cdot (b \cdot (b \cdot (b \cdot (b \cdot b))))))
+\end{equation*}<p>we can compute it using three multiplications:</p>
+\begin{align*}
+b^2 &amp;= b \cdot b \\
+b^4 &amp;= b^2 \cdot b^2 \\
+b^8 &amp;= b^4 \cdot b^4
+\end{align*}<p>This method works fine for exponents that are powers of 2. We can also take
+advantage of successive squaring in computing exponentials in general if we use
+the recursive rule</p>
+\begin{equation*}
+b^n = \begin{cases} (b^{\frac{1}{2} n})^2 &amp; \text{if $n$ is even} \\
+                    b \cdot b^{n-1}     &amp; \text{if $n$ is odd}
+                    \end{cases}
+\end{equation*}<p>We can express this method as a recursive function as well:</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">square</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">x</span><span class="o">*</span><span class="n">x</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fast_exp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="mi">1</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">n</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">square</span><span class="p">(</span><span class="n">fast_exp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="o">//</span><span class="mi">2</span><span class="p">))</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">b</span> <span class="o">*</span> <span class="n">fast_exp</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fast_exp</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">100</span><span class="p">)</span>
+<span class="go">1267650600228229401496703205376</span>
+</pre></div>
+
+<p>The process evolved by <tt class="docutils literal">fast_exp</tt> grows logarithmically with <tt class="docutils literal">n</tt> in both
+space and number of steps. To see this, observe that computing
+<span class="rawlatex">$b^{2n}$</span> using <tt class="docutils literal">fast_exp</tt> requires only one more multiplication
+than computing <span class="rawlatex">$b^n$</span>. The size of the exponent we can compute
+therefore doubles (approximately) with every new multiplication we are allowed.
+Thus, the number of multiplications required for an exponent of <tt class="docutils literal">n</tt> grows
+about as fast as the logarithm of <tt class="docutils literal">n</tt> base 2. The process has
+<span class="rawlatex">$\Theta(\log n)$</span> growth. The difference between
+<span class="rawlatex">$\Theta(\log n)$</span> growth and <span class="rawlatex">$\Theta(n)$</span> growth becomes
+striking as <span class="rawlatex">$n$</span> becomes large. For example, <tt class="docutils literal">fast_exp</tt> for <tt class="docutils literal">n</tt>
+of 1000 requires only 14 multiplications instead of 1000.</p>
+</div>
+<div class="section" id="growth-categories">
+<h3>2.8.5   Growth Categories</h3>
+<p>Orders of growth are designed to simplify the analysis and comparison of
+computational processes. Many different processes can all have equivalent
+orders of growth, which indicates that they scale in similar ways. It is an
+essential skill of a computer scientist to know and recognize common orders
+of growth and identify processes of the same order.</p>
+<p><strong>Constants.</strong> Constant terms do not affect the order of growth of a process.
+So, for instance, <span class="rawlatex">$\Theta(n)$</span> and <span class="rawlatex">$\Theta(500 \cdot
+n)$</span> are the same order of growth. This property follows from the definition
+of theta notation, which allows us to choose arbitrary constants
+<span class="rawlatex">$k_1$</span> and <span class="rawlatex">$k_2$</span> (such as <span class="rawlatex">$\frac{1}{500}$</span>)
+for the upper and lower bounds. For simplicity, constants are always omitted
+from orders of growth.</p>
+<p><strong>Logarithms.</strong> The base of a logarithm does not affect the order of growth of
+a process. For instance, <span class="rawlatex">$\log_2 n$</span> and <span class="rawlatex">$\log_{10} n$</span>
+are the same order of growth. Changing the base of a logarithm is equivalent to
+multiplying by a constant factor.</p>
+<p><strong>Nesting.</strong> When an inner computational process is repeated for each step in
+an outer process, then the order of growth of the entire process is a product
+of the number of steps in the outer and inner processes.</p>
+<p>For example, the function <tt class="docutils literal">overlap</tt> below computes the number of elements in
+list <tt class="docutils literal">a</tt> that also appear in list <tt class="docutils literal">b</tt>.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">overlap</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span>
+<span class="gp">    </span>    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">a</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">b</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="n">count</span> <span class="o">+=</span> <span class="mi">1</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">count</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">overlap</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">2</span><span class="p">])</span>
+<span class="go">3</span>
+</pre></div>
+
+<p>The <tt class="docutils literal">in</tt> operator for lists requires <span class="rawlatex">$\Theta(n)$</span> time, where
+<span class="rawlatex">$n$</span> is the length of the list <tt class="docutils literal">b</tt>. It is applied
+<span class="rawlatex">$\Theta(m)$</span> times, where <span class="rawlatex">$m$</span> is the length of the list
+<tt class="docutils literal">a</tt>. The <tt class="docutils literal">item in b</tt> expression is the inner process, and the <tt class="docutils literal">for item in
+a</tt> loop is the outer process. The total order of growth for this function is
+<span class="rawlatex">$\Theta(m \cdot n)$</span>.</p>
+<p><strong>Lower-order terms.</strong> As the input to a process grows, the fastest growing
+part of a computation dominates the total resources used. Theta notation
+captures this intuition. In a sum, all but the fastest growing term can be
+dropped without changing the order of growth.</p>
+<p>For instance, consider the <tt class="docutils literal">one_more</tt> function that returns how many elements
+of a list <tt class="docutils literal">a</tt> are one more than some other element of <tt class="docutils literal">a</tt>. That is, in the
+list <tt class="docutils literal">[3, 14, 15, 9]</tt>, the element 15 is one more than 14, so <tt class="docutils literal">one_more</tt>
+will return 1.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">one_more</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">overlap</span><span class="p">([</span><span class="n">x</span><span class="o">-</span><span class="mi">1</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">a</span><span class="p">],</span> <span class="n">a</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">one_more</span><span class="p">([</span><span class="mi">3</span><span class="p">,</span> <span class="mi">14</span><span class="p">,</span> <span class="mi">15</span><span class="p">,</span> <span class="mi">9</span><span class="p">])</span>
+<span class="go">1</span>
+</pre></div>
+
+<p>There are two parts to this computation: the list comprehension and the call
+to <tt class="docutils literal">overlap</tt>. For a list <tt class="docutils literal">a</tt> of length <span class="rawlatex">$n$</span>,  list comprehension
+requires <span class="rawlatex">$\Theta(n)$</span> steps, while the call to <tt class="docutils literal">overlap</tt> requires
+<span class="rawlatex">$\Theta(n^2)$</span> steps. The sum of steps is <span class="rawlatex">$\Theta(n +
+n^2)$</span>, but this is not the simplest way of expressing the order of growth.</p>
+<p><span class="rawlatex">$\Theta(n^2 + k \cdot n)$</span> and <span class="rawlatex">$\Theta(n^2)$</span> are
+equivalent for any constant <span class="rawlatex">$k$</span> because the <span class="rawlatex">$n^2$</span> term
+will eventually dominate the total for any <span class="rawlatex">$k$</span>. The fact that
+bounds must hold only for <span class="rawlatex">$n$</span> greater than some minimum
+<span class="rawlatex">$m$</span> establishes this equivalence. For simplicity, lower-order terms
+are always omitted from orders of growth, and so we will never see a sum within
+a theta expression.</p>
+<p><strong>Common categories.</strong> Given these equivalence properties, a small set of
+common categories emerge to describe most computational processes. The most
+common are listed below from slowest to fastest growth, along with descriptions
+of the growth as the input increases. Examples for each category follow.</p>
+<table border="1" class="docutils">
+<colgroup>
+<col width="13%"/>
+<col width="32%"/>
+<col width="42%"/>
+<col width="13%"/>
+</colgroup>
+<thead valign="bottom">
+<tr><th class="head"><strong>Category</strong></th>
+<th class="head"><strong>Theta Notation</strong></th>
+<th class="head"><strong>Growth Description</strong></th>
+<th class="head"><strong>Example</strong></th>
+</tr>
+</thead>
+<tbody valign="top">
+<tr><td>Constant</td>
+<td><span class="rawlatex">$\Theta(1)$</span></td>
+<td>Growth is independent of the input</td>
+<td><tt class="docutils literal">abs</tt></td>
+</tr>
+<tr><td>Logarithmic</td>
+<td><span class="rawlatex">$\Theta(\log{n})$</span></td>
+<td>Multiplying input increments resources</td>
+<td><tt class="docutils literal">fast_exp</tt></td>
+</tr>
+<tr><td>Linear</td>
+<td><span class="rawlatex">$\Theta(n)$</span></td>
+<td>Incrementing input increments resources</td>
+<td><tt class="docutils literal">exp</tt></td>
+</tr>
+<tr><td>Quadratic</td>
+<td><span class="rawlatex">$\Theta(n^2)$</span></td>
+<td>Incrementing input adds n resources</td>
+<td><tt class="docutils literal">one_more</tt></td>
+</tr>
+<tr><td>Exponential</td>
+<td><span class="rawlatex">$\Theta(b^n)$</span></td>
+<td>Incrementing input multiplies resources</td>
+<td><tt class="docutils literal">fib</tt></td>
+</tr>
+</tbody>
+</table>
+<p>Other categories exist, such as the <span class="rawlatex">$\Theta(\sqrt{n})$</span> growth of
+<tt class="docutils literal">count_factors</tt>. However, these categories are particularly common.</p>
+<p>Exponential growth describes many different orders of growth, because changing
+the base <span class="rawlatex">$b$</span> does affect the order of growth.  For instance,
+the number of steps in our tree-recursive Fibonacci computation <tt class="docutils literal">fib</tt> grows
+exponentially in its input <span class="rawlatex">$n$</span>. In particular, one can show that
+the nth Fibonacci number is the closest integer to</p>
+\begin{equation*}
+\frac{\phi^{n-2}}{\sqrt{5}}
+\end{equation*}<p>where <span class="rawlatex">$\phi$</span> is the golden ratio:</p>
+\begin{equation*}
+\phi = \frac{1 + \sqrt{5}}{2} \approx 1.6180
+\end{equation*}<p>We also stated that the number of steps scales with the resulting value, and so
+the tree-recursive process requires <span class="rawlatex">$\Theta(\phi^n)$</span> steps, a function
+that grows exponentially with <span class="rawlatex">$n$</span>.</p>
+</div>
+</div>
+  <p><i>Continue</i>:
+  	<a href="29-recursive-objects.html">
+  		2.9 Recursive Objects
+  	</a>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <footer id="contentinfo" class="body">
+          Composing Programs by <a href="http://www.denero.org">John
+          DeNero</a>, based on the textbook <a
+          href="http://mitpress.mit.edu/sicp/">Structure and
+          Interpretation of Computer Programs</a> by Harold Abelson and
+          Gerald Jay Sussman, is licensed under a <a rel="license"
+          href="http://creativecommons.org/licenses/by-sa/3.0/">Creative
+          Commons Attribution-ShareAlike 3.0 Unported License</a>.
+      </footer><!-- /#contentinfo -->
+    </div>
+  </div>
+</body>
+</html>

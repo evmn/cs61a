@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>2.9 Recursive Objects</title>
+  <meta charset="utf-8" />
+
+  <link rel="stylesheet" type="text/css" href="../theme/css/cp.css" />
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/pytutor.css"/>
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/ui-lightness/jquery-ui-1.8.21.custom.css" />
+  <link rel="stylesheet" type="text/css" href="../theme/tutor/css/codemirror.css"  />
+  <link rel="stylesheet" type="text/css" href="../theme/coding-js/coding.css"  />
+
+  <!-- jQuery -->
+  <script type="text/javascript" src="../theme/tutor/js/jquery-1.8.2.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery-ui-1.8.24.custom.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery.ba-bbq.min.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/jquery.jsPlumb-1.3.10-all-min.js"></script>
+
+  <!-- codemirror.net online code editor -->
+  <script type="text/javascript" src="../theme/tutor/js/codemirror/codemirror.js"></script>
+  <script type="text/javascript" src="../theme/tutor/js/codemirror/python.js"></script>
+
+  <!-- d3 -->
+  <script type="text/javascript" src="../theme/tutor/js/d3.v2.min.js"></script>
+
+  <!-- Online Python Tutor -->
+  <script type="text/javascript" src="../theme/tutor/js/pytutor.js"></script>
+
+  <!-- Coding.js -->
+  <script type="text/javascript" src="../theme/coding-js/coding.js"></script>
+  <script> var $c = new CodingJS("../theme/coding-js/"); </script>
+
+  <!-- Composing Programs -->
+  <script type="text/javascript" src="../theme/js/cp.js"></script>
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type= "text/javascript">
+       MathJax.Hub.Config({
+           config: ["MMLorHTML.js"],
+           jax: ["input/TeX","input/MathML","output/HTML-CSS","output/NativeMML"],
+           TeX: { extensions: ["AMSmath.js","AMSsymbols.js","noErrors.js","noUndefined.js"], equationNumbers: { autoNumber: "AMS" } },
+           extensions: ["tex2jax.js","mml2jax.js","MathMenu.js","MathZoom.js","jsMath2jax.js"],
+           tex2jax: {
+               inlineMath: [ ['$','$'] ],
+               displayMath: [ ['$$','$$'] ],
+               processEscapes: true },
+           "HTML-CSS": {
+               styles: { ".MathJax .mo, .MathJax .mi": {color: "black ! important"}}
+           }
+       });
+    </script>
+
+</head>
+
+<body id="index" class="home">
+  <div class="container">
+
+    <div class="nav-main">
+      <div class="wrap">
+        <a class="nav-home" href="../index.html">
+          <span class="nav-logo">c<span class="nav-logo-compose">⚬</span>mp<span class="nav-logo-compose">⚬</span>sing pr<span class="nav-logo-compose">⚬</span>grams</span>
+        </a>
+        <ul class="nav-site">
+          <li><a href="../index.html">Text</a></li>
+          <li><a href="../projects.html">Projects</a></li>
+          <li><a href="../tutor.html">Tutor</a></li>
+          <li><a href="../about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <section class="content wrap documentationContent">
+      <div class="nav-docs">
+	<h3>Chapter 2<a id="hide_contents">Hide contents</a> </h3>
+		<div class="nav-docs-section">
+			<h3><a href="21-introduction.html">2.1 Introduction</a></h3>
+				<li><a href="21-introduction.html#native-data-types">2.1.1 Native Data Types</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="22-data-abstraction.html">2.2 Data Abstraction</a></h3>
+				<li><a href="22-data-abstraction.html#example-rational-numbers">2.2.1 Example: Rational Numbers</a>
+				<li><a href="22-data-abstraction.html#pairs">2.2.2 Pairs</a>
+				<li><a href="22-data-abstraction.html#abstraction-barriers">2.2.3 Abstraction Barriers</a>
+				<li><a href="22-data-abstraction.html#the-properties-of-data">2.2.4 The Properties of Data</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="23-sequences.html">2.3 Sequences</a></h3>
+				<li><a href="23-sequences.html#lists">2.3.1 Lists</a>
+				<li><a href="23-sequences.html#sequence-iteration">2.3.2 Sequence Iteration</a>
+				<li><a href="23-sequences.html#sequence-processing">2.3.3 Sequence Processing</a>
+				<li><a href="23-sequences.html#sequence-abstraction">2.3.4 Sequence Abstraction</a>
+				<li><a href="23-sequences.html#strings">2.3.5 Strings</a>
+				<li><a href="23-sequences.html#trees">2.3.6 Trees</a>
+				<li><a href="23-sequences.html#linked-lists">2.3.7 Linked Lists</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="24-mutable-data.html">2.4 Mutable Data</a></h3>
+				<li><a href="24-mutable-data.html#the-object-metaphor">2.4.1 The Object Metaphor</a>
+				<li><a href="24-mutable-data.html#sequence-objects">2.4.2 Sequence Objects</a>
+				<li><a href="24-mutable-data.html#dictionaries">2.4.3 Dictionaries</a>
+				<li><a href="24-mutable-data.html#local-state">2.4.4 Local State</a>
+				<li><a href="24-mutable-data.html#the-benefits-of-non-local-assignment">2.4.5 The Benefits of Non-Local Assignment</a>
+				<li><a href="24-mutable-data.html#the-cost-of-non-local-assignment">2.4.6 The Cost of Non-Local Assignment</a>
+				<li><a href="24-mutable-data.html#implementing-lists-and-dictionaries">2.4.7 Implementing Lists and Dictionaries</a>
+				<li><a href="24-mutable-data.html#dispatch-dictionaries">2.4.8 Dispatch Dictionaries</a>
+				<li><a href="24-mutable-data.html#propagating-constraints">2.4.9 Propagating Constraints</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="25-object-oriented-programming.html">2.5 Object-Oriented Programming</a></h3>
+				<li><a href="25-object-oriented-programming.html#objects-and-classes">2.5.1 Objects and Classes</a>
+				<li><a href="25-object-oriented-programming.html#defining-classes">2.5.2 Defining Classes</a>
+				<li><a href="25-object-oriented-programming.html#message-passing-and-dot-expressions">2.5.3 Message Passing and Dot Expressions</a>
+				<li><a href="25-object-oriented-programming.html#class-attributes">2.5.4 Class Attributes</a>
+				<li><a href="25-object-oriented-programming.html#inheritance">2.5.5 Inheritance</a>
+				<li><a href="25-object-oriented-programming.html#using-inheritance">2.5.6 Using Inheritance</a>
+				<li><a href="25-object-oriented-programming.html#multiple-inheritance">2.5.7 Multiple Inheritance</a>
+				<li><a href="25-object-oriented-programming.html#the-role-of-objects">2.5.8 The Role of Objects</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="26-implementing-classes-and-objects.html">2.6 Implementing Classes and Objects</a></h3>
+				<li><a href="26-implementing-classes-and-objects.html#instances">2.6.1 Instances</a>
+				<li><a href="26-implementing-classes-and-objects.html#classes">2.6.2 Classes</a>
+				<li><a href="26-implementing-classes-and-objects.html#using-implemented-objects">2.6.3 Using Implemented Objects</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="27-object-abstraction.html">2.7 Object Abstraction</a></h3>
+				<li><a href="27-object-abstraction.html#string-conversion">2.7.1 String Conversion</a>
+				<li><a href="27-object-abstraction.html#special-methods">2.7.2 Special Methods</a>
+				<li><a href="27-object-abstraction.html#multiple-representations">2.7.3 Multiple Representations</a>
+				<li><a href="27-object-abstraction.html#generic-functions">2.7.4 Generic Functions</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="28-efficiency.html">2.8 Efficiency</a></h3>
+				<li><a href="28-efficiency.html#measuring-efficiency">2.8.1 Measuring Efficiency</a>
+				<li><a href="28-efficiency.html#memoization">2.8.2 Memoization</a>
+				<li><a href="28-efficiency.html#orders-of-growth">2.8.3 Orders of Growth</a>
+				<li><a href="28-efficiency.html#example-exponentiation">2.8.4 Example: Exponentiation</a>
+				<li><a href="28-efficiency.html#growth-categories">2.8.5 Growth Categories</a>
+		</div>
+		<div class="nav-docs-section">
+			<h3><a href="29-recursive-objects.html">2.9 Recursive Objects</a></h3>
+				<li><a href="29-recursive-objects.html#linked-list-class">2.9.1 Linked List Class</a>
+				<li><a href="29-recursive-objects.html#tree-class">2.9.2 Tree Class</a>
+				<li><a href="29-recursive-objects.html#sets">2.9.3 Sets</a>
+		</div>
+      </div>
+
+      <div class="inner-content">
+  <div class="section" id="recursive-objects">
+<h2>2.9   Recursive Objects</h2>
+<p>Objects can have other objects as attribute values. When an object of some
+class has an attribute value of that same class, it is a recursive object.</p>
+<div class="section" id="linked-list-class">
+<h3>2.9.1   Linked List Class</h3>
+<p>A linked list, introduced earlier in this chapter, is composed of a first
+element and the rest of the list.  The rest of a linked list is itself a linked
+list — a recursive definition.  The empty list is a special case of a linked
+list that has no first element or rest.  A linked list is a sequence: it has a
+finite length and supports element selection by index.</p>
+<p>We can now implement a class with the same behavior. In this version, we will
+define its behavior using special method names that allow our class to work with
+the built-in <tt class="docutils literal">len</tt> function and element selection operator (square brackets or
+<tt class="docutils literal">operator.getitem</tt>) in Python. These built-in functions invoke special method
+names of a class: length is computed by <tt class="docutils literal">__len__</tt> and element selection is
+computed by <tt class="docutils literal">__getitem__</tt>. The empty linked list is represented by an empty
+tuple, which has length 0 and no elements.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Link</span><span class="p">:</span>
+<span class="gp">    </span>    <span class="sd">"""A linked list with a first element and the rest."""</span>
+<span class="gp">    </span>    <span class="n">empty</span> <span class="o">=</span> <span class="p">()</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">first</span><span class="p">,</span> <span class="n">rest</span><span class="o">=</span><span class="n">empty</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">assert</span> <span class="n">rest</span> <span class="ow">is</span> <span class="n">Link</span><span class="o">.</span><span class="n">empty</span> <span class="ow">or</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">rest</span><span class="p">,</span> <span class="n">Link</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="bp">self</span><span class="o">.</span><span class="n">first</span> <span class="o">=</span> <span class="n">first</span>
+<span class="gp">    </span>        <span class="bp">self</span><span class="o">.</span><span class="n">rest</span> <span class="o">=</span> <span class="n">rest</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">i</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="n">i</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">first</span>
+<span class="gp">    </span>        <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">rest</span><span class="p">[</span><span class="n">i</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="mi">1</span> <span class="o">+</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">rest</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Link</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">Link</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">Link</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">4</span>
+</pre></div>
+
+<p>The definitions of <tt class="docutils literal">__len__</tt> and <tt class="docutils literal">__getitem__</tt> are in fact recursive.  The
+built-in Python function <tt class="docutils literal">len</tt> invokes a method called <tt class="docutils literal">__len__</tt> when
+applied to a user-defined object argument. Likewise, the element selection
+operator invokes a method called <tt class="docutils literal">__getitem__</tt>. Thus, bodies of these two
+methods will call themselves indirectly. For <tt class="docutils literal">__len__</tt>, the base case is
+reached when <tt class="docutils literal">self.rest</tt> evaluates to the empty tuple, <tt class="docutils literal">Link.empty</tt>, which
+has a length of 0.</p>
+<p>The built-in <tt class="docutils literal">isinstance</tt> function returns whether the first argument has a
+type that is or inherits from the second argument. <tt class="docutils literal">isinstance(rest, Link)</tt>
+is true if <tt class="docutils literal">rest</tt> is a <tt class="docutils literal">Link</tt> instance or an instance of some sub-class of
+<tt class="docutils literal">Link</tt>.</p>
+<p>Our implementation is complete, but an instance of the <tt class="docutils literal">Link</tt> class is
+currently difficult to inspect. To help with debugging, we can also define a
+function to convert a <tt class="docutils literal">Link</tt> to a string expression.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">link_expression</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return a string that would evaluate to s."""</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">rest</span> <span class="ow">is</span> <span class="n">Link</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">rest</span> <span class="o">=</span> <span class="s1">''</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">rest</span> <span class="o">=</span> <span class="s1">', '</span> <span class="o">+</span> <span class="n">link_expression</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">rest</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="s1">'Link(</span><span class="si">{0}{1}</span><span class="s1">)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="n">rest</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">link_expression</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">'Link(3, Link(4, Link(5)))'</span>
+</pre></div>
+
+<p>This way of displaying an <tt class="docutils literal">Link</tt> is so convenient that we would like to use
+it whenever an <tt class="docutils literal">Link</tt> instance is displayed.  We can ensure this behavior by
+setting the <tt class="docutils literal">link_expression</tt> function as the value of the special class
+attribute <tt class="docutils literal">__repr__</tt>.  Python displays instances of user-defined classes by
+invoking their <tt class="docutils literal">__repr__</tt> method.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">Link</span><span class="o">.</span><span class="fm">__repr__</span> <span class="o">=</span> <span class="n">link_expression</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<span class="go">Link(3, Link(4, Link(5)))</span>
+</pre></div>
+
+<p>The <tt class="docutils literal">Link</tt> class has the closure property. Just as an element of a list can
+itself be a list, a <tt class="docutils literal">Link</tt> can contain a <tt class="docutils literal">Link</tt> as its <tt class="docutils literal">first</tt> element.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s_first</span> <span class="o">=</span> <span class="n">Link</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">Link</span><span class="p">(</span><span class="mi">6</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s_first</span>
+<span class="go">Link(Link(3, Link(4, Link(5))), Link(6))</span>
+</pre></div>
+
+<p>The <tt class="docutils literal">s_first</tt> linked list has only two elements, but its first element is
+a linked list with three elements.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">s_first</span><span class="p">)</span>
+<span class="go">2</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">s_first</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="go">3</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s_first</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span>
+<span class="go">5</span>
+</pre></div>
+
+<p>Recursive functions are particularly well-suited to manipulate linked lists.
+For instance, the recursive <tt class="docutils literal">extend_link</tt> function builds a linked list
+containing the elements of one <tt class="docutils literal">Link</tt> instance <tt class="docutils literal">s</tt> followed by the elements
+of another <tt class="docutils literal">Link</tt> instance <tt class="docutils literal">t</tt>.  Installing this function as the
+<tt class="docutils literal">__add__</tt> method of the <tt class="docutils literal">Link</tt> class emulates the addition behavior of a
+built-in list.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">extend_link</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="n">Link</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">t</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Link</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="n">extend_link</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">rest</span><span class="p">,</span> <span class="n">t</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">extend_link</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="go">Link(3, Link(4, Link(5, Link(3, Link(4, Link(5))))))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">Link</span><span class="o">.</span><span class="fm">__add__</span> <span class="o">=</span> <span class="n">extend_link</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">+</span> <span class="n">s</span>
+<span class="go">Link(3, Link(4, Link(5, Link(3, Link(4, Link(5))))))</span>
+</pre></div>
+
+<p>Rather than list comprehensions, one linked list can be generated from another
+using two higher-order functions: <tt class="docutils literal">map_link</tt> and <tt class="docutils literal">filter_link</tt>. The
+<tt class="docutils literal">map_link</tt> function defined below applies a function <tt class="docutils literal">f</tt> to each element of
+a linked list <tt class="docutils literal">s</tt> and constructs a linked list containing the results.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">map_link</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="n">Link</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">s</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Link</span><span class="p">(</span><span class="n">f</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">first</span><span class="p">),</span> <span class="n">map_link</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">rest</span><span class="p">))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">map_link</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="go">Link(9, Link(16, Link(25)))</span>
+</pre></div>
+
+<p>The <tt class="docutils literal">filter_link</tt> function returns a linked list containing all elements of
+a linked list <tt class="docutils literal">s</tt> for which <tt class="docutils literal">f</tt> returns a true value. The combination of
+<tt class="docutils literal">map_link</tt> and <tt class="docutils literal">filter_link</tt> can express the same logic as a list
+comprehension.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">filter_link</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="n">Link</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">s</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">filtered</span> <span class="o">=</span> <span class="n">filter_link</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">rest</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="n">f</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">first</span><span class="p">):</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="n">Link</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="n">filtered</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="n">filtered</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">odd</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="n">x</span> <span class="o">%</span> <span class="mi">2</span> <span class="o">==</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">map_link</span><span class="p">(</span><span class="n">square</span><span class="p">,</span> <span class="n">filter_link</span><span class="p">(</span><span class="n">odd</span><span class="p">,</span> <span class="n">s</span><span class="p">))</span>
+<span class="go">Link(9, Link(25))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="p">[</span><span class="n">square</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">]</span> <span class="k">if</span> <span class="n">odd</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+<span class="go">[9, 25]</span>
+</pre></div>
+
+<p>The <tt class="docutils literal">join_link</tt> function recursively constructs a string that contains the
+elements of a linked list seperated by some <tt class="docutils literal">separator</tt> string. The result
+is much more compact than the output of <tt class="docutils literal">link_expression</tt>.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">join_link</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">separator</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="n">Link</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="s2">""</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">rest</span> <span class="ow">is</span> <span class="n">Link</span><span class="o">.</span><span class="n">empty</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">first</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">first</span><span class="p">)</span> <span class="o">+</span> <span class="n">separator</span> <span class="o">+</span> <span class="n">join_link</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">rest</span><span class="p">,</span> <span class="n">separator</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">join_link</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s2">", "</span><span class="p">)</span>
+<span class="go">'3, 4, 5'</span>
+</pre></div>
+
+<p><strong>Recursive Construction.</strong> Linked lists are particularly useful when
+constructing sequences incrementally, a situation that arises often in
+recursive computations.</p>
+<p>The <tt class="docutils literal">count_partitions</tt> function from Chapter 1 counted the number of ways
+to partition an integer <tt class="docutils literal">n</tt> using parts up to size <tt class="docutils literal">m</tt> via a tree-recursive
+process. With sequences, we can also enumerate these partitions explicitly
+using a similar process.</p>
+<p>We follow the same recursive analysis of the problem as we did while counting:
+partitioning <tt class="docutils literal">n</tt> using integers up to <tt class="docutils literal">m</tt> involves either</p>
+<ol class="arabic simple">
+<li>partitioning <tt class="docutils literal"><span class="pre">n-m</span></tt> using integers up to <tt class="docutils literal">m</tt>, or</li>
+<li>partitioning <tt class="docutils literal">n</tt> using integers up to <tt class="docutils literal"><span class="pre">m-1</span></tt>.</li>
+</ol>
+<p>For base cases, we find that 0 has an empty partition, while partitioning a
+negative integer or using parts smaller than 1 is impossible.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">partitions</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return a linked list of partitions of n using parts of up to m.</span>
+<span class="gp">    </span><span class="sd">    Each partition is represented as a linked list.</span>
+<span class="gp">    </span><span class="sd">    """</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Link</span><span class="p">(</span><span class="n">Link</span><span class="o">.</span><span class="n">empty</span><span class="p">)</span> <span class="c1"># A list containing the empty partition</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">n</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">m</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Link</span><span class="o">.</span><span class="n">empty</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">using_m</span> <span class="o">=</span> <span class="n">partitions</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="n">m</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">with_m</span> <span class="o">=</span> <span class="n">map_link</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">Link</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">s</span><span class="p">),</span> <span class="n">using_m</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">without_m</span> <span class="o">=</span> <span class="n">partitions</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">with_m</span> <span class="o">+</span> <span class="n">without_m</span>
+</pre></div>
+
+<p>In the recursive case, we construct two sublists of partitions. The first uses
+<tt class="docutils literal">m</tt>, and so we add <tt class="docutils literal">m</tt> to each element of the result <tt class="docutils literal">using_m</tt> to
+form <tt class="docutils literal">with_m</tt>.</p>
+<p>The result of <tt class="docutils literal">partitions</tt> is highly nested: a linked list of linked lists.
+Using <tt class="docutils literal">join_link</tt> with appropriate separators, we can display the partitions
+in a human-readable manner.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">print_partitions</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="n">lists</span> <span class="o">=</span> <span class="n">partitions</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="n">strings</span> <span class="o">=</span> <span class="n">map_link</span><span class="p">(</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">join_link</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="s2">" + "</span><span class="p">),</span> <span class="n">lists</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="nb">print</span><span class="p">(</span><span class="n">join_link</span><span class="p">(</span><span class="n">strings</span><span class="p">,</span> <span class="s2">"</span><span class="se">\n</span><span class="s2">"</span><span class="p">))</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">print_partitions</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">4 + 2</span>
+<span class="go">4 + 1 + 1</span>
+<span class="go">3 + 3</span>
+<span class="go">3 + 2 + 1</span>
+<span class="go">3 + 1 + 1 + 1</span>
+<span class="go">2 + 2 + 2</span>
+<span class="go">2 + 2 + 1 + 1</span>
+<span class="go">2 + 1 + 1 + 1 + 1</span>
+<span class="go">1 + 1 + 1 + 1 + 1 + 1</span>
+</pre></div>
+
+</div>
+<div class="section" id="tree-class">
+<h3>2.9.2   Tree Class</h3>
+<p>Trees can also be represented by instances of user-defined classes, rather than
+nested instances of built-in sequence types. A tree is any data structure that
+has as an attribute a sequence of branches that are also trees.</p>
+<p><strong>Internal values.</strong> Previously, we defined trees in such a way that all values
+appeared at the leaves of the tree. It is also common to define trees that have
+internal values at the roots of each subtree.
+An internal value is called an <tt class="docutils literal">label</tt> in the tree. The <tt class="docutils literal">Tree</tt> class below
+represents such trees, in which each tree has a sequence of branches that are
+also trees.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">class</span> <span class="nc">Tree</span><span class="p">:</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">label</span><span class="p">,</span> <span class="n">branches</span><span class="o">=</span><span class="p">()):</span>
+<span class="gp">    </span>        <span class="bp">self</span><span class="o">.</span><span class="n">label</span> <span class="o">=</span> <span class="n">label</span>
+<span class="gp">    </span>        <span class="k">for</span> <span class="n">branch</span> <span class="ow">in</span> <span class="n">branches</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">assert</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">branch</span><span class="p">,</span> <span class="n">Tree</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="bp">self</span><span class="o">.</span><span class="n">branches</span> <span class="o">=</span> <span class="n">branches</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">branches</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="s1">'Tree(</span><span class="si">{0}</span><span class="s1">, </span><span class="si">{1}</span><span class="s1">)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">branches</span><span class="p">))</span>
+<span class="gp">    </span>        <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="s1">'Tree(</span><span class="si">{0}</span><span class="s1">)'</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="nb">repr</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">label</span><span class="p">))</span>
+<span class="gp">    </span>    <span class="k">def</span> <span class="nf">is_leaf</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">branches</span>
+</pre></div>
+
+<p>The <tt class="docutils literal">Tree</tt> class can represent, for instance, the values computed in an
+expression tree for the recursive implementation of <tt class="docutils literal">fib</tt>, the function for
+computing Fibonacci numbers. The function <tt class="docutils literal">fib_tree(n)</tt> below returns a
+<tt class="docutils literal">Tree</tt> that has the nth Fibonacci number as its <tt class="docutils literal">label</tt> and a trace of all
+previously computed Fibonacci numbers within its branches.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">fib_tree</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Tree</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Tree</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">left</span> <span class="o">=</span> <span class="n">fib_tree</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="n">right</span> <span class="o">=</span> <span class="n">fib_tree</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Tree</span><span class="p">(</span><span class="n">left</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="n">right</span><span class="o">.</span><span class="n">label</span><span class="p">,</span> <span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">))</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fib_tree</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="go">Tree(3, (Tree(1, (Tree(0), Tree(1))), Tree(2, (Tree(1), Tree(1, (Tree(0), Tree(1)))))))</span>
+</pre></div>
+
+<p>Trees represented in this way are also processed using recursive functions. For
+example, we can sum the labels of a tree.  As a base case, we return that an
+empty branch has no labels.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">sum_labels</span><span class="p">(</span><span class="n">t</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Sum the labels of a Tree instance, which may be None."""</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">t</span><span class="o">.</span><span class="n">label</span> <span class="o">+</span> <span class="nb">sum</span><span class="p">([</span><span class="n">sum_labels</span><span class="p">(</span><span class="n">b</span><span class="p">)</span> <span class="k">for</span> <span class="n">b</span> <span class="ow">in</span> <span class="n">t</span><span class="o">.</span><span class="n">branches</span><span class="p">])</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sum_labels</span><span class="p">(</span><span class="n">fib_tree</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="go">10</span>
+</pre></div>
+
+<p>We can also apply <tt class="docutils literal">memo</tt> to construct a Fibonacci tree, where repeated
+subtrees are only created once by the memoized version of <tt class="docutils literal">fib_tree</tt>, but are
+used multiple times as branches of different larger trees.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">fib_tree</span> <span class="o">=</span> <span class="n">memo</span><span class="p">(</span><span class="n">fib_tree</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">big_fib_tree</span> <span class="o">=</span> <span class="n">fib_tree</span><span class="p">(</span><span class="mi">35</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">big_fib_tree</span><span class="o">.</span><span class="n">label</span>
+<span class="go">5702887</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">big_fib_tree</span><span class="o">.</span><span class="n">branches</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="ow">is</span> <span class="n">big_fib_tree</span><span class="o">.</span><span class="n">branches</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">branches</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sum_labels</span> <span class="o">=</span> <span class="n">memo</span><span class="p">(</span><span class="n">sum_labels</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">sum_labels</span><span class="p">(</span><span class="n">big_fib_tree</span><span class="p">)</span>
+<span class="go">142587180</span>
+</pre></div>
+
+<p>The amount of computation time and memory saved by memoization in these cases
+is substantial. Instead of creating 18,454,929 different instances of the
+<tt class="docutils literal">Tree</tt> class, we now create only 35.</p>
+</div>
+<div class="section" id="sets">
+<h3>2.9.3   Sets</h3>
+<p>In addition to the list, tuple, and dictionary, Python has a fourth built-in
+container type called a <tt class="docutils literal">set</tt>. Set literals follow the mathematical notation
+of elements enclosed in braces.  Duplicate elements are removed upon
+construction.  Sets are unordered collections, and so the printed ordering may
+differ from the element ordering in the set literal.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="p">{</span><span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">4</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span>
+<span class="go">{1, 2, 3, 4}</span>
+</pre></div>
+
+<p>Python sets support a variety of operations, including membership tests, length
+computation, and the standard set operations of union and intersection</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="mi">3</span> <span class="ow">in</span> <span class="n">s</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="go">4</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">union</span><span class="p">({</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">})</span>
+<span class="go">{1, 2, 3, 4, 5}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">s</span><span class="o">.</span><span class="n">intersection</span><span class="p">({</span><span class="mi">6</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">})</span>
+<span class="go">{3, 4}</span>
+</pre></div>
+
+<p>In addition to <tt class="docutils literal">union</tt> and <tt class="docutils literal">intersection</tt>, Python sets support several
+other methods. The predicates <tt class="docutils literal">isdisjoint</tt>, <tt class="docutils literal">issubset</tt>, and <tt class="docutils literal">issuperset</tt>
+provide set comparison.  Sets are mutable, and can be changed one element at a
+time using <tt class="docutils literal">add</tt>, <tt class="docutils literal">remove</tt>, <tt class="docutils literal">discard</tt>, and <tt class="docutils literal">pop</tt>.  Additional methods
+provide multi-element mutations, such as <tt class="docutils literal">clear</tt> and <tt class="docutils literal">update</tt>. The Python
+<a class="reference external" href="http://docs.python.org/py3k/library/stdtypes.html#set">documentation for sets</a> should be
+sufficiently intelligible at this point of the course to fill in the details.</p>
+<p><strong>Implementing sets.</strong> Abstractly, a set is a collection of distinct objects
+that supports membership testing, union, intersection, and adjunction.
+Adjoining an element and a set returns a new set that contains all of the
+original set's elements along with the new element, if it is distinct. Union
+and intersection return the set of elements that appear in either or both sets,
+respectively. As with any data abstraction, we are free to implement any
+functions over any representation of sets that provides this collection of
+behaviors.</p>
+<p>In the remainder of this section, we consider three different methods of
+implementing sets that vary in their representation. We will characterize the
+efficiency of these different representations by analyzing the order of growth
+of set operations.  We will use our <tt class="docutils literal">Link</tt> and <tt class="docutils literal">Tree</tt> classes from earlier
+in this section, which allow for simple and elegant recursive solutions for
+elementary set operations.</p>
+<p><strong>Sets as unordered sequences.</strong> One way to represent a set is as a sequence in
+which no element appears more than once.  The empty set is represented by the
+empty sequence. Membership testing walks recursively through the list.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">empty</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">s</span> <span class="ow">is</span> <span class="n">Link</span><span class="o">.</span><span class="n">empty</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">set_contains</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return True if and only if set s contains v."""</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">empty</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">first</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="kc">True</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">set_contains</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">rest</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">s</span> <span class="o">=</span> <span class="n">Link</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">Link</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Link</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_contains</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_contains</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+
+<p>This implementation of <tt class="docutils literal">set_contains</tt> requires <span class="rawlatex">$\Theta(n)$</span> time
+on average to test membership of an element, where <span class="rawlatex">$n$</span> is the size
+of the set <tt class="docutils literal">s</tt>. Using this linear-time function for membership, we can adjoin
+an element to a set, also in linear time.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">adjoin_set</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return a set containing all elements of s and element v."""</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">set_contains</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">s</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Link</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">t</span> <span class="o">=</span> <span class="n">adjoin_set</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">t</span>
+<span class="go">Link(2, Link(4, Link(1, Link(5))))</span>
+</pre></div>
+
+<p>In designing a representation, one of the issues with which we should be
+concerned is efficiency.  Intersecting two sets <tt class="docutils literal">set1</tt> and <tt class="docutils literal">set2</tt> also
+requires membership testing, but this time each element of <tt class="docutils literal">set1</tt> must be
+tested for membership in <tt class="docutils literal">set2</tt>, leading to a quadratic order of growth in
+the number of steps, <span class="rawlatex">$\Theta(n^2)$</span>, for two sets of size
+<span class="rawlatex">$n$</span>.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">intersect_set</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return a set containing all elements common to set1 and set2."""</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">keep_if_link</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="n">set_contains</span><span class="p">(</span><span class="n">set2</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">intersect_set</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">apply_to_all_link</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">square</span><span class="p">))</span>
+<span class="go">Link(4, Link(1))</span>
+</pre></div>
+
+<p>When computing the union of two sets, we must be careful not to include any
+element twice.  The <tt class="docutils literal">union_set</tt> function also requires a linear number of
+membership tests, creating a process that also includes <span class="rawlatex">$\Theta(n^2)$</span>
+steps.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">union_set</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="sd">"""Return a set containing all elements either in set1 or set2."""</span>
+<span class="gp">    </span>    <span class="n">set1_not_set2</span> <span class="o">=</span> <span class="n">keep_if_link</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="k">lambda</span> <span class="n">v</span><span class="p">:</span> <span class="ow">not</span> <span class="n">set_contains</span><span class="p">(</span><span class="n">set2</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+<span class="gp">    </span>    <span class="k">return</span> <span class="n">extend_link</span><span class="p">(</span><span class="n">set1_not_set2</span><span class="p">,</span> <span class="n">set2</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">union_set</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">s</span><span class="p">)</span>
+<span class="go">Link(2, Link(4, Link(1, Link(5))))</span>
+</pre></div>
+
+<p><strong>Sets as ordered sequences.</strong> One way to speed up our set operations is to change
+the representation so that the set elements are listed in increasing order. To
+do this, we need some way to compare two objects so that we can say which is
+bigger. In Python, many different types of objects can be compared using <tt class="docutils literal">&lt;</tt>
+and <tt class="docutils literal">&gt;</tt> operators, but we will concentrate on numbers in this example. We will
+represent a set of numbers by listing its elements in increasing order.</p>
+<p>One advantage of ordering shows up in <tt class="docutils literal">set_contains</tt>: In checking for the
+presence of an object, we no longer have to scan the entire set. If we reach a
+set element that is larger than the item we are looking for, then we know that
+the item is not in the set:</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">set_contains</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">empty</span><span class="p">(</span><span class="n">s</span><span class="p">)</span> <span class="ow">or</span> <span class="n">s</span><span class="o">.</span><span class="n">first</span> <span class="o">&gt;</span> <span class="n">v</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">first</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="kc">True</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">set_contains</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">rest</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">u</span> <span class="o">=</span> <span class="n">Link</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">Link</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="n">Link</span><span class="p">(</span><span class="mi">5</span><span class="p">)))</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_contains</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+<span class="go">False</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">set_contains</span><span class="p">(</span><span class="n">u</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="go">True</span>
+</pre></div>
+
+<p>How many steps does this save? In the worst case, the item we are looking for
+may be the largest one in the set, so the number of steps is the same as for
+the unordered representation. On the other hand, if we search for items of many
+different sizes we can expect that sometimes we will be able to stop searching
+at a point near the beginning of the list and that other times we will still
+need to examine most of the list. On average we should expect to have to
+examine about half of the items in the set. Thus, the average number of steps
+required will be about <span class="rawlatex">$\frac{n}{2}$</span>. This is still
+<span class="rawlatex">$\Theta(n)$</span> growth, but it does save us some time in practice over
+the previous implementation.</p>
+<p>We can obtain a more impressive speedup by re-implementing <tt class="docutils literal">intersect_set</tt>.
+In the unordered representation, this operation required <span class="rawlatex">$\Theta(n^2)$</span>
+steps because we performed a complete scan of <tt class="docutils literal">set2</tt> for each element of
+<tt class="docutils literal">set1</tt>. But with the ordered representation, we can use a more clever method.
+We iterate through both sets simultaneously, tracking an element <tt class="docutils literal">e1</tt> in
+<tt class="docutils literal">set1</tt> and <tt class="docutils literal">e2</tt> in <tt class="docutils literal">set2</tt>.  When <tt class="docutils literal">e1</tt> and <tt class="docutils literal">e2</tt> are equal, we include
+that element in the intersection.</p>
+<p>Suppose, however, that <tt class="docutils literal">e1</tt> is less than <tt class="docutils literal">e2</tt>. Since <tt class="docutils literal">e2</tt> is smaller than
+the remaining elements of <tt class="docutils literal">set2</tt>, we can immediately conclude that <tt class="docutils literal">e1</tt>
+cannot appear anywhere in the remainder of <tt class="docutils literal">set2</tt> and hence is not in the
+intersection. Thus, we no longer need to consider <tt class="docutils literal">e1</tt>; we discard it and
+proceed to the next element of <tt class="docutils literal">set1</tt>.  Similar logic advances through the
+elements of <tt class="docutils literal">set2</tt> when <tt class="docutils literal">e2 &lt; e1</tt>. Here is the function:</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">intersect_set</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">empty</span><span class="p">(</span><span class="n">set1</span><span class="p">)</span> <span class="ow">or</span> <span class="n">empty</span><span class="p">(</span><span class="n">set2</span><span class="p">):</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Link</span><span class="o">.</span><span class="n">empty</span>
+<span class="gp">    </span>    <span class="k">else</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="n">e1</span><span class="p">,</span> <span class="n">e2</span> <span class="o">=</span> <span class="n">set1</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="n">set2</span><span class="o">.</span><span class="n">first</span>
+<span class="gp">    </span>        <span class="k">if</span> <span class="n">e1</span> <span class="o">==</span> <span class="n">e2</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="n">Link</span><span class="p">(</span><span class="n">e1</span><span class="p">,</span> <span class="n">intersect_set</span><span class="p">(</span><span class="n">set1</span><span class="o">.</span><span class="n">rest</span><span class="p">,</span> <span class="n">set2</span><span class="o">.</span><span class="n">rest</span><span class="p">))</span>
+<span class="gp">    </span>        <span class="k">elif</span> <span class="n">e1</span> <span class="o">&lt;</span> <span class="n">e2</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="n">intersect_set</span><span class="p">(</span><span class="n">set1</span><span class="o">.</span><span class="n">rest</span><span class="p">,</span> <span class="n">set2</span><span class="p">)</span>
+<span class="gp">    </span>        <span class="k">elif</span> <span class="n">e2</span> <span class="o">&lt;</span> <span class="n">e1</span><span class="p">:</span>
+<span class="gp">    </span>            <span class="k">return</span> <span class="n">intersect_set</span><span class="p">(</span><span class="n">set1</span><span class="p">,</span> <span class="n">set2</span><span class="o">.</span><span class="n">rest</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">intersect_set</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">rest</span><span class="p">)</span>
+<span class="go">Link(4, Link(5))</span>
+</pre></div>
+
+<p>To estimate the number of steps required by this process, observe that in each
+step we shrink the size of at least one of the sets. Thus, the number of steps
+required is at most the sum of the sizes of <tt class="docutils literal">set1</tt> and <tt class="docutils literal">set2</tt>, rather than
+the product of the sizes, as with the unordered representation. This is
+<span class="rawlatex">$\Theta(n)$</span> growth rather than <span class="rawlatex">$\Theta(n^2)$</span> -- a considerable
+speedup, even for sets of moderate size. For example, the intersection of two
+sets of size 100 will take around 200 steps, rather than 10,000 for
+the unordered representation.</p>
+<p>Adjunction and union for sets represented as ordered sequences can also be
+computed in linear time.  These implementations are left as an exercise.</p>
+<p><strong>Sets as binary search trees.</strong> We can do better than the ordered-list
+representation by arranging the set elements in the form of a tree with exactly
+two branches. The <tt class="docutils literal">entry</tt> of the root of the tree holds one element of the
+set. The entries within the <tt class="docutils literal">left</tt> branch include all elements smaller than
+the one at the root. Entries in the <tt class="docutils literal">right</tt> branch include all elements
+greater than the one at the root. The figure below shows some trees that
+represent the set <tt class="docutils literal">{1, 3, 5, 7, 9, 11}</tt>. The same set may be represented by a
+tree in a number of different ways. In all binary search trees, all elements in the <tt class="docutils literal">left</tt> branch be smaller than
+the <tt class="docutils literal">entry</tt> at the root, and that all elements in the <tt class="docutils literal">right</tt> subtree be larger.</p>
+<div class="figure">
+<img src="../img/set_trees.png" alt=""/>
+</div>
+<p>The advantage of the tree representation is this: Suppose we want to check
+whether a value <tt class="docutils literal">v</tt> is contained in a set. We begin by comparing <tt class="docutils literal">v</tt> with
+<tt class="docutils literal">entry</tt>. If <tt class="docutils literal">v</tt> is less than this, we know that we need only search the
+<tt class="docutils literal">left</tt> subtree; if <tt class="docutils literal">v</tt> is greater, we need only search the <tt class="docutils literal">right</tt>
+subtree. Now, if the tree is "balanced," each of these subtrees will be about
+half the size of the original. Thus, in one step we have reduced the problem of
+searching a tree of size <span class="rawlatex">$n$</span> to searching a tree of size
+<span class="rawlatex">$\frac{n}{2}$</span>. Since the size of the tree is halved at each step, we
+should expect that the number of steps needed to search a tree grows as
+<span class="rawlatex">$\Theta(\log n)$</span>. For large sets, this will be a significant
+speedup over the previous representations.  This <tt class="docutils literal">set_contains</tt> function
+exploits the ordering structure of the tree-structured set.</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">set_contains</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="kc">False</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">entry</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="kc">True</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">entry</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">set_contains</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">entry</span> <span class="o">&gt;</span> <span class="n">v</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">set_contains</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">v</span><span class="p">)</span>
+</pre></div>
+
+<p>Adjoining an item to a set is implemented similarly and also requires
+<span class="rawlatex">$\Theta(\log n)$</span> steps. To adjoin a value <tt class="docutils literal">v</tt>, we compare <tt class="docutils literal">v</tt> with
+<tt class="docutils literal">entry</tt> to determine whether <tt class="docutils literal">v</tt> should be added to the <tt class="docutils literal">right</tt> or to the
+<tt class="docutils literal">left</tt> branch, and having adjoined <tt class="docutils literal">v</tt> to the appropriate branch we piece
+this newly constructed branch together with the original <tt class="docutils literal">entry</tt> and the
+other branch.  If <tt class="docutils literal">v</tt> is equal to the <tt class="docutils literal">entry</tt>, we just return the node. If
+we are asked to adjoin <tt class="docutils literal">v</tt> to an empty tree, we generate a <tt class="docutils literal">Tree</tt> that has
+<tt class="docutils literal">v</tt> as the <tt class="docutils literal">entry</tt> and empty <tt class="docutils literal">right</tt> and <tt class="docutils literal">left</tt> branches. Here is the
+function:</p>
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="k">def</span> <span class="nf">adjoin_set</span><span class="p">(</span><span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">):</span>
+<span class="gp">    </span>    <span class="k">if</span> <span class="n">s</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Tree</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">entry</span> <span class="o">==</span> <span class="n">v</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">s</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">entry</span> <span class="o">&lt;</span> <span class="n">v</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Tree</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">entry</span><span class="p">,</span> <span class="n">s</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">adjoin_set</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">right</span><span class="p">,</span> <span class="n">v</span><span class="p">))</span>
+<span class="gp">    </span>    <span class="k">elif</span> <span class="n">s</span><span class="o">.</span><span class="n">entry</span> <span class="o">&gt;</span> <span class="n">v</span><span class="p">:</span>
+<span class="gp">    </span>        <span class="k">return</span> <span class="n">Tree</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">entry</span><span class="p">,</span> <span class="n">adjoin_set</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">left</span><span class="p">,</span> <span class="n">v</span><span class="p">),</span> <span class="n">s</span><span class="o">.</span><span class="n">right</span><span class="p">)</span>
+</pre></div>
+
+<div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">adjoin_set</span><span class="p">(</span><span class="n">adjoin_set</span><span class="p">(</span><span class="n">adjoin_set</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span> <span class="mi">3</span><span class="p">),</span> <span class="mi">1</span><span class="p">)</span>
+<span class="go">Tree(2, Tree(1), Tree(3))</span>
+</pre></div>
+
+<p>Our claim that searching the tree can be performed in a logarithmic number
+of steps rests on the assumption that the tree is "balanced," i.e., that the
+left and the right subtree of every tree have approximately the same number of
+elements, so that each subtree contains about half the elements of its parent.
+But how can we be certain that the trees we construct will be balanced? Even if
+we start with a balanced tree, adding elements with <tt class="docutils literal">adjoin_set</tt> may produce
+an unbalanced result. Since the position of a newly adjoined element depends on
+how the element compares with the items already in the set, we can expect that
+if we add elements "randomly" the tree will tend to be balanced on the average.</p>
+<p>But this is not a guarantee. For example, if we start with an empty set and
+adjoin the numbers 1 through 7 in sequence we end up with a highly unbalanced
+tree in which all the left subtrees are empty, so it has no advantage over a
+simple ordered list. One way to solve this problem is to define an operation
+that transforms an arbitrary tree into a balanced tree with the same elements.
+We can perform this transformation after every few <tt class="docutils literal">adjoin_set</tt> operations to
+keep our set in balance.</p>
+<p>Intersection and union operations can be performed on tree-structured sets
+in linear time by converting them to ordered lists and back. The details are
+left as an exercise.</p>
+<p><strong>Python set implementation.</strong> The <tt class="docutils literal">set</tt> type that is built into Python does
+not use any of these representations internally.  Instead, Python uses a
+representation that gives constant-time membership tests and adjoin operations
+based on a technique called <em>hashing</em>, which is a topic for another course.
+Built-in Python sets cannot contain mutable data types, such as lists,
+dictionaries, or other sets.  To allow for nested sets, Python also includes a
+built-in immutable <tt class="docutils literal">frozenset</tt> class that shares methods with the <tt class="docutils literal">set</tt>
+class but excludes mutation methods and operators.</p>
+</div>
+</div>
+      </div>
+    </section>
+
+    <div class="wrap">
+      <footer id="contentinfo" class="body">
+          Composing Programs by <a href="http://www.denero.org">John
+          DeNero</a>, based on the textbook <a
+          href="http://mitpress.mit.edu/sicp/">Structure and
+          Interpretation of Computer Programs</a> by Harold Abelson and
+          Gerald Jay Sussman, is licensed under a <a rel="license"
+          href="http://creativecommons.org/licenses/by-sa/3.0/">Creative
+          Commons Attribution-ShareAlike 3.0 Unported License</a>.
+      </footer><!-- /#contentinfo -->
+    </div>
+  </div>
+</body>
+</html>
